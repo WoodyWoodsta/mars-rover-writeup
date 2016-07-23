@@ -59,7 +59,10 @@ fulfilment of the academic requirements for a Bachelor of Science degree in Mech
 \mbox{}
 \newpage
 
+\pagenumbering{roman}
+\input{frontmatter/TermsOfReference}
 
+\newpage
 \input{frontmatter/Declaration}
 
 \pagestyle{plain} % TODO: Consider putting this in the Acknowledgements.tex
@@ -80,25 +83,34 @@ fulfilment of the academic requirements for a Bachelor of Science degree in Mech
 \listoftables
 
 \newpage
+\input{frontmatter/Glossary}
 
+\newpage
 \fancyhead[RE,LO]{}
 \fancyhead[LE]{\leftmark}
 \fancyhead[RO]{\rightmark}
 \pagestyle{fancy}
 
 \pagenumbering{arabic}
-
 \include{body/Introduction}
 \include{body/Literature}
-\include{body/Methodology}
-\include{body/Results}
+
 \include{body/Discussion}
 \include{body/Conclusions}
 \include{body/Recommendations}
 
-\bibliography{MyBibFile}
+\bibliography{references}
 \appendix
 \include{body/appendixa}
 \include{body/appendixb}
 
 \end{document}
+
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[width=0.7\textwidth]{model.png}
+%\label{fig:model}
+%\caption{A block diagram illustrating the connections to the IRQ pin on the MCS08GT16A microcontroller (Please
+%note that your headings should be short descriptions of what is in the diagram not simply the figure title)}
+%\end{figure}
+
