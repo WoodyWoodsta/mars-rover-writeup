@@ -9,10 +9,11 @@
 \usepackage{lscape}
 \usepackage[none]{hyphenat}
 \usepackage{setspace}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{color}
 \usepackage{float}
 \usepackage{listing}
+\usepackage{tocstyle}
 %\usepackage{epstopdf}                                      % EPS graphic support
 %\usepackage{minted}                                              % Code snippets
 \usepackage{bm}                                             % Bold maths symbols
@@ -31,3 +32,15 @@
 \renewcommand{\headrulewidth}{0pt}
 \rhead[]{\thesection}
 \lhead[\thechapter]{}
+
+% hyperref
+\usepackage[bookmarks         = true     ,%
+            bookmarksnumbered = true     ,%
+            setpagesize       = false    ,%
+            colorlinks        = true     ,%
+            linkcolor         = black    ,%
+            urlcolor          = black    ,%
+            citecolor         = black    ,%
+            pdfpagelayout     = OneColumn,%
+            pdfstartview      = FitH		 ,%
+            driverfallback    = dvipdfm]{hyperref}
