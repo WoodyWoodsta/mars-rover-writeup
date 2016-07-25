@@ -29,8 +29,6 @@
       
       
       MSL was launched from Cape Canaveral Space Station, Launch Complex 41, atop an Atlas V vehicle, a two stage rocket \cite{harwood2014sfn}. The mission required the launch vehicle to insert the five-piece MSL spacecraft into a transfer orbit in a process known as a Trans-Mars Injection (TMI) allowing the spacecraft to arrive at Mars after a 566 million kilometre trip that lasted 256 days. Figure~\ref{fig:mslSpacecraftExplodedView} shows a 3D render of the components of the spacecraft that made the trip. Four trajectory correction manoeuvres were made during the flight to result in a landing near ``Mount Sharp'' in Gale Crater, deemed the most accurate landing on Mars of any other spacecraft \cite{martinmur}.
-      
-      % TODO: Launch site choice
     
     \subsection{Primary Mission Goals and Objectives}
       Touching down on the surface of Mars, the MSL had primary objectives tailored to contribute to the four goals as outlined in the MEP. The objectives were carried out by the MSL's flagship component, the Curiosity rover, and consisted of a wide range of biological and geological observations such as to determine the chemical building blocks that exist on the surface including organic carbon compounds, prospective historical biological activity, atmospheric processes of evolution, surface radiation and state and distribution of water \cite{mslobjectivesjpl}.
@@ -38,17 +36,7 @@
       Apart from the primary objectives, the MSL mission pushes further the boundaries of space exploration in that it proved the ability to land heavier vehicles at incredibly precise landing accuracy as well as the achievement of wider surface coverage to collect and observe more diverse samples of the surface of Mars.
               
     \subsection{Technical Breakdown of the Curiosity Rover}
-      23\% of the MSL spacecraft's total mass of 3.893 metric tonnes was thanks to the missions rover vehicle, \textit{Curiosity}.
-      
-      \subsubsection{Rover Compute Element}
-      
-      \subsubsection{Manoeuvrability}
-      
-      \subsubsection{Instrumentation}
-      
-      \subsubsection{Communication}
-      
-      
+      23\% of the MSL spacecraft's total mass of 3.893 metric tonnes was thanks to the missions rover vehicle, the Cusriosity 
 
   \section{Space Education and Outreach}
   
