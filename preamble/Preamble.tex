@@ -19,6 +19,9 @@
 %\usepackage{minted}                                              % Code snippets
 \usepackage{bm}                                             % Bold maths symbols
 \usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{cleveref}
+
 \usepackage[bottom]{footmisc}
 
 \bibliographystyle{preamble/IEEEtran/bibtex/IEEEtran}
@@ -28,6 +31,8 @@
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{-5pt plus 2pt minus 2pt}
 \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{-5pt plus 2pt minus 2pt}
 
+% List Spacing
+\setlist{itemsep=1pt, topsep=1pt}
 
 % Commands
 \providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}       % Scientific Notation!
@@ -52,3 +57,4 @@
             pdfpagelayout     = OneColumn,%
             pdfstartview      = FitH		 ,%
             driverfallback    = dvipdfm]{hyperref}
+            
