@@ -35,14 +35,22 @@
     \end{itemize}
     
   \subsection{Functional Analysis}
-    The client requirements as highlighted in the previous sub-section were analysed to result in a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next chapter. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but rather the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible. Following this mindset allowed for the simplification of the design process and the robustness of what was developed to constraints and unforeseen obstacles during development.
+    The client requirements as highlighted in the previous sub-section were analysed to result in a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but rather the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
     
     The current requirements distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing associated design approaches made it suitable to discuss them separately, where appropriate.
     
-    ![Diagram of the functional breakdown]
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.6\textwidth]{figures/specs-functionalBreakdown}
+      \label{fig:specs-functionalBreakdown}
+      \caption[Diagram showing the simplified breakdown of functional entities of the project]{Diagram showing the simplified breakdown of functional entities of the project}
+    \end{figure}
     
     
   \subsection{Technical Specifications}
-    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}). The specifications further compartmentalised the vehicle and software systems
+    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}). The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design. Section~\ref{sec:secondary-objectives} adds to the these specifications a list of secondary objectives which were considered during the design process, but not mandatory.
+    
+    
   
-  \subsection{Secondary Objectives}  
+  \subsection{Secondary Objectives}
+  \label{sec:secondary-objectives}
