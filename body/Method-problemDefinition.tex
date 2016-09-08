@@ -12,6 +12,7 @@
       \item\label{enum:req-scaledrover} be a scaled down representation of JPL's rover currently operational on Mars with a level of resemblance adequate for use in a realistic exhibit. In other words, it should have been realistic enough such that someone who might have seen a picture of \textit{Curiosity} beforehand could identify the rover,
       \item have traversal capabilities that reflect those on \textit{Curiosity},
       \item be able to make use of these traversal capabilities on uneven terrain such as one which would be a simulated surface as part of the exhibit without resulting in an unrecoverable state,
+      \item offer video streaming to connected clients
       \item have reasonable awareness of obstacles to prevent resulting in an unrecoverable state as well as to provide an indication of the navigational and environmental awareness systems on \textit{Curiosity},
       \item have data communication facilities available to best represent the communication systems and subjects of those that are a part of MSL, and
       \item be completely wireless, again reflecting the nature of operation of \textit{Curiosity}.
@@ -34,10 +35,12 @@
       \item 
     \end{itemize}
     
-  \subsection{Functional Analysis}
-    The client requirements as highlighted in the previous sub-section were analysed to result in a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but rather the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
+    ![Fill out]
     
-    The current requirements distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing associated design approaches made it suitable to discuss them separately, where appropriate.
+  \subsection{Functional Analysis}
+    The client requirements as highlighted in the previous sub-section were analysed to result in a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but is instead the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
+    
+    The current requirements distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing natural design approaches made it suitable to discuss them separately, where appropriate.
     
     \begin{figure}[h]
       \centering
@@ -46,9 +49,167 @@
       \caption[Diagram showing the simplified breakdown of functional entities of the project]{Diagram showing the simplified breakdown of functional entities of the project}
     \end{figure}
     
+    ![Fill out]
     
   \subsection{Technical Specifications}
-    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}). The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design. Section~\ref{sec:secondary-objectives} adds to the these specifications a list of secondary objectives which were considered during the design process, but not mandatory.
+    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}). The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design. Section~\ref{sec:secondary-objectives} adds to the these specifications a list of secondary objectives which were considered during the design process, but were not mandatory.
+    
+    \subsubsection{Vehicle Specifications}
+      \begin{itemize}
+        \item Mechanical
+        \begin{itemize}
+          \item General Specifications:
+          \begin{itemize}
+            \item Must be as proportional as possible to the Curiosity rover on Mars
+          \end{itemize}
+          \item Body:
+          \begin{itemize}
+            \item Box shaped
+            \item Allow mounting of the mast and differential on the top surface
+            \item Allow mounting of the suspension system on either side
+            \item Allow mounting of additional sensors
+            \item Allow mounting of additional detail such as side panels and other mockup objects
+            \item Allow mounting of electrical internals
+            \item Provide protection/coverage of electrical internals from the external environment
+          \end{itemize}
+          \item Mast:
+          \begin{itemize}
+            \item Provide mount point for the head module
+            \item Facilitate full rotation about the $z$ axis (camera panning/yaw axis)
+            \item Facilitate at least $120^\circ$ degrees rotation about the $y$ axis (camera pitching axis)
+            \item Be structurally secure providing robustness against lateral forces on mounted head module
+          \end{itemize}
+          \item Head:
+          \begin{itemize}
+            \item Be mounted onto the mast module
+            \item Provide mount point for a sensor
+            \item Allow mounting of a camera module
+          \end{itemize}
+          \item Suspension:
+          \begin{itemize}
+            \item Ensure body stability
+            \item Maintain stability despite uneven terrain. This includes terrain which might require asymmetrical articulation of the system (a rock underneath one side of the rover and flat terrain underneath the other)
+          \end{itemize}
+          \item Wheels:
+          \begin{itemize}
+            \item Match the shape and proportion of the wheels on Curiosity
+            \item Maintain stability despite uneven terrain. This includes terrain which might require asymmetrical articulation of the system (a rock underneath one side of the rover and flat terrain underneath the other)
+          \end{itemize}
+        \end{itemize}
+        
+        \item Electrical
+        \begin{itemize}
+          \item Actuation:
+          \begin{itemize}
+            \item Provide continuous rotational actuation for driving. The actuation speed should be controllable and must be of high enough torque to satisfy traversal specifications
+            \item Provide sufficient magnitude rotational actuation for turning of the wheels for steering. The rotational position should be controllable and must be of high enough torque to facilitate turning of the wheels in-place
+            \item Provide required magnitude rotational actuation for panning and pitching of the head/mast module. Both axes must allow positional control
+          \end{itemize}
+          \item Central Control:
+          \begin{itemize}
+            \item Host onboard software system for control of hardware
+            \item Facilitate wireless communications with the server
+            \item Interface with actuation and sensory input hardware
+            \item Have performance capabilities sufficient for processing and streaming of video data from the head module
+          \end{itemize}
+          \item Power:
+          \begin{itemize}
+            \item Provide power for the central control hardware as well as actuation and sensor hardware components
+            \item Fit inside or on the body module
+            \item Have the ability to be turned switched off or on
+            \item Allow convenient removal of source
+            \item Allow easy access to charging ports
+            \item Provide a means of indication of voltage for telemetry and low-battery warnings
+          \end{itemize}
+          \item Sensors:
+          \begin{itemize}
+            \item Provide immediate environment data required to implement elementary obstacle detection and avoidance
+            \item Be mounted in locations similar to those on \textit{Curiosity}
+            \item Be compatible with the central control module in terms of data interface
+          \end{itemize}
+          \item Camera:
+          \begin{itemize}
+            \item Facilitate a monoscopic video feed
+            \item Be mountable to the inside of the head module
+            \item Be compatible with the central control module in terms of data interface
+          \end{itemize}
+      \end{itemize}
+    \end{itemize}
+      
+    \subsubsection{Software System Specifications}
+      \begin{itemize}
+        \item Rover Embedded Software
+        \begin{itemize}
+          \item General Specifications:
+          \begin{itemize}
+            \item Allow connection of a remote client for telemetry and control as well as another for video streaming
+            \item Be robust against hardware errors and communication intermittencies so as to maintain operation in these circumstances
+          \end{itemize}
+          \item Control:
+          \begin{itemize}
+            \item Provide a programmatic means to peripheral hardware access
+            \item Translate control input commands into hardware output signals for control of peripheral hardware components
+            \item Declare/define and execute programmatic sequences facilitating procedures such as system booting, communication initialisations, hardware initializations, self diagnosis ![probably need to make a list of the required sequences]
+          \end{itemize}
+          \item Telemetry:
+          \begin{itemize}
+            \item Emit system telemetry to the connected client consisting of system, process and hardware state as well as sequence execution notifications
+          \end{itemize}
+          \item Video Stream:
+          \begin{itemize}
+            \item Provide a stream of the video data to the connected client
+            \item Provide video resolution on or above VGA (640x480) resolution
+          \end{itemize}
+        \end{itemize}
+        
+        \item Server
+        \begin{itemize}
+          \item General Requirements:
+          \begin{itemize}
+            \item Manage communication with the rover system
+            \item Manage communication with the connected web clients
+            \item Serve web application to the connected web clients
+            \item Manage roles of the connected web clients with respect to their level of access and ability to control the rover
+          \end{itemize}
+          \item Video Broadcast:
+          \begin{itemize}
+            \item Connect to and accept video data from the rover video stream
+            \item Broadcast video stream to a scalable number of connected user clients
+            \item Be robust against communication intermittency in terms of connection with the rover system
+          \end{itemize}
+          \item Data Relay:
+          \begin{itemize}
+            \item Relay control input commands from a controlling web client to the rover
+            \item Provide a means of simulating long-distance communication 
+            \item Relay telemetry data from the rover system to the connected web clients
+            \item Relay state information of the rover system and server system to the connected web clients
+          \end{itemize}
+        \end{itemize}
+          
+        \item Web Client
+        \begin{itemize}
+          \item General Requirements:
+          \begin{itemize}
+            \item ![Fill out]
+          \end{itemize}
+          \item Control:
+          \begin{itemize}
+            \item Provide two means of control of the rover, if access is granted:
+            \begin{enumerate}
+              \item RoSE-style command sequence input, allowing composition of a sequence of commands and playback of such commands
+              \item Interactive joystick/button interface
+            \end{enumerate}
+          \end{itemize}
+          \item Telemetry:
+          \begin{itemize}
+            \item Accept and display telemetry received from the rover via the server and from the server itself
+          \end{itemize}
+          \item Video Feed:
+          \begin{itemize}
+            \item Accept and display video feed received from the broadcast
+          \end{itemize}
+        \end{itemize}
+      \end{itemize}
     
     
   
