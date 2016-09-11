@@ -1,4 +1,188 @@
 \section{Conceptual Design and Development}
-  \subsection{Concept Proposals}
+  It was clear from the composed list of specifications that both electrical and mechanical aspects of the project required development of a large number of parts. In a typical conceptual design process, one could propose a number of complete concepts (i.e. incorporating all aspects of the project) and then make a judgement based on analysis of these concepts. For this project, it was decided that each of the subcomponents outlined in the specifications be conceptually envisioned separately with consideration of neighbouring or related subcomponents and the compatibility between each. Analysis was then undertaken for each of the subcomponents and a final design was composed in a convergent manner, taking the best concept from each of the analyses.
+  
+  The fact that the design of this model of the vehicle was based off a very robust design like that of \textit{Curiosity} helped to maintain structure during a highly parallel, componentised conceptual development. However, the majority of the software components and some hardware components relied on the design of other components therefore the design process was not \textit{entirely} parallel.
+  
+  \subsection{Rover Concept Proposals}
+    \subsubsection{Body}
+      All of the proposed ideas for the body component of the model revolved around the idea of a hollow box structure. The box was required to host electronics but at the same time, provide structural stability for all other components that were to be mounted to it. Therefore, the choice here was between the materials from which it would be built.
+      
+      \subheading{Concepts}
+      \begin{enumerate}
+        \item \textbf{Carbon Fibre:} The first idea envisioned the use of carbon fibre to form a box structure that could be very thin and light but still offer the required strength. The carbon fibre would be cured around a mould made from another rigid, easy to use material. When rigid, holes would be drilled for mounting components and electronics. This concept includes the use of fibre glass which is commonly interchanged with carbon fibre. Both materials offer similar tensile strength, however, carbon fibre is far more robust in flexure \cite{fibreGlast_2016}.
+        
+        \item \textbf{Perspex/Acrylic Sheet Assembly:} The next idea involved creating the box by designing and cutting panels from acrylic sheet of acceptable thickness, and later fusing the panels to form the structure. Cut-outs could have been included in the design together with holes for shafts and mounting points, which may also have been drilled after the fact. Internal support structures could have been included if the strength of the bonds or of the structure in general was in question due to the fact that acrylic sheet offers high flexibility. Figure~![] shows an example of how the panels might be assembled.
+        
+        ![Perspex concept render]
+        \item \textbf{3D Printing:} One of the aims of the project was to develop the model with high realism in an attempt to make the use of the simulator an engaging and appealing experience. The idea of 3D printing the box structure was considered and it would have allowed for a large degree of detail to be included at little additional effort or cost. Most features such as mounting points (those beyond just holes) and aesthetic detail could have been designed on top of base and internal structural support. A material could have been chosen which might offer the required rigidity, however, due to the nature of the manufacturing process, specifically the reliance on heat for the deforming of the plastic filament in the printing process, 3D printed components would not provide the same strength and robustness as compared to that of the other concepts. A 3D model of the rover created and published by NASA was found which was intended for 3D printing. Of specific interest was the body component which shows the detail that is achievable with this method a render of which is in Figure~![].
+        
+        ![Figure of 3D nasa body model]
+        
+        \item \textbf{Milled Aluminium:} Aluminium was another concept that was considered due to its easier manipulative qualities (compared to those of steel) as well as significant reductions in weight. The box structure could have been milled from a block to form the hollow structure that is required, using CNC technology. Holes for mounting and a fair degree of aesthetic detail, which may not have lived up to that achievable by 3D printing means, may have been possible as well. Having the box structure made from aluminium would have meant that threaded holes for mounting would have been possible, eliminating the need for full-stack fasteners.
+      \end{enumerate}
+      
+      \subheading{Discussion}\\\\
+      All of the above concepts were achievable, however, each drew on very different material requirements and manufacturing techniques. Carbon fibre moulding and setting was seen as being a potentially difficult process in terms of ensuring an accurate outcome as it relied on a larger degree of manual manufacturing input. It was also the only idea that required extra components to be manufacture in support, namely the mould around which it would have been formed. The other three concepts allowed for more direct CAD-to-finished-product processes and the automation involved in the manufacture of them meant higher accuracy and less manual input. Since the model was small in scale, a design choice discussed further on in this report, strength of components and the weight of other components was far less of a priority as compared to resistance to heat and level of detail.
+      
+      \subheading{Comparative Analysis}\\\\
+      Table~\ref{tab:concept-compAnalysisBody} shows the weighted comparative analysis of the body concepts.
+      
+      \begin{table}[H]
+      \centering
+      \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}@{}}
+      \toprule
+      Attribute & Weight & Carbon Fibre & Acrylic Sheet Assembly & 3D Printing & Milled Aluminium \\ \midrule
+      Ease of Manufacture & 5 & 1 & 5 & 3 & 4 \\
+      Cost of Manufacture & 4 & 4 & 5 & 3 & 4 \\
+      Duration of Manufacture & 5 & 4 & 5 & 3 & 4 \\
+      Cost of Material & 4 & 2 & 4 & 3 & 3 \\
+      Weight & 5 & 5 & 5 & 4 & 2 \\
+      Tensile Strength & 2 & 4 & 3 & 3 & 5 \\
+      Modulus & 3 & 5 & 4 & 4 & 1 \\
+      Achievable Detail & 3 & 1 & 1 & 5 & 4 \\
+      Achievable Accuracy & 3 & 1 & 3 & 4 & 5 \\ \midrule
+      \multicolumn{2}{r}{\textbf{Total}} & 2.735 & \textbf{4.147} & 3.353 & 3.324 \\ \bottomrule
+      \end{tabular}
+      \caption{Comparative analysis of the body component concepts}
+      \label{tab:concept-compAnalysisBody}
+      \end{table}
+    \subsubsection{Suspension System}
+      The suspension system of the rover was a critical part with respect to the traversal requirements. It was decided up front that the system replicate the feature as it was on \textit{Curiosity} in both appearance and in operation. The Rocker-bogie mechanical principle employed for the \textit{Curiosity's} suspension system was simple and robust and therefore made clear the decision to use the principle in the model as well. The design problem here was more concerned with the structure and material of the joints as well as how they would be fitted with the beams/rods that links the system together. Another design consideration was that of the differential cross-beam that was mounted to the top of the \textit{Curiosity} which articulated around a center point. The choice of differential bar was dealt with in a separate analysis.
+      
+      All of the concepts imply the use of shafts and bearings for free articulation between each of the rocker-bogie sections.
+      
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{Fully 3D Printed Assembly:} In this concept, all the parts were to be 3D printed in full. This meant that the joints and beams of the suspension system were not separate pieces, lowering the number of pieces required to be manufactured. Since the suspension system was the largest load bearer compared to that of the other subsystems, the fully printed pieces could have been reinforced with an aluminium or steel rod set down the center of the beam sections. The reinforcements could have extended partially into the joint section of each piece, as the most amount of structural risk would have been at the point where the joint and the beam meet.
+        
+        \item \textbf{Printed Joints with Aluminium Tubing:} Instead of printing the entire system, an option of printing the joints only and fitting them with aluminium tubing, as the beams, was considered. 3D printing provides the benefit of being able to materialise complex objects which may contain features which conventional manufacture methods might not be able to accomplish, thus making it well suited to the unique nature of the joints in the suspension system. The beams, however, were standard in shape and would not have put this benefit to use, hence motivating the suitability of a light but strong product such as aluminium tubing. The joints would have been designed either to have the tubing fit into the joint, or have a plug onto which the tubing could be pressed.
+      
+        ![Render of an example plug joint and alu]
+      
+        \item \textbf{Sheet Brackets with Aluminium Tubing:} This concept built on the previous concept with the joints being made from sheet metal bent into bracket-type shapes onto which the tubing could have been fastened (by means of clamps). The bending process would have allowed for formation of the non-conventional angles that the suspension system required.
+        
+        ![Render of an example sheet bracket]
+        
+        \item \textbf{Milled Aluminium Joints with Aluminium Tubing:} Again, instead of the 3D printed joints or the sheet metal, this concept made use of milling aluminium to form the joint structures and having aluminium tubing be fitted into these joints. The milled joints would have been able to offer more surface area to features such as mounting points for the tubes and bearings, meaning that these parts would be more secure. This idea was borrowed from the OpenCuriosity project![] as highlighted in Section~\ref{chap:lit-review}.
+        ![Image of the machined joint of OpenCuriosity]
+      \end{itemize}
+
+      \subheading{Discussion}\\\\
+      The fully 3D printed concept was appealing in that it offered the most direct path from CAD design to the finished product but had much reduced structural qualities as opposed to that of the other concepts. Using a combination of tubing and manufactured joints made sense in terms of the nature of the features and aluminium tubing provided strength beyond what was required, at least as far as the tubing itself was concerned. Brackets made from sheet metal may have offered the best weight (that is, the lightest weight contribution) but required extra manual manufacture as well as would not have been suited to mounting bearings and the tubes whilst maintaining mount rigidity. Both milled aluminium and 3D printed joints solved this problem with the ability of being able to provide more rigidity for fastening tubes and fitting bearings. However, milled joints were bound in structure to the block of aluminium from which they were to be milled, meaning that in one particular plane, the axes of the joints would not have been able to be angled such as required by the suspension design.
+      
+      \subheading{Comparative Analysis}
+      \begin{table}[H]
+      \centering
+      \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}@{}}
+      \toprule
+      Attribute & Weight & Full 3D Print & 3D Printed Joints w/ Tubing & Sheet Joints w/ Tubing & Milled Joints w/ Tubing \\ \midrule
+      Ease of Manufacture & 5 & 4 & 3 & 2 & 3 \\
+      Duration of Manufacture & 3 & 2 & 4 & 5 & 3 \\
+      Cost of Manufacture & 4 & 2 & 3 & 4 & 3 \\
+      Cost of Material & 4 & 3 & 4 & 5 & 4 \\
+      Weight & 4 & 4 & 4 & 3 & 2 \\
+      Link Mount Rigidity & 5 & 3 & 4 & 1 & 5 \\
+      Aesthetic Accuracy & 3 & 5 & 5 & 1 & 3 \\
+      Suitability for Wheel Mounts & 4 & 5 & 5 & 4 & 5 \\ \midrule
+      \multicolumn{2}{r}{\textbf{Total}} & 3.500 & \textbf{3.938} & 3.031 & 3.563 \\ \bottomrule      
+      \end{tabular}
+      \caption{Comparative analysis of the suspension system concepts}
+      \label{tab:concept-compAnalysisSus}
+      \end{table}
+      
+    \subsubsection{Differential System}
+      The differential system comprised of a beam or arm that articulated about a center point on the top surface of the body and linkage mechanisms connecting the ends of the arm to the rocker pivot point on either side's suspension system. Due to the motion of the differential, strength was only required in the horizontal plane which gives reason for the thin, flat design of that on \textit{Curiosity}. The linkages on the ends of the bar required hinges with two degrees of freedom, the detail of which is discussed further on in this report. Once again, the principle of operation of this subsystem was taken from \textit{Curiosity} itself and therefore was not the design choice to be made here.
+      
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{Acrylic Sheet Bar with Steel Cord Linkage:} Since the differential bar was required to take forces in the horizontal plane, the bar did not have to be round and a conceptual idea involved cutting out the flat bar from acrylic sheet. The acrylic sheet would have been thick enough such that it be press fitted onto a bearing and shaft in the center of the body deck. The ends of the differential would then have been connected to the extensions on the main suspension joint by means of steel cord. The cord would have allowed for the degrees of freedom required given the interface between the differential bar and the suspension and each of their component axes of motion.
+        
+        \item \textbf{3D Printed Bar with 3D Printed Hinge Pieces:} Instead of cutting the bar from acrylic sheet, this concept envisioned the bar being 3D printed. The linkages would have also been 3D printed as two parts per hinge bolted together and each end of the hinge (one at the suspension and one on the differential bar) would be joined together using threaded bar, secured by use of fasteners. An example of this configuration is shown in Figure~![]
+        
+        ![Render of hinge piece design]
+      \end{itemize}
+      
+      \subheading{Discussion}\\\\
+      Since the acrylic sheet is already flat, it suits the problem well and is easier in terms of manufacture compared to a 3D printed version. Holes for the bearings and the hinges on the ends of the bar could be included in the cutting process. Two sheets could have been glued together to form a thicker beam in the case that the bearing was thicker than the sheet. The 3D printed version, however, would have been of designed thickness thus allowing custom fitting for the bearing. Although steel cord was considered given it's flexibility and thus ability to cater for the ranges and axes of motion of either ends of the linkage, it was shortly dismissed given that it would have only been able to provide support in tension and not in compression. A fixed threaded bar, as proposed in the second concept, provides support in both tension and compression situations, therefore meeting the requirements. Threaded bar was chosen for easy fastening as well as providing the ability to adjust the extension of the linkage for fine tuning the balance of the suspension-differential system and ultimately the balance of the rover. In any case, a weighted comparison was still made in Table~\ref{tab:concept-compAnalysisDiff} since the 3D printed hinges were still compatible with the idea an acrylic sheet differential.
+      
+      \subheading{Comparative Analysis}
+      \begin{table}[H]
+      \centering
+      \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.2\textwidth}C{0.2\textwidth}@{}}
+      \toprule
+      Attribute & Weight & Acrylic Sheet Bar w/ Steel Cord Linkage & 3D Printed Bar w/ Printed Hinge Pieces \\ \midrule
+      Ease of Manufacture & 5 & 5 & 3 \\
+      Duration of Manufacture & 3 & 5 & 2 \\
+      Cost of Manufacture & 4 & 4 & 3 \\
+      Cost of Material & 4 & 5 & 3 \\
+      Weight & 3 & 5 & 4 \\
+      Strength & 5 & 3 & 5 \\
+      Mountability & 5 & 3 & 5 \\
+      Linkage Motion & 4 & 0 & 4 \\
+      Linkage Support & 5 & 5 & 5 \\
+      Aesthetic Accuracy & 2 & 1 & 4 \\ \midrule
+      \multicolumn{2}{r}{\textbf{Total}} & 3.575 & \textbf{3.900} \\ \bottomrule      \end{tabular}
+      \caption{Comparative analysis of the differential concepts}
+      \label{tab:concept-compAnalysisDiff}
+      \end{table}
+      
+    \subsubsection{Wheel Hubs and Pivots}
+      The center wheels were fixed in rotation about the $z$-axis and thus the mounting features of these two wheels were included in the suspension system as in the previous concept section. The front and rear wheel pairs, however, were required to rotate in order to provide steering to the rover and therefore had to accommodate for this rotation as well as actuation components for this motion. The wheel pivots were also required to be attached to the suspension system.
+      
+      The concepts developed for these components followed very similar concepts to those of the suspension hinges as they offered the same principles of articulation and mounting. The final decision would therefore be in accordance to the suspension system final design.
+      
+    \subsubsection{Wheels}
+      The wheels on \textit{Curiosity} are signature features in aesthetics as well as, of course, in function. The wheel shape includes the characteristic curved cross-section which has benefits for terrain like that on Mars and are unique in the thinness of their outer surface or skin. It was noted that the relative strength of the wheels on the scaled model that was being developed would be required to be significantly less than on \textit{Curiosity} and so the design choice here was based primarily on the resulting aesthetic accuracy as the wheels would serve as a great feature in which to fulfil the client requirement of the model being highly realistic.
+      
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{3D Printed Wheels:} The fact that the wheels had the distinct shape that they did meant that 3D printing them would render highly accurate representations in terms of their shape on those of \textit{Curiosity}. The design would include holes and points at which shafts and/or bearings could be fitted without the need for drilling or any other type of post-produce manipulations.
+        
+        \item \textbf{Off-the-shelf RC Wheels:} Another option was to purchase read-made wheels and tires intended for use on radio-controlled cars. The wheels would have points for mounting by default and would offer the benefits of a rubber tire over that of plastic. Once again, this idea was borrowed from the OpenCuriosity model in ![]. The project indicated that this method was successful in function.
+      \end{itemize}
+      
+      \subheading{Discussion}
+         While the 3D printed wheels would have offered less structural robustness as ready-made wheels designed to endure high impact, gravel environments, there was no requirement for the model to traverse any faster or in any better manner than \textit{Curiosity} and thus the added benefit of the rubber tires and strong wheels would be an over-design. Although the RC wheels would have had points at which shafts could be fitted, and potentially even bearings already installed, this would impose limitations on the size of the shafts chosen. In the case of the 3D printed wheels, holes sizes could have been chosen to work with materials and bearings that were available.
+         
+      \subheading{Comparative Analysis}
+        \begin{table}[H]
+        \centering
+        \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.2\textwidth}C{0.2\textwidth}@{}}
+        \toprule
+        Attribute & Weight & 3D Printed Wheels & Off-the-shelf RC Wheels \\ \midrule
+        Ease of Manufacture & 3 & 3 & 5 \\
+        Duration of Manufacture & 4 & 2 & 5 \\
+        Cost of Manufacture & 4 & 3 & 2 \\
+        Cost of Material & 4 & 3 & 2 \\
+        Weight & 1 & 5 & 2 \\
+        Traction & 3 & 3 & 5 \\
+        Terrain Suitability & 3 & 4 & 5 \\
+        Mount-type Flexibility & 4 & 5 & 2 \\
+        Aesthetic Accuracy & 5 & 5 & 1 \\ \midrule
+        \multicolumn{2}{r}{\textbf{Total}}  & \textbf{3.613} & 3.097 \\ \bottomrule
+        \end{tabular}
+        \caption{Comparative analysis of the wheel and tire concepts}
+        \label{tab:concept-compAnalysisWheel}
+        \end{table}
+      
+      
+      - Bought wheels
+      - 3D printed wheels
+            
+    \subsubsection{Mast and Head}
+      - Tube for mast
+      - Full 3d printed
+      
+    \subsubsection{Actuation}
+      - DC Motors
+      - Servo Motors
+    
+    \subsubsection{Central Control}
+      - Good comparison of the dev boards!
+      
+    \subsubsection{Camera}
+      - RPi Camera
+      - Hacked webcam
+  
   \subsection{Comparative Analysis}
   \subsection{Final Design Choice}
