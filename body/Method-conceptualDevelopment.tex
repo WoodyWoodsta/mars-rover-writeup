@@ -1,9 +1,10 @@
 \section{Conceptual Design and Development}
   It was clear from the composed list of specifications that both electrical and mechanical aspects of the project required development of a large number of parts. In a typical conceptual design process, one could propose a number of complete concepts (i.e. incorporating all aspects of the project) and then make a judgement based on analysis of these concepts. For this project, it was decided that each of the subcomponents outlined in the specifications be conceptually envisioned separately with consideration of neighbouring or related subcomponents and the compatibility between each. Analysis was then undertaken for each of the subcomponents and a final design was composed in a convergent manner, taking the best concept from each of the analyses.
   
-  The fact that the design of this model of the vehicle was based off a very robust design like that of \textit{Curiosity} helped to maintain structure during a highly parallel, componentised conceptual development. However, the majority of the software components and some hardware components relied on the design of other components therefore the design process was not \textit{entirely} parallel.
+  The fact that the design of \textit{Curiosity} off which this model was based helped to maintain structure during a highly parallel, componentised conceptual development. However, the majority of the software components and some hardware components relied on the design of other components therefore the design process was not \textit{entirely} parallel. In fact, in the case of the vehicle development, it was due to it being largely a process of replication that most of the conceptual development involved material and manufacture design choices as opposed to brand new conceptual ideas that required analysis of design feasibility.
   
   \subsection{Rover Concept Proposals}
+  \label{subsec:rover-concept-proposals}    
     \subsubsection{Body}
       All of the proposed ideas for the body component of the model revolved around the idea of a hollow box structure. The box was required to host electronics but at the same time, provide structural stability for all other components that were to be mounted to it. Therefore, the choice here was between the materials from which it would be built.
       
@@ -165,24 +166,196 @@
         \label{tab:concept-compAnalysisWheel}
         \end{table}
       
+    \subsubsection{Neck and Head}
+      The mast of the model required rotation about the $z$-axis and a joint about which an additional axis of rotation was possible to result in two degrees of freedom for the head component. \textit{Curiosity} employed a hinge mounted to the bottom of a second, smaller box structure, the head, which rotated to provide camera pitch. The pitch actuation mechanism was situated atop a second mechanism which provided actuation for pan-axis rotation. The size of \textit{Curiosity} allowed smart fitting of the motors in-line with the mast shaft and embedded in the head mount hinge, however, the scaled model was not able to accommodate for motors in this way. ![Put this in the detailed design, concept designs are meant to be somewhat ideal!] It was decided that it be acceptable for the mast assembly to be out of proportion, visually, in order to be able to fit the required actuation (the component choices of which were largely based on availability).
       
-      - Bought wheels
-      - 3D printed wheels
-            
-    \subsubsection{Mast and Head}
-      - Tube for mast
-      - Full 3d printed
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{Aluminium Tube Mast with 3D Printed Fittings:} This concept made use of aluminium tubing (the same material as in the suspension system concepts) which would be set and fastened into the body. A 3D printed plug with mounting points for the camera-pitch actuation mechanism would have been designed to fit into the top of the tube. Camera-pan actuation would have been built into the inside of the body into which the mast tube would extend. The height of the head could therefore have been adjusted since the tube was free-moving with respect to the rover deck.
+        
+        ![Side view example of the concept]
+        
+        \item \textbf{Full 3D Printed Assembly:} As opposed to making use of the aluminium tube, this concept employs 3D printing for the full assembly which would be mounted to the top of the rover body with no portion of it extending below the deck. The camera-pan actuation would be the same as in the previous concept but the camera-pitch actuation mechanism would be brought above the level of the rover deck. Further, an actuation mechanism that combines both axes of motion could ave been developed to reduce the spatial footprint that it might have incurred. The width of the base of the mast, at the mounting point, would be increased to provide structural support.
+        
+        ![Side view example of the concept]
+      \end{itemize}
+      
+      \subheading{Discussion}\\\\
+        Positioning one of the two component actuation mechanisms inside the body had benefits for the spatial footprint above the rover deck, however, the implications of taking up more space inside the body were far greater given the intended use of that area. Having the entire tube mast rotate within the opening hole from below the deck might have increased the torque requirements on the actuation mechanism, dependant on the nature of the opening. The intended use of the opening was to provide structural support and any fit tolerance introduced to improve the torque requirements of the actuation would negatively impact the effectiveness of the hole feature in its support function. This could have been solved with a bearings, however, that would have incurred addition room for mounting.
+      
+      \subheading{Comparative Analysis}
+        \begin{table}[H]
+        \centering
+        \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.2\textwidth}C{0.2\textwidth}@{}}
+        \toprule
+        Attribute & Weight & Aluminium Tube w/ 3D Printed Fittings & Full 3D Printed Assembly \\ \midrule
+        Ease of Manufacture & 3 & 2 & 4 \\
+        Duration of Manufacture & 4 & 4 & 3 \\
+        Cost of Manufacture & 4 & 3 & 3 \\
+        Cost of Material & 4 & 4 & 2 \\
+        Weight & 4 & 3 & 4 \\
+        Proportion & 3 & 4 & 3 \\
+        Body External Footprint & 3 & 4 & 3 \\
+        Body Internal Footprint & 5 & 1 & 5 \\
+        Strength & 5 & 5 & 4 \\ \midrule
+        \multicolumn{2}{r}{\textbf{Total}} & 3.200 & \textbf{3.514} \\ \bottomrule
+        \end{tabular}
+        \caption{Comparative analysis of the wheel and tire concepts}
+        \label{tab:concept-compAnalysisWheel}
+        \end{table}
       
     \subsubsection{Actuation}
-      - DC Motors
-      - Servo Motors
+      All components requiring actuation mechanisms have been covered in the above concepts. Consisting of only rotational motion requirements, the mechanisms were split into two categories based on the desired order of output motion (translated from the desired order of input control signal), namely angular position and angular velocity. Position actuation was required for rotating the wheels about their $z$-axis pivot for turning or steering and to provide panning and pitching motion to the head subsystem with the camera. Both of the functions involved setting a desired angular position and having the mechanism hold that position during operation. On the other hand, driving the wheels of the rover was better thought as involving an output velocity. \textit{Curiosity} made use of high-ratio motors for all types of rotational actuation to ensure robustness of the design, higher torque outputs and to achieve precise control of each of the driven features which was acceptable in that high-speed performance was not a targeted requirement.
+      
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{High Torque DC Motors:} Using high torque DC motors would have been the most accurate replication of the actuation as used on \textit{Curiosity}, as each of the mechanisms had high-ratio gearboxes attached to the brushless motors. The DC motors would have been controlled by means of PWM which would have resulted in an output angular velocity. For this reason, a control loop mechanism would have to be employed for positional motor control in the case of the subsystems that required it.
+        \item \textbf{Analog RC Servos:} A candidate alternative to using high torque DC motors that was considered was servos, intended for radio-control vehicle use, into which a high-torque gearbox was already built. An example of this type of motor is shown in Figure~![]. The motors operated using a pulse signal of which the width translated to a specific position as a percentage of the motor's rated angular range.
+        
+        ![Figure of the servo]
+      \end{itemize}
+      
+      \subheading{Discussion}\\\\
+        The two candidate actuation devices were in fact similar in that they both offered high torque output, however, the inclusion of a built-in analog position control system differentiated the servos from the DC motors. If the DC motors were to be used, the central system would had to provide an external control system to implement position control for the head and mast subsystem as well as the pivoting of the wheels. Further, this would have required output state capture by means of an encoder or an analog-to-digital converter adding complexity to the system. The fact that the servos had this control functionality built in meant this solution would have greatly reduced the incurred complexity of the actuation of the rover as a whole, as all that would have been required is for the system to provide a power rail and PWM signals.
+        
+        The choice of actuation mechanisms was highly dependant on the chosen combination of subsystem concepts, specifically that of the power supply, the central control system and those that needed actuation themselves. No weighted comparison was performed for the above concepts as the choice was heavily affected by these subsystems.
     
-    \subsubsection{Central Control}
-      - Good comparison of the dev boards!
+    \subsubsection{Central Control System}
+      The central control system was a critical component not only to the rover, but to the conceptual design process as it was an enabler/disabler of many of the candidate solutions. Discussed here are the electronic hardware comparisons made with respect to the central control system. The software design process took on a secondary priority approach and as such, the hardware choices were driving of the design (not without consideration of implications in the software system). As will be mentioned in full in the detailed design section, it was intended to follow a COTS design approach as far as possible given the time-frame of the project as well as the notion of keeping the design open to others who might be familiar with the hardware components chosen with respect to the aim of open sourcing. As far as education and outreach is concerned, familiar hardware is well suited to helping users and those involved in the project learn the principles of a rover design.
+      
+      Conceptual candidate systems included popular, small, single-board computers, sized appropriately with the intention of fitting the system in the body of the model. Note that the lower-level device class suited to deeper embedded software applications was considered and would have proved suitable if it was not for the video streaming requirements. It was anticipated that the video feed would require on-rover encoding and compression and thus imposing the need for a better performing device capable of running a high-level operating system. The requirements for this system, which included wireless communication and embedded interfaces, were kept in mind when performing the comparative analysis. Notable specifications in accordance with the requirements are shown for each of the boards.
+      
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{Raspberry Pi Model B:}
+          The Raspberry Pi was a credit-card sized single-board computer which was developed with the intention of aiding computer-science education. It made use of a well-performing CPU as well as an on-chip GPU making it suitable for low-end, media-based computational applications. Raspberry Pi computers have a very large online community from which vast resources were available.
+          
+          Notable specifications (for the 3rd generation model):
+          \begin{itemize}
+            \item \textbf{CPU:} 1.2 GHz 64-bit ARM Cortex A53 (Broadcom BCM 2837 SoC)
+            \item \textbf{Memory:} 1 GB
+            \item \textbf{Storage:} None, microSD Card Slot
+            \item \textbf{GPIOs:} 40 pins, 
+            \item \textbf{Network Connectivity:} Bluetooth 4.1 and Bluetooth Low Energy, 100 Mb Ethernet, 2.4 GHz wireless
+            \item \textbf{Other External Interfaces:} 4x USB 2.0, Camera Serial Interface (CSI)
+          \end{itemize}
+        \item \textbf{Orange Pi:}
+          The Orange Pi, an open source variant to the Raspberry Pi, was considered as it offered much the same capabilities as the Rasberry Pi. It was able to run many open source operating systems such as Debian and Ubuntu.
+          
+          Notable specifications (for the Plus model):
+          \begin{itemize}
+            \item \textbf{CPU:} 1 GHz 64-bit ARM Cortex A7 (AllWinner H3 SoC)
+            \item \textbf{Memory:} 1 GB
+            \item \textbf{Storage:} None, microSD Card Slot, SATA 2.0 Connector
+            \item \textbf{GPIOs:} 40 pin header, 
+            \item \textbf{Network Connectivity:} 1 Gb Ethernet, 2.4 GHz wireless
+            \item \textbf{Other External Interfaces:} 4x USB 2.0, Camera Serial Interface (CSI)
+          \end{itemize}
+          
+        \item \textbf{Beaglebone Green Wireless:}
+          The Beaglebone Green is another small board as part of the Beaglebone device family, a range of single board computers that have been developed to bridge the gap between embedded electronics and computers. The green version is better suited for embedded applications compared to that of the black version and was the only Beaglebone device that had wireless connection capabilities.
+          
+          Notable specifications \cite{mouserbeaglebone_2016}:
+          \begin{itemize}
+            \item \textbf{CPU:} 1 GHz 32-bit ARM Cortex A8 (TI Sitara AM3358)
+            \item \textbf{Memory:} 512 MB
+            \item \textbf{Storage:} 4 GB eMMC
+            \item \textbf{GPIOs:} 65 pins, 
+            \item \textbf{Network Connectivity:} Bluetooth 4.1, Bluetooth Low Energy, 2.4 GHz wireless
+            \item \textbf{Other External Interfaces:} 4x USB 2.0
+          \end{itemize}
+          
+        \item \textbf{Intel Edison:}
+          The Intel Edison is less of a single board computer and more of a complete system on chip mounted to a small board intended for use in the Internet-of-Things industry as well as for mobile and wearable products. The tiny module can further be mounted to a breakout board which provides USB interfaces and a GPIO through-hole grid.
+
+          Notable specifications ![cite]:
+          \begin{itemize}
+            \item \textbf{CPU:} 400 Mhz Intel Quark x86 (Intel Atom)
+            \item \textbf{Memory:} 1 GB
+            \item \textbf{Storage:} 4 GB eMMC
+            \item \textbf{GPIOs:} 28 pins, 
+            \item \textbf{Network Connectivity:} Bluetooth 4, 2.4 GHz wireless
+            \item \textbf{Other External Interfaces:} 1x USB 2.0, 1x USB Serial (UART), as provided by the breakout board
+          \end{itemize}
+ 
+        \item \textbf{Intel Edison w/ Arduino Breakout Expansion:}
+          The Intel Edison had available a second breakout board which was developed to make the SoC compatible with the large variety of Arduino-compatible modules and add-ons.
+
+        \item \textbf{Intel Galileo Gen 2:}
+          The Intel Galileo is a development board that better aligns with the single-board computer principle, compared to the Edison. The processor and board are fixed and allows for connection of Arduino-compatible hardware as well as supports a range of other interfaces.
+          
+          Notable specifications ![cite]:
+          \begin{itemize}
+            \item \textbf{CPU:} 400 Mhz Intel Quark x86 (Intel Pentium)
+            \item \textbf{Memory:} 256 MB
+            \item \textbf{Storage:} None, SD Card Slot
+            \item \textbf{Network Connectivity:} 1 Gb Ethernet Port
+            \item \textbf{Other External Interfaces:} 3x USB 2.0, 1x USB Serial (UART)
+          \end{itemize}
+      \end{itemize}
+      
+      \subheading{Discussion:}\\\\
+        After careful research into each of the above candidate products, it was decided that all of the boards were suitable for the central computing system of the rover. All of the devices were capable of running high-level operating systems as well as had some means of connecting to a video capture device as well as providing hardware interfaces that might have been required. However, caution was taken to choose a device that would not be over-powered for the application nor provide breakouts and interfaces that would have been left unused. At this point in the design process, it was difficult to determine the exact computational requirements and so the design choice was made based on anticipative measures. It must also be noted that the choice was largely influenced by availability and cost of the devices.
+        
+        \begin{table}[H]
+        \centering
+        \begin{tabular}{@{}L{0.15\textwidth}C{0.1\textwidth}C{0.1\textwidth}C{0.1\textwidth}C{0.1\textwidth}C{0.1\textwidth}C{0.1\textwidth}C{0.1\textwidth}@{}}
+        \toprule
+        Attribute & Weight & R-Pi 3 & Orange Pi & Beaglebone Green Wireless & Intel Edison & Intel Edison w/ Arduino Breakout & Intel Galileo Gen 2 \\ \midrule
+        Cost & 5 & 4 & 4 & 3 & 2 & 2 & 1 \\
+        \rule{0pt}{2em}Weight & 3 & 4 & 3 & 4 & 5 & 5 & 4 \\
+        \rule{0pt}{2em}Availability & 5 & 3 & 1 & 2 & 5 & 4 & 5 \\
+        \rule{0pt}{2em}Size & 4 & 4 & 3 & 4 & 5 & 4 & 3 \\
+        \rule{0pt}{2em}Wireless Support & 5 & 5 & 5 & 5 & 5 & 5 & 0 \\
+        \rule{0pt}{2em}Provision for Video Capture & 5 & 5 & 5 & 4 & 1 & 3 & 3 \\
+        \rule{0pt}{2em}Suitability of Processing Power & 3 & 3 & 3 & 3 & 5 & 5 & 3 \\
+        \rule{0pt}{2em}Add-on Compatibility & 4 & 3 & 3 & 2 & 1 & 5 & 5 \\
+        \rule{0pt}{2em}Power Consumption & 3 & 1 & 1 & 3 & 5 & 4 & 2 \\ \midrule
+        \multicolumn{2}{r}{\textbf{Total}} & 3.703 & 3.243 & 3.351 & 3.622 & \textbf{4.000} & 2.811 \\ \bottomrule
+        \end{tabular}
+        \caption{Comparative analysis of the central control system concepts}
+        \label{tab:concept-compAnalysisRce}
+        \end{table}
+
       
     \subsubsection{Camera}
-      - RPi Camera
-      - Hacked webcam
+      An important item in the list of requirements and specifications was the capture of a video stream to broadcast to the connected clients. The camera was required to be above VGA resolution ($640\times480$ pixels) and have a means of connecting to the chosen central computing system. The available camera modules were categorised by connector type, listed below.
+      
+      \subheading{Concepts}
+      \begin{itemize}
+        \item \textbf{CSI Compatible Webcam:} Many of the central computing system candidates provided support for a Camera Serial Interface (CSI) connected camera for video capture. CSI is a camera interface standard maintained by the Mobile Industry Processor Interface Alliance (MIPI Alliance) that is at its 3rd stage of revision at the time of writing. An example of a CSI camera was the R-Pi Cam, produced specifically for use with a Raspberry Pi.
+        \item \textbf{USB Compatible Webcam:} The majority of external webcams were USB connected, allowing them to be easily connected to a laptop or computer. The USB webcams that were investigated as being candidate devices varied in their class of drivers which was a potential issue for compatibility with the central control system, specifically the operating system that would be used. The chosen device, if of type USB, would have had to have been a USB Video Class (UVC) compliant device due to the fact that UVC devices are driverless and thus are compatible with a far greater range of host computers and operating systems.
+        \item \textbf{I$^2$C Webcam:} Since the central control system would be capable of allowing serial connections, cameras that were I$^2$C connected were considered.
+      \end{itemize}
+      
+      \subheading{Discussion}\\\\
+        The performance benefit of candidate cameras was not possible to determine based on their interface type, but rather the manufacturer and the designed specifications. It was decided that the camera be chosen based on compatibility with the central control system and availability of such a device.
+      
+    \subsubsection{Proximity}
+      ![Fill out]
   
-  \subsection{Comparative Analysis}
   \subsection{Final Design Choice}
+    At this point, the ideas and concepts in Section~\ref{subsec:rover-concept-proposals} had been explored in detail and final choices for each of the subcomponents had been made. This section indicates the outcomes of these choices as well as gives a brief overview of the final concept to be developed. The subcomponent concepts in Section~\ref{subsec:rover-concept-proposals}, shown visually in Figure~\ref{fig:concepts-finalconceptrender}, that included weighted comparisons were finalised primarily by the outcome of those comparisons (i.e. the concept that achieved the highest score, denoted in the Tables~\ref{tab:concept-compAnalysisBody} through~\ref{tab:concept-compAnalysisRce} by bold numbers) and the few that did not follow the same structure of analysis were chosen by compatibility with relevant subcomponents.
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\linewidth]{figures/concepts-finalConceptRender}
+      \caption[Adapted render of a model of the rover indicating the subsystems considered in the conceptual development]{Adapted render of a model of the rover indicating the subsystems considered in the conceptual development \cite{nasa3D}}
+      \label{fig:concepts-finalconceptrender}
+    \end{figure}
+    
+    \begin{enumerate}[A.]
+      \item It was decided that the body be made from acrylic sheet panels glued together to form the box structure required. The panel design, cutting and assembly was considered easier compared to the manufacturing of carbon fibre and 3D printing as well as being strong enough to provide the central structural support.
+      \item The suspension system was to be constructed from 3D printed joints and aluminium tubing for the superior total weight of the assembly and the concept's compatibility with fittings to be made for mounting the wheels. The fact that the joints were to be 3D printed meant that it would become easy to model and print the arbitrary angles of that of the suspension design without the manufacture limitations imposed by other methods and materials. The joints allowed for the design to maintain an accurate representation of that on \textit{Curiosity} without sacrificing function and meant that close fit parts such as bearings could be easily incorporated into the design without imposing constraints on the choice of those types of parts.
+      \item A full 3D printed bar with printed hinges was to be used for the differential system due to the acrylic sheet and steel cord not being suitable for the required function. As mentioned in the concept's discussion, the 3D printed differential bar meant that a bearing could be correctly mounted for the motion required. The hinge on the differential bar side would be connected to the suspension side hinge by a threaded bar. As will be discussed, the connecting threaded bar could be used to adjust the distance between the hinges thus providing the ability to finely balance the rover during assembly.
+      \item The wheels were to be 3D printed which would allow for superior aesthetic accuracy and custom fit design for bearings and actuation. The 3D printed wheels would be lighter than bought wheels and was deemed worth the incurred manufacture time and cost.
+      \item The head and neck (mast) was to be fully 3D printed to make it more suitable to being mounted to the top of the rover deck without any portion of it extending into the body of the rover, taking up space required for the electronics. 3D printing meant the ability to accommodate for the chosen means of actuation. The head would be designed to consist of two parts so that access to the internals of the head was possible. This sub-assembly was then to be mounted to parts connected to the actuation and further parts for mounting on the rover deck.
+      \item Choice of actuation settled upon the use of RC servos. The servos were to be of a suitable size, preferably ``sub-micro''\footnote{A ``sub-micro'' servo motor is one of a range of standard sized servos for robotics and radio-controlled vehicle applications}, and compatible in interface with the central control system. The servos chosen were highly geared and were to provide the required torque for actuation of the head and wheels. The servos would have standard mounting holes making incorporation into the design an easier process.
+      \item The camera was to be a USB (UVC-compatible) webcam chosen based on availability. The camera would be suitable for use with the chosen central control system and significantly lower in cost compared to the other concept options. It was decided that a webcam be physically altered to be suitable for incorporation into the design of the head.
+    \end{enumerate}
+    
+    Not shown in Figure~\ref{fig:concepts-finalconceptrender} is the central control system, which was to be mounted on the inside of the body structure. The Intel Edison with the Arduino breakout expansion was chosen due to availability of the product as well as its compatibility with add-on hardware, the advantage of which was in the increased development process as a result. The Intel Edison was regarded as being better suited to the performance and computational requirements over the other boards and provided the necessary hardware interfaces for the primary functions and associated hardware for the system throughout.
+    
+    As discussed in the functional analysis, \textit{Curiosity's} robotic arm subsystem was not included in the model due to time and cost constraints on the project. The design processed aimed to make the addition of this type of a feature possible in potential future work on the project.
+
+    

@@ -40,13 +40,13 @@
   \subsection{Functional Analysis}
     The client requirements as highlighted in the previous sub-section were analysed to result in a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but is instead the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
     
-    The current requirements distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing natural design approaches made it suitable to discuss them separately, where appropriate.
+    The current requirements distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing natural design approaches made it suitable to discuss them separately, where appropriate. The specifications indicated the possibility of a subset of \textit{Curiosity's} primary functions be included in the model. The requirement of a video feed as well as simulated terrain traversal implied there be at least the mast subsystem, which included the moving head components, and a functioning wheel and suspension system that could be controlled. The ability to drive the rover as well as point the camera via motion of the head component was deemed a combination of functions that would contribute well towards providing an engaging experience for the users. These two systems were driving of the inclusion of the accompanying systems and components, a breakdown of which can be seen in Figure~\ref{fig:specs-functionalBreakdown}.
     
     \begin{figure}[h]
       \centering
       \includegraphics[width=0.6\textwidth]{figures/specs-functionalBreakdown}
-      \label{fig:specs-functionalBreakdown}
       \caption[Diagram showing the simplified breakdown of functional entities of the project]{Diagram showing the simplified breakdown of functional entities of the project}
+      \label{fig:specs-functionalBreakdown}
     \end{figure}
     
     ![Fill out]
