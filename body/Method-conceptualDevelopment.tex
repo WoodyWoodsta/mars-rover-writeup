@@ -171,13 +171,24 @@
       
       \subheading{Concepts}
       \begin{itemize}
-        \item \textbf{Aluminium Tube Mast with 3D Printed Fittings:} This concept made use of aluminium tubing (the same material as in the suspension system concepts) which would be set and fastened into the body. A 3D printed plug with mounting points for the camera-pitch actuation mechanism would have been designed to fit into the top of the tube. Camera-pan actuation would have been built into the inside of the body into which the mast tube would extend. The height of the head could therefore have been adjusted since the tube was free-moving with respect to the rover deck.
+        \item \textbf{Aluminium Tube Mast with 3D Printed Fittings:} This concept made use of aluminium tubing (the same material as in the suspension system concepts) which would be set and fastened into the body. A 3D printed plug with mounting points for the camera-pitch actuation mechanism would have been designed to fit into the top of the tube, as can be seen in Figure~\ref{fig:concepts-aluMast}. Camera-pan actuation would have been built into the inside of the body into which the mast tube would extend. The height of the head could therefore have been adjusted since the tube was free-moving with respect to the rover deck.
         
-        ![Side view example of the concept]
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.7\linewidth]{figures/concepts-aluMast}
+          \caption[Conceptual diagram of a section view of the body and aluminium mast assembly]{Conceptual diagram of a section view of the body and aluminium mast assembly}
+          \label{fig:concepts-aluMast}
+        \end{figure}
         
         \item \textbf{Full 3D Printed Assembly:} As opposed to making use of the aluminium tube, this concept employs 3D printing for the full assembly which would be mounted to the top of the rover body with no portion of it extending below the deck. The camera-pan actuation would be the same as in the previous concept but the camera-pitch actuation mechanism would be brought above the level of the rover deck. Further, an actuation mechanism that combines both axes of motion could ave been developed to reduce the spatial footprint that it might have incurred. The width of the base of the mast, at the mounting point, would be increased to provide structural support.
         
-        ![Side view example of the concept]
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.7\linewidth]{figures/concepts-printedMast}
+          \caption[Conceptual diagram of a section view of the body and printed mast assembly]{Conceptual diagram of a section view of the body and printed mast assembly}
+          \label{fig:concepts-printedMast}
+        \end{figure}
+        
       \end{itemize}
       
       \subheading{Discussion}\\\\
@@ -201,7 +212,7 @@
         \multicolumn{2}{r}{\textbf{Total}} & 3.200 & \textbf{3.514} \\ \bottomrule
         \end{tabular}
         \caption{Comparative analysis of the wheel and tire concepts}
-        \label{tab:concept-compAnalysisWheel}
+        \label{tab:concept-compAnalysisMast}
         \end{table}
       
     \subsubsection{Actuation}
@@ -210,9 +221,15 @@
       \subheading{Concepts}
       \begin{itemize}
         \item \textbf{High Torque DC Motors:} Using high torque DC motors would have been the most accurate replication of the actuation as used on \textit{Curiosity}, as each of the mechanisms had high-ratio gearboxes attached to the brushless motors. The DC motors would have been controlled by means of PWM which would have resulted in an output angular velocity. For this reason, a control loop mechanism would have to be employed for positional motor control in the case of the subsystems that required it.
-        \item \textbf{Analog RC Servos:} A candidate alternative to using high torque DC motors that was considered was servos, intended for radio-control vehicle use, into which a high-torque gearbox was already built. An example of this type of motor is shown in Figure~![]. The motors operated using a pulse signal of which the width translated to a specific position as a percentage of the motor's rated angular range.
+        \item \textbf{Analog RC Servos:} A candidate alternative to using high torque DC motors that was considered was servos, intended for radio-control vehicle use, into which a high-torque gearbox was already built. An example of this type of motor is shown in Figure~\ref{fig:concepts-servoMotorExample}. The motors operated using a pulse signal of which the width translated to a specific position as a percentage of the motor's rated angular range.
         
-        ![Figure of the servo]
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.3\linewidth]{figures/concepts-servoMotorExample}
+          \caption[Image of an example of an RC servo motor]{Image of an example of an RC servo motor \cite{fig:concepts-servoMotorExample_cite}}
+          \label{fig:concepts-servoMotorExample}
+        \end{figure}
+
       \end{itemize}
       
       \subheading{Discussion}\\\\
@@ -221,6 +238,7 @@
         The choice of actuation mechanisms was highly dependant on the chosen combination of subsystem concepts, specifically that of the power supply, the central control system and those that needed actuation themselves. No weighted comparison was performed for the above concepts as the choice was heavily affected by these subsystems.
     
     \subsubsection{Central Control System}
+    \label{subsubsec:central-control-system}
       The central control system was a critical component not only to the rover, but to the conceptual design process as it was an enabler/disabler of many of the candidate solutions. Discussed here are the electronic hardware comparisons made with respect to the central control system. The software design process took on a secondary priority approach and as such, the hardware choices were driving of the design (not without consideration of implications in the software system). As will be mentioned in full in the detailed design section, it was intended to follow a COTS design approach as far as possible given the time-frame of the project as well as the notion of keeping the design open to others who might be familiar with the hardware components chosen with respect to the aim of open sourcing. As far as education and outreach is concerned, familiar hardware is well suited to helping users and those involved in the project learn the principles of a rover design.
       
       Conceptual candidate systems included popular, small, single-board computers, sized appropriately with the intention of fitting the system in the body of the model. Note that the lower-level device class suited to deeper embedded software applications was considered and would have proved suitable if it was not for the video streaming requirements. It was anticipated that the video feed would require on-rover encoding and compression and thus imposing the need for a better performing device capable of running a high-level operating system. The requirements for this system, which included wireless communication and embedded interfaces, were kept in mind when performing the comparative analysis. Notable specifications in accordance with the requirements are shown for each of the boards.
