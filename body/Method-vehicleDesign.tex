@@ -30,20 +30,20 @@
                                   & Depth                         & A3   & 300   \\ \midrule
       \multirow{4}{*}{Body}       & Height                        & B1   & 46    \\
                                   & Width                         & B2   & 136   \\
-                                  & Depth                         & B3   & 238   \\
+                                  & Depth                         & B3   & 190   \\
                                   & Ground Clearance              & B4   & 66    \\ \midrule
-      \multirow{5}{*}{Suspension} & Height                        & C1   &       \\
-                                  & Width                         & C2   &       \\
-                                  & Depth                         & C3   &       \\
-                                  & Wheel Pitch                   & C4   &       \\
+      \multirow{5}{*}{Suspension} & Height                        & C1   & 122   \\
+                                  & Width                         & C2   & 72    \\
+                                  & Depth                         & C3   & 271   \\
+                                  & Wheel Pitch                   & C4   & 119   \\
                                   & Center-pivot to Body Front    & C5   & 71    \\ \midrule
       \multirow{2}{*}{Wheel}      & Diameter                      & D1   & 50    \\
                                   & Depth                         & D2   & 40    \\ \midrule
-      \multirow{5}{*}{Mast}       & Height                        & E1   &       \\
-                                  & Width                         & E2   &       \\
-                                  & Depth                         & E3   &       \\
-                                  & Position from font deck edge  & E4   &       \\
-                                  & Position from right deck edge & E5   &       \\ \midrule
+      \multirow{5}{*}{Mast}       & Height                        & E1   & 98    \\
+                                  & Width                         & E2   & 62    \\
+                                  & Depth                         & E3   & 50    \\
+                                  & Position from font deck edge  & E4   & 28    \\
+                                  & Position from right deck edge & E5   & 28    \\ \midrule
       \multirow{3}{*}{Head}       & Height                        & F1   & 30    \\
                                   & Width                         & F2   & 60    \\
                                   & Depth                         & F3   & 50    \\ \bottomrule
@@ -53,14 +53,33 @@
       \end{table}
       
     \subsubsection{Layout Plan}
-      The dimensions in Table~\ref{tab:design-referenceDimensions} were used to construct a plan of the layout of subsystems to be used for further detailed design. 
+      The dimensions in Table~\ref{tab:design-referenceDimensions} were used to construct a plan of the layout of subsystems to be used for further detailed design. The plan can be seen in Figure~\ref{fig:mechDesign-layoutPlan} along with selected dimensions from the table.
+      
+      \begin{figure}[H]
+        \centering
+        \includegraphics[clip, trim=1cm 11cm 1cm 0cm, width=0.9\linewidth]{figures/mechDesign-layoutPlan}
+        \caption[Isometric view of the 3D layout plan with a subset of the external dimensions shown]{Isometric view of the 3D layout plan with a subset of the external dimensions shown}
+        \label{fig:mechDesign-layoutPlan}
+      \end{figure}
+
       
     \subsubsection{Standard Features}
-      - Fasteners
-      - Holes
-      - Wall thicknesses
-      - Clearances
-    
+      Prior to designing and developing the components and parts in detail, standard feature dimensions and sizes were set up to maintain a level of consistency throughout the process. This included features such as holes, walls and fasteners and served as a general guideline allowing for variation of these parameters if required. Table~\ref{tab:featureStandards} highlights these feature details.
+      
+      \begin{table}[H]
+      \centering
+      \begin{tabular}{@{}llL{0.6\textwidth}@{}}
+      \toprule
+      \textbf{Feature} & \textbf{Size} & \textbf{Comments} \\ \midrule
+      Fasteners & M2 - M3 & Full pan-slotted screw, hex nut and flat washer stack. M3 as first priority dropped down to M2 if the part dimensions or circumstances did not allow \\ \midrule
+      Holes & M2 - M3 & The holes were to match the fasteners in terms of size \\ \midrule
+      Hole Clearances & 0.5 mm & The clearance was made to be over a standard fit clearance in anticipation of spread of the surfaces of the part during the 3D printing process \\ \midrule
+      Wall Thicknesses & \begin{tabular}[c]{@{}l@{}}Major: 5mm\\ Minor: 3mm\end{tabular} & Major walls were used where significant structural integrity was required, whereas minor walls were used both for less significant areas or areas where available space was a constraint \\ \bottomrule
+      \end{tabular}
+      \caption{Table indicating standards for common features across the entire design}
+      \label{tab:featureStandards}
+      \end{table}
+      
     \subsubsection{Suspension}
       The collection of joints, pivots, struts and wheels was collectively referred to as the suspension system, one positioned on either side of the body structure. Each side of the suspension system included two fixed link mechanisms, the ``rocker'' and the ``bogie'' as part of the Rocker-bogie principle as highlighted in Section~\ref{subsubsec:lit-manoeuvrability}. During the conceptual design phase, it was decided that this mechanism be constructed by connecting aluminium tube pieces to 3D printed joints, on the ends of which the pivots and struts could be attached for the wheels.
       
@@ -77,36 +96,276 @@
       
       \begin{figure}[H]
       \centering
-      \subfloat {
+      \subfloat[]{
         \includegraphics[width=.45\linewidth]{figures/mechDesign-suspensionReference1.jpg}
       }
       \qquad
-      \subfloat {
+      \subfloat[]{
         \includegraphics[width=.45\linewidth]{figures/mechDesign-suspensionReference2.jpg}
       }
       \caption[The two images used for obtaining the positions of joints and pivots of the suspension system in 3D space]{The two images used for obtaining the positions of joints and pivots of the suspension system in 3D space. \cite{fig:mechDesign-suspensionReferences1_cite} and \cite{fig:mechDesign-suspensionReferences2_cite} respectively.}
       \label{fig:mechDesign-suspensionReferences}
       \end{figure}
-      
-      The skeleton layout generated from the positional data obtained is shown in Figure~![] where a 2D sketch was created as a starting point from which a 3D sketch was formed. 
-      
-      ![Figure of the suspension skeleton]
+
+      A skeleton layout generated from the positional data obtained is shown in Figure~\ref{fig:mechDesign-suspension3d} where a 2D sketch was created as a starting point from which a 3D sketch of the layout was formed. The skeleton sketch was rigid in the position whereby all three wheels were at rest on a flat, horizontal surface parallel to the rover body.
+            
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\linewidth]{figures/suspension3D}
+        \caption[Isometric view of the 3D sketch of the generated suspension system skeleton used for positioning of designed parts]{Isometric view of the 3D sketch of the generated suspension system skeleton used for positioning of designed parts}
+        \label{fig:mechDesign-suspension3d}
+      \end{figure}
       
       The joints, pivots and struts were then developed around the axes and centre-points in the sketch, a work-flow typical of the CAD package used.
       
       \subheading{Joints}\\\\
+        One side of the suspension system required three different joints: the rocker joint and fixed and free bogie joints. The bogie joints were the simpler of the three and provided a means for the bogie to pivot about one of the ends of the rocker. The fixed joint was fixed in rotation on the end of the rocker while the free joint rotated about a point on the free joint. The rocker joint allowed for the entire mechanism to pivot about a point on the side of the rover body as well as allow attachment of the differential bar in order to keep the two sides of the suspension system coordinated.
+        
+        It was decided that the rotation of the joints be aided by use of bearings mounted on aluminium shafts. The aluminium would not add excessive amounts of weight to the system but still provide the rigidity required between the joints. Bearings were then required to be fixed into the rocker and free bogie joints with a shaft extending from the side of the body for the rocker joint bearings and another shaft mounted in the fixed bogie joint. Various methods of mounting bearings and shafts into 3D printed parts were considered, however, the most commonly employed technique involved press-fitting both types of components. At this point it was clear that printing the parts from a material which allowed for a certain amount of flexibility (i.e. less brittleness) would suit press-fitting bearings and shafts and reduce the chances of parts cracking when doing so. The press-fit holes and bores were introduced into the design after modelling the joints.
+        
+        The joints were to host the aluminium tubes and thus a way of mounting them was required. Aluminium tubing dimensions were decided upon based on availability, cost, weight and strength and the aim of keeping the suspension system in proportion was a contributing factor in this design choice. The size of aluminium was chosen to be a standard extrude of 15.88 mm outside diameter with a 1.62 mm wall thickness (making the internal diameter 12.64 mm). Two methods of fixing the tubes to the joints were considered: the first of which was to design a plug onto which the tube could be pressed and fastened and the other involved a bracket into which the tube would be placed and the bracket could have been tightened using a clamp or nut and bolt. The plug concept was chosen over the bracket due to size constraints which would have been exceeded if the latter were used. The plugs took advantage of the fact that the aluminium was tubular and minimised use of space outside of the diameter of the tube. However, using a plug might have introduced a weakness into the design in that cross-axis forces (bending moments) on the plug could damage, if not, tear the plug from the joint part. This would not have been the case with a bracket where these types of forces would have translated into forces parallel to the plug main axis. Despite the possible weakness, the plugs were used and care was taken to ensure that typical use would not affect the part in this way. Another reason for not using a bracket was due to anticipation of the plastic material used for the printing possibly deforming when tightened with the suggested fastenings. Plastic, among most other materials, offers greater robustness when compressed (as in an internal plug feature) as opposed to if it is put under tension \cite{makerbotStrength}.
+        
+        Multiple plug shapes were considered, as a range of which are shown in Figure~\ref{fig:mechDesign-plugConcepts}. The aim was to have the plug not require glue, as aluminium is not well suited to being glued using adhesives that work well with plastic parts. An ideal plug was one where just the press-fitting process was satisfactory in order to obtain a rigid attachment.
+        
+        \begin{figure}
+        \centering
+        \includegraphics[clip, trim=3cm 6cm 3cm 6cm, width=1\linewidth]{figures/plug-concepts}
+        \caption[Render of the plug concepts considered for the attachment of aluminium shafts onto joints and pivots]{Render of the plug concepts considered for the attachment of aluminium shafts onto joints and pivots}
+        \label{fig:mechDesign-plugConcepts}
+        \end{figure}
+        
+        Chosen was the plug that was hexagonal in shape but had edges which were filleted to match the inside surface of the aluminium tube. This was a hybridisation of the cylindrical plug, which introduced a very low window of tolerance in the manufacture of the joints, and the simple hexagonal plug. The filleted edges increased the contact surface area with the inside of the tube, improving the effectiveness of the fit, whilst allowing for greater manufacturing tolerances. In case the plugs proved to be lacking the required strength, a hole could have been drilled down the centre of the plug and a steel rod could be glued into place to strengthen the joint, specifically at the intersection of the middle body and the plug. A nut and bolt was added to the plug-tube assembly as in Figure~\ref{fig:mechDesign-plugTubeBearingDetail} to improve the fitting and prevent rotation of the tube around the axis of the plug.
+        
+        \begin{figure}[H]
+          \centering
+          \includegraphics[clip, trim=2cm 17cm 2cm 1cm, width=0.8\linewidth]{figures/plug-tube-bearing}
+          \caption[An isometric exploded view of the plug-tube-bearing assembly concept for the suspension system]{An isometric exploded view of the plug-tube-bearing assembly concept for the suspension system}
+          \label{fig:mechDesign-plugTubeBearingDetail}
+        \end{figure}        
+        
+        An extension to the rocker joint was made in the form of a ``fin'' feature to allow for the connection of the differential system. The feature was added ``in-place'' in the 3D model after the differential has been added to the assembly so that correct alignment was ensured.
+        
+        Finally, features for the press-fitting of bearings were added to the joints that required them. Bearings were chosen at this point to be of dimensions shown in Figure~\ref{fig:mechDesign-bearingShaftDetail} in which the shaft diameter is also shown. A single bearing alone was not suitable to provide support against bending torques brought about when the shafts were to be put under load, thus each free-moving joint had two bearings on either extremity. A hole through the centre of the bearing bores of $\diameter8$ mm was included to allow the shafts to extend to the outwards facing bearings. The final designs for each of the three joints are shown in Figures~\ref{fig:mechDesign-rockerJointDetail}, \ref{fig:mechDesign-bogieJointFixedDetail} and \ref{fig:mechDesign-bogieJointFreeDetail}.
+        
+        \begin{figure}[H]
+          \centering
+          \includegraphics[clip, trim=2cm 16cm 2cm 3cm, width=0.7\linewidth]{figures/bearing-shaft-detail}
+          \caption[Detail of the bearings and shaft chosen for the entire design]{Detail of the bearings and shaft chosen for the entire design}
+          \label{fig:mechDesign-bearingShaftDetail}
+        \end{figure}        
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 18cm 4cm 1cm, width=.59\linewidth]{figures/rocker-joint.PDF}
+        }
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 18cm 6cm 1cm, width=.4\linewidth]{figures/rocker-joint-iso.PDF}
+        }
+        \caption[Detailed drawings of the rocker joint component for one side of the suspension system]{Detailed drawings of the rocker joint component for one side of the suspension system}
+        \label{fig:mechDesign-rockerJointDetail}
+        \end{figure}
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 18cm 6cm 1cm, width=.45\linewidth]{figures/bogie-joint-free.PDF}
+        }
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 18cm 6cm 1cm, width=.45\linewidth]{figures/bogie-joint-free-iso.PDF}
+        }
+        \caption[Detailed drawings of the free bogie joint component for one side of the suspension system]{Detailed drawings of the free bogie joint component for one side of the suspension system}
+        \label{fig:mechDesign-bogieJointFreeDetail}
+        \end{figure}
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 20cm 4cm 1cm, width=.65\linewidth]{figures/bogie-joint-fixed.PDF}
+        }
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 18cm 6cm 1cm, width=.34\linewidth]{figures/bogie-joint-fixed-iso.PDF}
+        }
+        \caption[Detailed drawings of the fixed bogie joint component for one side of the suspension system]{Detailed drawings of the fixed bogie joint component for one side of the suspension system}
+        \label{fig:mechDesign-bogieJointFixedDetail}
+        \end{figure}
+        
       \subheading{Wheels}\\\\
+        Six wheels were to be designed, four of which were driven by the sub-micro servos (front and rear wheels) and the two centre wheels were to be mounted onto fixed shafts with bearings. All six of the wheels on \textit{Curiosity} were actuated to ensure robustness of the driving mechanisms in a wider range of terrain types and traversal situations. It was also a feature of redundancy in that if one of the motors failed, the rover was capable of continuing operation. However, it was decided that for this model only the front and rear wheels would be actuated given the reduced power to weight ratio compared to that of \textit{Curiosity}. Redundancy was not an issue worth the resultant extra servos and the incurred control complexity.
+        
+        As mentioned in Section~\ref{subsec:rover-concept-proposals}, the wheels were a great opportunity to make use of the aesthetic accuracy of additive manufacturing thus the wheel was modelled so as to replicate the cross-sectional curve of the outer shell of the wheel. Included were the tread patterns for traction as well as the morse-code emboss which read ``JPL'', used on \textit{Curiosity} to acquire optical estimates of the distance travelled by the rover. Spokes and a centre cylindrical core was added to the inside of the outer shell, keeping the wheel as a single piece.
+        
+        The sub-micro servos were accompanied by servo horns that fitted onto the shaft of the servo. The horns were cross-shaped, a layout of which was taken advantage to provide support in the cross-axis plane. The horns were measured and holes were added to the four wheels concerned so that they could be mounted directly to the driving servos. The need for bearings on this assembly was countered by an estimate of the forces developed due to the rover's weight and it was anticipated that the servos would be capable of taking the estimated load without damage or wear. This also provisioned for easy replacement of wheels and or servos should one of them be damaged.
+        
+        The same bearing bores and centre hole as on the joint components was added to the cylindrical core of the centre wheels for mounting to the aluminium shafts. The press-fitting of bearings into the wheels was to be of the same nature as that of the joints. Figures~\ref{fig:mechDesign-outerWheelDetail} and \ref{fig:mechDesign-midWheelDetail} show the outer and centre wheel details.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 16cm 6cm 1cm, width=.5\linewidth]{figures/tire-outer}
+        }
+        \qquad
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 16cm 6cm 1cm, width=.4\linewidth]{figures/tire-outer-dimet}
+        }
+        \caption[Detailed drawings of the outer wheels]{Detailed drawings of the outer wheels}
+        \label{fig:mechDesign-outerWheelDetail}
+        \end{figure}
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 16cm 6cm 1cm, width=.5\linewidth]{figures/tire-mid}
+        }
+        \qquad
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 16cm 5cm 1cm, width=.4\linewidth]{figures/tire-mid-dimet}
+        }
+        \caption[Detailed drawings of the centre wheels]{Detailed drawings of the centre wheels}
+        \label{fig:mechDesign-midWheelDetail}
+        \end{figure}
+          
       \subheading{Pivots}\\\\
+        Turning the wheel-strut assembly involved the pivot component which was required to allow for mounting of a sub-micro servo (steering servo) and to be attached to the ends of the fore rocker-tubes and aft bogie-tubes. The same concept for attaching to the aluminium tube as in the case of the joints was applied to the pivots thus the design consisted of a L-shaped extrusion with the plug extending from one of the outside flat surfaces. The other surface had a rectangular cut-out the size of the servo body, mounting holes for the servo and ribs for supporting the L-shaped extrusion. Figure~\ref{fig:mechDesign-wheelPivotDetail} shows the pivot component detail for the front wheel assembly.
+        
+        The front and rear pivots differed slightly due to the angle of entry of the rocker and bogie tubes towards the centre-points of the wheel assembly were different. Managing the differences in angles was aided by use of the 3D skeleton sketch. Again, the front and rear pivots from the left hand side were mirrored to produce parts for the right hand side suspension assembly.
+       
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 20cm 4cm 2cm, width=0.55\linewidth]{figures/wheel-pivot}
+        }
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 20cm 5cm 1cm, width=0.44\linewidth]{figures/wheel-pivot-iso}
+        }
+        \caption[Detailed drawings of the wheel pivot component for one corner of the suspension system]{Detailed drawings of the wheel pivot component for one corner of the suspension system}
+        \label{fig:mechDesign-wheelPivotDetail}
+        \end{figure}
+          
       \subheading{Struts}\\\\
+        \textit{Curiosity} had and arcing ``strut'' for each wheel which curved from above the wheel, underneath the pivot motor, over the side and into the inwards facing threshold of the hollow of the wheel. The strut was attached to the drive motor on the inside of the wheel, as close to the centre of the wheel for balance and minimisation of bending stress. The sub-micro sized servos would not fit inside the wheels of the model at its chosen scale, thus they had to be mounted on the outside of the wheel. The strut was required to provide a place to mount the driving servo and to be mounted to the servo horns of the steering servo.
+        
+        The strut was designed to maintain the curved appearance as on \textit{Curiosity} but to take into account the strength of the component. A flat platform above the wheel included holes for mounting of the steering servo's horn and this curved downwards into the strut section of the component. The strut curve consisted of a flat section to offer strength against bending in the typical direction as loaded (the $x$-axis) with a rib type extrusion from the rear facing side of the strut for increased support and tabs on which to mount the driving servo. The design was then mirrored for the rest of the corners and the final detail can be seen in Figure~\ref{fig:mechDesign-wheelStrutDetail}.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 17cm 4cm 2cm, width=0.59\linewidth]{figures/wheel-strut}
+        }
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 19cm 5cm 1cm, width=0.4\linewidth]{figures/wheel-strut-iso}
+        }
+        \caption[Detailed drawings of the wheel pivot component for one corner of the suspension system]{Detailed drawings of the wheel pivot component for one corner of the suspension system}
+        \label{fig:mechDesign-wheelStrutDetail}
+        \end{figure}
+          
+      \subheading{Final Sub-assembly}  
 
-      Having designed the parts around the skeleton sketch, where they were kept fixed to preserve the angle details linking them, another assembly was created into which the parts were re-added and mated in a manner more typical of the way that they would be assembled. The assembly allowed simulation of the movement and this functionality was used to analyse the assembly for interferences and to ensure that the structure moved the way it was required. Figure~[] shows the linkages positioned as if the subsystem was navigating over an obstacle.
+      Having designed the parts around the skeleton sketch, where they were kept fixed to preserve the angle details linking them, another assembly was created into which the parts were re-added and mated in a manner more typical of the way that they would be assembled. The assembly allowed simulation of the movement and this functionality was used to analyse the assembly for interferences and to ensure that the structure moved the way it was required. Figure~\ref{fig:mechDesign-suspensionSubObstacle} shows the linkages positioned as if the subsystem was navigating over an obstacle. Each individual part was then mirrored and assembled to form the opposite side of the suspension system. The CAD package ensured that the mirrored parts were dynamically updated should one of the original parts have changed.
       
-      ![Figure of obstacle traversal of one side of the suspension]
+      \begin{figure}[H]
+      \centering
+      \subfloat[]{
+        \includegraphics[clip, trim=2cm 15cm 2cm 1cm, width=0.9\linewidth]{figures/suspensionSub}
+      }
+      \qquad
+      \subfloat[]{
+        \includegraphics[clip, trim=2cm 15cm 2cm 1cm, width=0.7\linewidth]{figures/suspensionSub-iso}
+      }
+      \caption[Detailed drawings of the working, dynamic assembly one side of the suspension system]{Detailed drawings of the working, dynamic assembly one side of the suspension system}
+      \label{fig:mechDesign-suspensionSubDetail}
+      \end{figure}
+      
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{figures/suspensionSub-obstacle}
+        \caption[Render of one side of the suspension system navigating over an obstacle]{Render of one side of the suspension system navigating over an obstacle}
+        \label{fig:mechDesign-suspensionSubObstacle}
+      \end{figure}
       
     \subsubsection{Differential}
-      - Bar
-      - Hinges
+      Design of the differential involved a partially completed design of the body structure which contained details of the mounting points of the suspension system and thus the position of the connection point on the rocker joint, as well as the centre point of articulation of the differential bar as acquired from the reference model. The concept chosen for this subsystem included a 3D printed differential bar, printed hinges and threaded-bar (rods) attached to the hinges to link the differential to the rocker joint. The need for hinges was to provide the rods with the degrees of freedom required taking into the account the arced motions of an end of the differential bar in the $x$-$y$-plane and rocker joint in the $x$-$z$-plane. The articulation of the differential system and the resulting motion of the rods is depicted in Figure~\ref{fig:mechDesign-differentialMotion}, each of the two views showing two positions in the motion.
       
+      \begin{figure}[H]
+      \centering
+      \subfloat[Top view\label{fig:mechDesign-differentialMotion-a}]{\includegraphics[clip, trim=2cm 26cm 2cm 4cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionTop.pdf}}
+      \qquad
+      \subfloat[Side view]{
+        \includegraphics[clip, trim=2cm 26cm 2cm 4cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionSide.pdf}
+      }
+      \caption[Diagram showing the motion of the differential and the resulting motion of the differential rod]{Diagram showing the motion of the differential and the resulting motion of the differential rod}
+      \label{fig:mechDesign-differentialMotion}
+      \end{figure}
+      
+      \subheading{Differential Bar}\\\\
+        The design of the differential bar stemmed from the partially completed rover deck, specifically with respect to the width of the body and therefore the span of the rocker joints' differential connection points. The bar took on the tapered shape as on \textit{Curiosity} with the wider section in the centre and narrower ends. A hole was added for the addition of a bearing in the centre of the bar and holes for the hinges added to the ends. The bearing was to be mounted to a short shaft which was to be fixed into the deck of the rover. Figure~\ref{fig:mechDesign-differentialBarDetail} shows the detail of the differential bar.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=5cm 24cm 5cm 0cm, width=0.5\linewidth]{figures/differential-bar}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=3cm 21cm 3cm 1cm, width=0.49\linewidth]{figures/differential-bar-iso}
+        }
+        \caption[Detailed drawings of the differential bar component in the differential system]{Detailed drawings of the differential bar component in the differential system}
+        \label{fig:mechDesign-differentialBarDetail}
+        \end{figure}
+        
+        
+      \subheading{Hinges}\\\\
+        Hinges were designed for each end of the rods, one end on the rocker joint side and the other for the differential bar. The hinges allowed rotation about specific axes, the $y$- and $z$-axes on the bar side and the $y$-axis on the joint side. Figure~\subref*{fig:mechDesign-differentialMotion-a} demonstrates that the bar also rotates about the $z$-axis which would require the hinge at the rocker joint to allow for this motion. However, this was not included in the design after confirming through calculation that the amount by which the bar would have rotated in this direction at the maximum angle of articulation of the differential bar ($\approx9^\circ$) did not justify the resulting added complexity in the hinge design.
+        
+        The single axis hinge on the rocker joint side amounted to a right-angled piece with a hole in one of the flat sections for fastening it to the rocker joint and another hole on the other flat section for fastening of the threaded-bar rod component. Slotted bolts and nuts were used for the joint hole with washers between the joint and the hinge part to minimise the friction between the parts despite small degree of motion that would be effected on this coupling. For the rod, two nuts on either side of the piece were used to fix the threaded-bar.
+        
+        The two-axis hinge on the differential-bar end included a part with two tabs with holes, one above and one below the end of the bar and a flat section extending perpendicular to the axis made between the two tab-holes. The additional section included a third hole to allow attachment of the second part responsible for mounting the rod. The second component included a blind hole into which the rod could be place and a cutout halfway down the length of the hole to allow for a nut to be pushed into place. This meant that the rod could be screwed into the piece, the purpose of which included easy assembly and breakdown if required as well as allowing the extension of the rod to be adjusted. Therefore, the differential system could be adjusted to balance the rover body about the rocker joint pivot points.
+        
+        Detailed drawings of both hinge assemblies can be seen in Figures~\ref{fig:mechDesign-singleAxisHingeDetail} and \ref{fig:mechDesign-twoAxisHingeDetail}.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=9cm 24cm 6cm 0cm, width=0.4\linewidth]{figures/rod-hing-jointSide}
+        }
+        \qquad
+        \subfloat[]{
+          \includegraphics[clip, trim=5cm 20cm 5cm 1cm, width=0.4\linewidth]{figures/rod-hing-jointSide-iso}
+        }
+        \caption[Detailed drawings of the single-axis hinge component in the differential system]{Detailed drawings of the single axis hinge component in the differential system}
+        \label{fig:mechDesign-singleAxisHingeDetail}
+        \end{figure}
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=5cm 18cm 4cm 0cm, width=0.44\linewidth]{figures/two-axis-hinge}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=3cm 19cm 3cm 1cm, width=0.55\linewidth]{figures/two-axis-hinge-iso}
+        }
+        \caption[Detailed drawings of the two-axis hinge component in the differential system (without fasteners)]{Detailed drawings of the two-axis hinge component in the differential system (without fasteners)}
+        \label{fig:mechDesign-twoAxisHingeDetail}
+        \end{figure}
+        
+        It must be noted that other hinge techniques were considered for this subsystem, one of which included a ball and ring-socket joint which would have provided the required axes of rotation in a single coupling (for each end). The idea was not used for the design due to unavailability of the joints, particularly of the size required. The hinge technique was simpler in design and leant itself well to the chosen manufacture method.
+        
+      \subheading{Final Sub-assembly}\\\\
+        Figure~\ref{fig:mechDesign-differentialSubDetail} shows detail of the differential sub-assembly as generated in the CAD package used and was analysed for interferences and functional integrity.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=3cm 22cm 3cm 0cm, width=1\linewidth]{figures/diff-sub}
+        }
+        \qquad
+        \subfloat[\label{fig:mechDesign-differentialSubDetail-b}]{
+          \includegraphics[clip, trim=4cm 17cm 4cm 1cm, width=0.7\linewidth]{figures/diff-sub-iso}
+        }
+        \caption[Detailed drawings of the working, dynamic assembly of the differential system]{Detailed drawings of the working, dynamic assembly of the differential system (included in the isometric view in \protect\subref{fig:mechDesign-differentialSubDetail-b} are the rocker joints as part of the suspension system)}
+        \label{fig:mechDesign-differentialSubDetail}
+        \end{figure}
+        
+              
     \subsubsection{Head and Neck}
       - Neck mount
       - Neck Hinge and Actuation
