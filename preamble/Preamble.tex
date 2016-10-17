@@ -10,21 +10,22 @@
 \usepackage{lscape}
 \usepackage[none]{hyphenat}
 \usepackage{setspace}
-%\usepackage{hyperref}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{float}
-\usepackage{listing}
+%\usepackage{listing}
 \usepackage{tocstyle}
 %\usepackage{epstopdf}                                      % EPS graphic support
-%\usepackage{minted}                                              % Code snippets
-\usepackage{bm}                                             % Bold maths symbols
+\usepackage{fontspec}
+\usepackage[newfloat]{minted}                                     % Code snippets
+\usepackage{caption}
+\usepackage{bm}                                              % Bold maths symbols
 \usepackage{enumerate}
 %\usepackage{cleveref}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{multirow}
-\usepackage[bottom]{footmisc}
+\usepackage[bottom, perpage]{footmisc}
 
 \bibliographystyle{preamble/IEEEtran/bibtex/IEEEtran}
 
@@ -66,4 +67,20 @@
             pdfpagelayout     = OneColumn,%
             pdfstartview      = FitH		 ,%
             driverfallback    = dvipdfm]{hyperref}
+            
+% fonts
+\setmonofont{Fira Code}[Scale=MatchLowercase]
+            
+% minted
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Snippet}
+
+\definecolor{mintedBg}{rgb}{0.94,0.94,0.94}
+\setminted[]{%
+  breaklines 	= true,%
+  autogobble 	= true,%
+  bgcolor			= mintedBg,%
+  linenos			= true,%
+}
+%\usemintedstyle{pastie}
             
