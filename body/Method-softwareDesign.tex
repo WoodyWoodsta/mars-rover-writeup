@@ -1,7 +1,7 @@
 \section{Software Design}
   Following the design of the mechanical and electrical aspects of the rover was that of the software as hosted by the RCE as well as for user control and interaction. The section covers the design process undertaken before and during the development of the software for all aspects of the project. The software design and development processes were highly iterative as many of the design choices had to be made after realisation of the technology capabilities and conversely, many of the technology choices were made based on what was required on a more functional and detailed level at design time. The two processes are separated as far as possible in this report for a friendlier structure, however, much of the design detail is included in the development sections.
   
-  The design stage initiated with an overview of the requirements, a plan of the designed structures of each of the subsystems as categorised in the overview and descriptions of the technologies that were chosen for development.
+  The design stage initiated with an overview of the requirements, descriptions of the technologies that were chosen for development and a plan of the designed structures of each of the subsystems as categorised in the overview.
   
   \subsection{Systems Overview in Context}
     An attempt was made to mimic the communications and software structures and patterns used for MSL (and other similar missions) and as such, the software system for this project resembles the three component structure consisting of a system on the rover, the software employed for the collection of relay satellites and ground-based DSN hardware, and the client front-end software as used by the MSL team. Figure~\ref{fig:specs-functionalBreakdown} already highlights the basic breakdown of the software systems. As discussed in Section~\ref{subsubsec:rover-equivalence}, the three major software subsystems by name included the Rover Compute Element (RCE) and the Robot Sequencing and Visualisation Program (RSVP) divided further into the Server and the Client.
@@ -61,7 +61,7 @@
         A project worthy of mentioning at this point is one that was in development at the time of writing by NASA, namely Open MCT\footnote{Open MCT: \url{https://nasa.github.io/openmct/}}, a web-based mission control framework utilising Node.js as the server runtime (although the architecture design was intended to be server-agnostic). Open MCT was a great example of how an across-the-stack JavaScript implementation is well suited to a data and communication critical application. Another example of Node.js's place in the aerospace industry was the use of it by United Technologies Corporation Aerospace Systems (UTCAS) to develop a data management system for the lifecycle of EVA spacesuits, a response to a problem identified in the analysis of data which was before hosted across separate and legacy databases \cite{nodejsSpaceSuit_2016}.        
         
       \subheading{ECMAScript 6}\\\\
-        Released on the 6th of June 2015, the Sixth Edition of JavaScript, also known as ECMAScript 6 (ES6), introduced a significant range of new features to the language many of which are syntactically unique. It was decided that the project make use of the new edition in order to remain in-sync with modern modules and technologies at the time. In fact, a few features from the Seventh Edition (ES7, released on the 7th of June 2016) were included as well, both additions to the original ES5 and ES5.1 resulting in an added complexity in the build process. The changes to the build process are dealt with in the development section.
+        Announced on the 6th of June 2015, the Sixth Edition of JavaScript, also known as ECMAScript 6 (ES6), introduced a significant range of new features to the language many of which are syntactically unique. It was decided that the project make use of the new edition in order to remain in-sync with modern modules and technologies at the time. In fact, a few features from the Seventh Edition (ES7, released on the 7th of June 2016) were included as well, both additions to the original ES5 and ES5.1 resulting in an added complexity in the build process. The changes to the build process are dealt with in the development section.
         
     \subsubsection{Embedded Software Platform}
       The RCE board's Intel Edison computer ran a default operating system: a custom version of Linux from the Yocto Linux Project maintained and compiled by Intel. The open-source Yocto Project provides the tools and resources to build Linux distributions specifically for embedded targets. Intel's distribution was a modified version of ``Yocto Poky'' and could be flashed onto the Intel Edison using the tools provided. After little experimentation with the distribution, it was found that many of the niceties of a Debian-based operating system were not present, the main issue being the lack of the package manager (\mintinline{js}{apt-get}) and its associated online repositories which would aid the development process. For this reason, a different distribution was chosen for the RCE, ``Ubilinux'', a customised version of ``Debian Wheezy'' which was maintained by Emutex. It was decided that due to mid-project termination of support for Ubilinux from Emutex, Ubilinux would remain the distribution used during development of the rover after which it would be replaced with the latest version of Yocto Poky if time permitted. This would provide an opportunity to build into the distribution the tools confirmed as being required for the operation of the RCE.
@@ -192,9 +192,44 @@
       
       Detailed design of the system with the implementation of Kurento's media server will be covered in the design and development sections to follow.
   \subsection{Subsystem Design}
+    With the primary technology choices made, all three of the software system components were designed in a functional sense, removed as far as possible from implementation and code detail. For brevity, the design (and development) descriptions that follow are written in ``as-built'' style with little reference to many of the design iterations and variety of design choices made along the way. Multiple solutions to a particular aspect or component design problem are discussed where significant.
+    
+%    Overall Plan of Structure
+%    Breakdown
+    
     \subsubsection{RCE Design}
+      \subheading{Plan of Structure}\\\\
+        The RCE was a multi-functional, multi-faceted software component bridging the largest gap between hardware control and communications compared to the other two components in the project. It was broken down on the basis of function and each of the subcomponents designed and developed. Multiple main functional areas were identified to be:
+        
+        \begin{itemize}
+          \item \textbf{Control:} Interpretation of incoming control signals and commands, translation of such commands into hardware signals against time and control of RCE board outputs as part of a hardware-to-software abstraction layer. The control subcomponent included initialisation of hardware.
+          \item \textbf{Sensing and Telemetry:} Interpretation of incoming hardware signals from sensors and translation of such signals into telemetry messages to be sent to the RSVP Server, including retrieving and packaging of system and hardware state telemetry data.
+          \item \textbf{Communication:} A transport layer providing a means of communication with the RSVP Server for telemetry, control and video data transmission.
+          \item \textbf{System Operation:} Initialisation of the RCE system as a whole including the execution of predefined system sequences.
+        \end{itemize}
+        
+        Figure~\ref{fig:softDesign-rceStructurePlan}, an overall block diagram of the designed RCE structure, shows briefly the presence of the identified functional areas and how they interrelate. The RCE was ultimately governed by the Node.js application entry point and system sequences (not to be confused with RSVP control sequences). System sequences could be executed at any point during the RCE lifetime and were responsible for coordination of initialisations of hardware and software components as well as performing routines during operation. Routines might have included system vitality checks, routine maintenance or emergency shutdown procedures. The system sequencing mechanism allowed sequences to be executed synchronously or be driven by events (asynchronous) and allowed for pluggable and scalable sets of sequences with very little impact on the general operation of the RCE. Importantly, sequences at this level were designed to only handle system functions and operations and not any element of hardware control.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=1\linewidth]{figures/softDesign-rceStructurePlan}
+          \caption[Block diagram of the designed software structure for the RCE]{Block diagram of the designed software structure for the RCE}
+          \label{fig:softDesign-rceStructurePlan}
+        \end{figure}
+        
+        The communication transport layer provided the facilities for communication with the RSVP Server. Attached to the RCE's network I/O were three server components, an HTTP server for pre-WebSocket communication and simple requests, the WebSocket server, named the ``RCEIO'', and a video stream endpoint which was made separate due to the choice of streaming technology. All three servers interfaced with the wireless module by default (an operating system level interface). A common pattern that was carried across from this software component to the RSVP Server and Client was the pairing of WebSocket server modules with an accompanying translator module. More detail of this pattern is discussed in the communication transport layer design detail below. It can be seen in Figure~\ref{fig:softDesign-rceStructurePlan} that each part of the communication layer is exposed to the sequencing block, allowing them to be initialised and configured during a sequence as well as allowing for sequences to be triggered in an event-driven fashion.
+        
+        Interface with the hardware components as shown in Figure~\ref{fig:softDesign-rceStructurePlan}, the camera, servos, proximity sensors and voltage input, was taken care of by the control layer, a complex subcomponent involving decoding and translation from incoming commands and signals from the RCEIO translator, a control loop acting as a filter of driving input signals from the translator and finally a hardware abstraction which partially incorporated the Johnny-Five library module.
+        
+        Most of the above subcomponents were exposed to the data store facility as a means of communicating cross-block and cross-module as well as providing data for telemetry purposes. The reasoning behind the data store as well as its functional design are discussed as part of Section~\ref{subsec:commonSoftwareComponentDesign}.
+              
+      \subheading{... Components}\\\\
       
     \subsubsection{RSVP Server Design}
     \label{subsubsec:rsvpServersPlan}
     \subsubsection{RSVP Client Design}
+    
+    \subsection{Common Software Components Design}
+    \label{subsec:commonSoftwareComponentDesign}
+      % - Synchronised data store
     
