@@ -49,7 +49,7 @@
         
         \begin{figure}[h!]
           \centering
-          \includegraphics[width=0.9\linewidth]{figures/softDesign-nodeEventLoop}
+          \includegraphics[width=0.8\linewidth]{figures/softDesign-nodeEventLoop}
           \caption[Diagram showing the Node.js architecture's event-loop execution design]{Diagram showing the Node.js architecture's event-loop execution design (adapted from \cite{fig:softDesign-nodeEventLoop_cite1} and \cite{fig:softDesign-nodeEventLoop_cite2})}
           \label{fig:softDesign-nodeEventLoop}
         \end{figure}
@@ -208,28 +208,99 @@
           \item \textbf{System Operation:} Initialisation of the RCE system as a whole including the execution of predefined system sequences.
         \end{itemize}
         
-        Figure~\ref{fig:softDesign-rceStructurePlan}, an overall block diagram of the designed RCE structure, shows briefly the presence of the identified functional areas and how they interrelate. The RCE was ultimately governed by the Node.js application entry point and system sequences (not to be confused with RSVP control sequences). System sequences could be executed at any point during the RCE lifetime and were responsible for coordination of initialisations of hardware and software components as well as performing routines during operation. Routines might have included system vitality checks, routine maintenance or emergency shutdown procedures. The system sequencing mechanism allowed sequences to be executed synchronously or be driven by events (asynchronous) and allowed for pluggable and scalable sets of sequences with very little impact on the general operation of the RCE. Importantly, sequences at this level were designed to only handle system functions and operations and not any element of hardware control.
+        Figure~\ref{fig:softDesign-rceStructurePlan}, an overall block diagram of the designed RCE structure, shows briefly the presence of the identified functional areas and how they interrelate. The RCE was ultimately governed by the Node.js application entry point and system sequences (not to be confused with RSVP control sequences). System sequences could be executed at any point during the RCE lifetime and were responsible for coordination of initialisations of hardware and software components as well as performing routines during operation. Routines included system vitality checks, routine maintenance or emergency shutdown procedures. The system sequencing mechanism allowed sequences to be executed synchronously or be driven by events (asynchronous) and allowed for pluggable and scalable sets of sequences with very little resultant impact on the general operation of the RCE. Importantly, sequences at this level were designed to only be responsible for system functions and operations and not any aspect of hardware control.
         
         \begin{figure}[h!]
           \centering
           \includegraphics[width=1\linewidth]{figures/softDesign-rceStructurePlan}
-          \caption[Block diagram of the designed software structure for the RCE]{Block diagram of the designed software structure for the RCE}
+          \caption[Block diagram of the designed software structure for the RCE.]{Block diagram of the designed software structure for the RCE.}
           \label{fig:softDesign-rceStructurePlan}
         \end{figure}
         
-        The communication transport layer provided the facilities for communication with the RSVP Server. Attached to the RCE's network I/O were three server components, an HTTP server for pre-WebSocket communication and simple requests, the WebSocket server, named the ``RCEIO'', and a video stream endpoint which was made separate due to the choice of streaming technology. All three servers interfaced with the wireless module by default (an operating system level interface). A common pattern that was carried across from this software component to the RSVP Server and Client was the pairing of WebSocket server modules with an accompanying translator module. More detail of this pattern is discussed in the communication transport layer design detail below. It can be seen in Figure~\ref{fig:softDesign-rceStructurePlan} that each part of the communication layer is exposed to the sequencing block, allowing them to be initialised and configured during a sequence as well as allowing for sequences to be triggered in an event-driven fashion.
-        
-        Interface with the hardware components as shown in Figure~\ref{fig:softDesign-rceStructurePlan}, the camera, servos, proximity sensors and voltage input, was taken care of by the control layer, a complex subcomponent involving decoding and translation from incoming commands and signals from the RCEIO translator, a control loop acting as a filter of driving input signals from the translator and finally a hardware abstraction which partially incorporated the Johnny-Five library module.
+        The communication transport layer provided the facilities for communication with the RSVP Server. Attached to the RCE's network I/O were three server components, an HTTP server for pre-WebSocket communication and simple requests, the WebSocket server, named the ``RCEIO'', and a video stream endpoint which was made separate due to the choice of streaming technology. Interface with the hardware components as shown in Figure~\ref{fig:softDesign-rceStructurePlan}, the camera, servos, proximity sensors and voltage input, was taken care of by the control layer, a complex subcomponent involving decoding and translation from incoming commands and signals from the RCEIO translator, a control loop acting as a filter of driving input signals from the translator and finally a hardware abstraction which partially incorporated the Johnny-Five library module.
         
         Most of the above subcomponents were exposed to the data store facility as a means of communicating cross-block and cross-module as well as providing data for telemetry purposes. The reasoning behind the data store as well as its functional design are discussed as part of Section~\ref{subsec:commonSoftwareComponentDesign}.
-              
-      \subheading{... Components}\\\\
-      
+        
+        \subheading{System Sequencing}\\\\
+          The pluggable sequencing module is better depicted in Figure~\ref{fig:softDesign-rceSystemSequencingDesign}. Multiple sequences were designed and written to be included in the sequence library and could be called at any point during execution. Sequence operations could have been blocking in execution thus ensuring a deterministic flow of operations or asynchronous if event-driven logic and state-dependency was required. The sequence was exposed to any operation or data that was made importable in JavaScript terms throughout the project.
+          
+          \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.9\linewidth]{figures/softDesign-rceSystemSequencingDesign}
+            \caption[Diagram showing the functional design of the RCE's sequencing module.]{Diagram showing the functional design of the RCE's sequencing module.}
+            \label{fig:softDesign-rceSystemSequencingDesign}
+          \end{figure}
+          
+          \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.7\linewidth]{figures/softDesign-startupSequenceFlow}
+            \caption[Sequential flow diagram of the designed startup sequence.]{Sequential flow diagram of the designed startup sequence.}
+            \label{fig:softDesign-startupSequenceFlow}
+          \end{figure}          
+          
+          An example sequence that was designed was the startup sequence, the very first set of operations that are executed when the RCE process is invoked on power up of the RCE board (and the rover itself). Figure~\ref{fig:softDesign-startupSequenceFlow} shows the execution flow of the sequence, which began with the initialisation of core system features including instantiation of Linux process monitors and registering the shutdown sequence to process events that indicated a termination of the RCE. The HTTP and RCEIO servers were then created and started after which the sequence waited for a successful incoming connection, from the RSVP Server, by means of the \mintinline{js}{connected} event emitted by the Socket.io instance itself. Upon successful connection, the Johnny-Five board instance was created, an asynchronous operation whereby the sequence resumed in the associated callback method. The rest of the sequence was strictly sequential, including initialisation of all the hardware subcomponents (with prevention against duplicating initialisations/instances), synchronisation of data stores between the RCE's store and the RSVP Server and starting the state driver loop as part of the control aspect of the RCE.
+                    
+          For the purpose of this project, the following sequences were designed and implemented:
+          \begin{itemize}
+            \item \textbf{Startup Sequence:} As described above, the startup sequence initialised the system and hardware modules upon power up of the rover.
+            \item \textbf{Power Down Sequence:} The power down sequence was triggered upon the termination of the Node.js RCE process which may have been brought about intentionally or in error. Regardless, the sequence ensures that hardware systems are correctly shut down and that communications with the RSVP Server are closed gracefully. 
+            \item \textbf{Self-diagnostics Sequence:} The self-diagnostics sequence was designed to be a proof of concept for the level of automation such a rover might have and included testing of all the hardware and software components, reporting back to the RSVP Client the results of the tests. It remained a proof of concept due to the lack of sensory feedback present in the design of the rover and thus the inability of the RCE to make an assessment of a particular component's state of health.
+            \item \textbf{Emergency Shutdown Sequence:} The emergency shutdown sequence aimed to replicate the similar sequence on \textit{Curiosity}, designed to handle bringing the rover into a safe state in the event of a detected failure in any aspect of the rover.
+          \end{itemize}
+          
+        \subheading{Hardware Abstraction}\\\\
+          Figure~\ref{fig:softDesign-rceStructurePlan} shows the control layer as being a collection of modules allowing commands from the communication layer to be passed through abstractions and translations to result in driving signals sent to the various hardware components. The required signals at the end of the control pipeline were abstracted so as to provide an easier design platform upon which the command translation and execution could be based. Two elements of abstraction were included at the end of the pipeline, one of them being that which was provided by the Johnny-Five framework for all hardware control except the camera. The principle behind Johnny-Five includes hardware components in the form of classes which are instantiated alongside a single \mintinline{js}{Board} instance often referred to as the ``Control System''. Each of the components utilise a ``Controller'' which describes the translation required from the API provided by the component to the peripheral hardware. The second layer of abstraction was custom designed to raise the level of control even further, allowing a more understandable interoperation between it and the rest of the RCE. The second level also consumed configuration and platform specific details and features with respect to the rover hardware and software design (i.e. it was not developed to be scalable or reusable). The structure of this abstraction is shown in Figure~\ref{fig:softDesign-hardwareAbstractionStructure}, beginning with the \mintinline{js}{Board} instance. Each of the second layer abstraction APIs contained an initialisation operation which could be executed from the startup system sequence, as well as multiple hardware specific operations as described below.
+          
+          \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.7\linewidth]{figures/softDesign-hardwareAbstractionStructure}
+            \caption[Diagram showing the structure of the two layered harware abstraction.]{Diagram showing the structure of the two layered harware abstraction.}
+            \label{fig:softDesign-hardwareAbstractionStructure}
+          \end{figure}
+          
+          
+        \subheading{Command Structure and Design}\\\\
+        
+        \subheading{Command Translation and Execution}\\\\
+          
+          
+        \subheading{Communication Transport Layer} \\\\
+           All three servers interfaced with the wireless module by default (an operating system level interface). A common pattern that was carried across from this software component to the RSVP Server and Client was the pairing of WebSocket server modules with an accompanying translator module. The server-translator structure and interface is discussed in more detail in Section~\ref{subsec:commonSoftwareComponentDesign}. It can be seen in Figure~\ref{fig:softDesign-rceStructurePlan} that each part of the communication layer is exposed to the sequencing block, allowing them to be initialised and configured during a sequence as well as allowing for sequences to be triggered in an event-driven fashion. The RCEIO server was designed to handle message data of both control and telemetry types. It was decided that the implementation of RCEIO be a server endpoint and not a client endpoint so that the connection process on the RCE side remained as static as possible (i.e. requiring little configuration and logic). This left much of the network resolving and connection procedure up to the RSVP Server, a software component far more accessible to an operator if such access was required.
+           
+           It was decided that the streaming instance remain separate from the data communication since the choice of WebRTC as the media streaming technology. However, after small-scale proof of concept development and tests, it was found that WebRTC, including but not specifically Kurento, were tools more suited to a web browser environment. WebRTC primarily makes use of the browser-camera interface provided by browser vendors and fair but above-par support for a Node.js environment for anything other than the server. The RCE required a lower level of control for the web camera and this included the process of obtaining video data from it. As such, an approach rawer in operation to that of a WebRTC endpoint was to use a Linux tool which streamed a compressed but mostly unaltered feed directly from the camera, of which there were many as discussed in Section~\ref{sec:softwareDevelopment}, and did so by means of a Real Time Streaming Protocol (RTSP) server to which another entity on the network would connect on a separate port. As shown in Figure~\ref{fig:softDesign-commStreamingDesign}, the Node.js RCE process (in the Linux operating system sense of the word) spawns a new process, referred to as a ``child process'', which would invoke the streaming server tool and essentially run parallel to the RCE. This was beneficial to the design in that video streaming operations would not block the execution of operations as part of the RCE which would have negatively impacted critical functionality such as the carrying out of hardware control.
+           
+           \begin{figure}[h!]
+             \centering
+             \includegraphics[width=0.6\linewidth]{figures/softDesign-commStreamingDesign}
+             \caption[Diagram showing the spawning and interaction of a separate streaming process by the RCE.]{Diagram showing the spawning and interaction of a separate streaming process by the RCE.}
+             \label{fig:softDesign-commStreamingDesign}
+           \end{figure}
+
     \subsubsection{RSVP Server Design}
     \label{subsubsec:rsvpServersPlan}
+      \subheading{Plan of Structure}\\\\
+        The RSVP Server was simpler in functional composition as it primarily handled communication. As with the RCE design, the Server consisted of the Node.js entry point and a system module which maintained the operation of the rest of the subcomponents. The Server consisted of four server endpoints, one of which was an HTTP server and the rest WebSockets, and one WebSocket client. All of the servers operated over the network interface provided by the Node.js runtime. The same data store structure used for the RCE was present in the Server design for state data and telemetry. Additionally, a connected client module was added to the design to manage RSVP Clients in terms of their access to various parts of the system.
+        
+        The Kurento Media Server is included in Figure~\ref{fig:softDesign-serverStructurePlan} even though it was a separate system process on the host operating system. The interface between this Media Server and the RSVP Server is discussed below.
+      
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=1\linewidth]{figures/softDesign-serverStructurePlan}
+          \caption[Block diagram of the designed software structure for the RSVP Server.]{Block diagram of the designed software structure for the RSVP Server.}
+          \label{fig:softDesign-serverStructurePlan}
+        \end{figure}
+        
+        
+      
+      
     \subsubsection{RSVP Client Design}
     
-    \subsection{Common Software Components Design}
+    \subsubsection{Common Software Components Design}
     \label{subsec:commonSoftwareComponentDesign}
+      Developing the full-stack in JavaScript meant that many of the subcomponents and features could share design patterns, technology choices and code implementations without the abruptness of having to design for differing language and/or platforms. It was quickly identified that many of these subcomponents were required in all three of the software components and as such, are discussed in this section.
+      
       % - Synchronised data store
-    
+      % - WebSocket endpoint-translator pair
+      \subheading{WebSocket Design}\\\\
+        Since there were many WebSocket connections and hence subcomponents, a naming convention was introduced where the name of the endpoint subcomponent was formulated by \mintinline{js}{<subject>IO} and \mintinline{js}{Client} was appended if the endpoint was to connect to an already existing WebSocket server. Further, \mintinline{js}{Translator} was appended to the translator half of the WebSocket implementation. Figure~![] shows the designed interface between the WebSocket implementation subcomponents and the RCE.
+      
