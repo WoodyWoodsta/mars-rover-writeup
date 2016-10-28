@@ -181,7 +181,7 @@
       \subfloat[Without intermediate server for video streaming (strictly peer-to-peer)]{
         \includegraphics[width=0.49\linewidth]{figures/softDesign-webRTCBroadcastP2PExample.pdf}
       }%
-      \subfloat[With intermediate server for video streaming]{
+      \subfloat[With intermediate server for video streaming\label{fig:softDesign-webRTCBroadcastExamples-b}]{
         \includegraphics[width=0.49\linewidth]{figures/softDesign-webRTCBroadcastServerExample.pdf}
       }
       \caption[Simplified diagrams of typical WebRTC connection configurations]{Simplified diagrams of typical WebRTC connection configurations}
@@ -198,6 +198,7 @@
 %    Breakdown
     
     \subsubsection{RCE Design}
+    \label{subsubsec:softDesign-rceDesign}
       \subheading{Plan of Structure}\\\\
         The RCE was a multi-functional, multi-faceted software component bridging the largest gap between hardware control and communications compared to the other two components in the project. It was broken down on the basis of function and each of the subcomponents designed and developed. Multiple main functional areas were identified to be:
         
@@ -249,7 +250,7 @@
           \end{itemize}
           
         \subheading{Hardware Abstraction}\\\\
-          Figure~\ref{fig:softDesign-rceStructurePlan} shows the control layer as being a collection of modules allowing commands from the communication layer to be passed through abstractions and translations to result in driving signals sent to the various hardware components. The required signals at the end of the control pipeline were abstracted so as to provide an easier design platform upon which the command translation and execution could be based. Two elements of abstraction were included at the end of the pipeline, one of them being that which was provided by the Johnny-Five framework for all hardware control except the camera. The principle behind Johnny-Five includes hardware components in the form of classes which are instantiated alongside a single \mintinline{js}{Board} instance often referred to as the ``Control System''. Each of the components utilise a ``Controller'' which describes the translation required from the API provided by the component to the peripheral hardware. The second layer of abstraction was custom designed to raise the level of control even further, allowing a more understandable interoperation between it and the rest of the RCE. The second level also consumed configuration and platform specific details and features with respect to the rover hardware and software design (i.e. it was not developed to be scalable or reusable). The structure of this abstraction is shown in Figure~\ref{fig:softDesign-hardwareAbstractionStructure}, beginning with the \mintinline{js}{Board} instance. Each of the second layer abstraction APIs contained an initialisation operation which could be executed from the startup system sequence, as well as multiple hardware specific operations as described below.
+          Figure~\ref{fig:softDesign-rceStructurePlan} shows the control layer as being a collection of modules allowing commands from the communication layer to be passed through abstractions and translations to result in driving signals sent to the various hardware components. The required signals at the end of the control pipeline were abstracted so as to provide an easier design platform upon which the command translation and execution could be based. Two elements of abstraction were included at the end of the pipeline, one of them being that which was provided by the Johnny-Five framework for all hardware control except the camera. The principle behind Johnny-Five includes hardware components in the form of classes which are instantiated alongside a single \mintinline{js}{Board} instance often referred to as the ``Control System''. Each of the components utilise a ``Controller'' which describes the translation required from the API provided by the component to the peripheral hardware. The second layer of abstraction was custom designed to raise the level of control even further, allowing a more understandable interoperation between it and the rest of the RCE. The second level also consumed configuration and platform specific details and features with respect to the rover hardware and software design (i.e. it was not developed to be scalable or reusable). The structure of this abstraction is shown in Figure~\ref{fig:softDesign-hardwareAbstractionStructure}, beginning with the \mintinline{js}{Board} instance. Each of the second layer abstraction APIs contained an initialisation operation which could be executed from the startup system sequence, as well as multiple hardware specific operations as described in Section~\ref{sec:softwareDevelopment}.
           
           \begin{figure}[h!]
             \centering
@@ -258,11 +259,41 @@
             \label{fig:softDesign-hardwareAbstractionStructure}
           \end{figure}
           
-          
         \subheading{Command Structure and Design}\\\\
+          An internal command execution system was designed for the RCE to cater for the large number of components that could be controlled as well as to provide a clean and semantically understandable method of control for the user. The command system also aimed to be similar to the command system employed for the control of \textit{Curiosity} (and other such rovers that utilised the RSVP) so that the control interface could be accurately portrayed. The system was designed for both interactive and RoSE style control modes as will be discussed after this sub-section.
+          
+          The two primary features intended to be controlled through the use of commands was the traversal of the rover and the movement of the camera, both of which involved the servo motors used for their actuation. These two control subjects were prioritised over commands relating to secondary components and operations. Regardless of the subject, however, all commands were classified as either being low level commands to effect a single change on one hardware feature, high level commands which may involve controlling more than one component at one time, and macros which contained a sequence of operations which could either be high or low in level. The macro was then to be decoded into the respective high and low level commands and inserted into the sequence, or executed as a sequence itself.
+          
+          The user may construct a sequence of commands of all types on the RSVP Client application and transmit the sequence to the RCE (via the Server) which would then be processed and executed, as described further. Therefore, the command shape and the details within were required to be human understandable and human constructable. Figure~\ref{fig:softDesign-cmdStructureDesign} shows the template composition of commands of each level of complexity and the inheritance of common fields by each of the types.
+          
+          \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.65\linewidth]{figures/softDesign-cmdStructureDesign}
+            \caption[Diagram showing the types of commands, their object inheritance and macro decoding.]{Diagram showing the types of commands, their object inheritance and macro decoding.}
+            \label{fig:softDesign-cmdStructureDesign}
+          \end{figure}
+          
         
         \subheading{Command Translation and Execution}\\\\
+          The two types of user control, interactive control and RoSE control, required to some extent separate command pipelines in that the data acquired from input elements a part of the RSVP Client application differed in shape and frequency. However, due to the command system design, both forms of control were processed to eventually comply with the standard execution process which allowed for the differing pipelines to merge for the majority of the system. More specifically, the point at which the pipelines merged required the input commands or signals to be in the form of high or low level commands with their parameters fully completed, which can be seen in Figure~\ref{fig:softDesign-cmdTranslationFlow}.
           
+          \begin{figure}[h!]
+            \centering
+            \includegraphics[width=1\linewidth]{figures/softDesign-cmdTranslationFlow}
+            \caption[Diagram showing the flow of commands through translation and execution operations.]{Diagram showing the flow of commands through translation and execution operations.}
+            \label{fig:softDesign-cmdTranslationFlow}
+          \end{figure}
+          
+          Beginning with the interactive type control, the signals received from the RSVP Client described the user's input with respect to the controller as part of the front-end interface. For each of the controllers, a manipulation relay was designed to convert the signals into equivalent commands analogous to a mapping of the controller to the command it represented. For example, rotating the traversal joystick forward was mapped to creating a ``drive'' command with a forwards velocity and no steering of the wheels. The result was a high or low level command which reached the command translator to be further processed. For the RoSE control style, the user composes a sequence of commands and when transmitted to the RCE, is passed through the command decoder which takes macros present in the input array and constructs the equivalent sequence of high and low level commands. The command sequencer handles dispatching the sequence of commands in coordination with the execution of such commands further down the pipeline as well as provides telemetry via the communication layer indicating the state and progress of the sequence.
+          
+          It is at this point that the two control type pipelines merge where the high and low level commands are translated into ``state drivers''. 
+          From an object-oriented software perspective, a state driver instance contained the required signal data to drive hardware outputs, the aggression with which to drive the signal output towards the setpoint signals (referred to as the ``velocity'') and enriching data such as the duration of the signal and the period before which the command sequencer is notified of the command having been completed, useful when the transition to the new signal setpoint did not match the duration of the hardware effect.
+          
+          Figure~\ref{fig:softDesign-cmdTranslationFlow} omits a step between the command translator and the state driver executor responsible for managing the timing of the state drivers, namely the dispatcher. The dispatch step assesses the data in the state driver and if no timing detail is included, dispatches the signal driver to the state/control loop immediately. If timing data is present and the state driver contains signals which are to be effected only for a specified duration, the state driver is sent to the state driver executor which will record the state of the hardware signals prior to driving the signals. Once the new signals are effected for the specified duration, the state driver executor drives the originally recorded signals so as to return the hardware to the previous states.
+          
+          The final step in the pipeline is the state loop (also referred to as the control loop). Signal drivers contained the desired setpoints of the hardware and the velocity, which is not to be confused with signal duration. Therefore, a loop was required to interpolate between start and end signal values in real time, which was implemented by means of an interval operation taking the setpoints and the duration of the setpoint having remained the same and using these details to calculate the resulting hardware signal output. Another feature was included in the state loop which allowed specification of the interpolation curve or timing function. As such, a timing function property was included in the state driver object allowing this specification to be passed from command to state loop. Allowing the system to specify a timing function presented a simple method to effect fluid motion of the servos thus preventing damage to the servo mounts, horns, gears and the wheels themselves. It was at this point that, in the case of an obstacle warning from the proximity subsystem or an emergency shutdown, all hardware control could be blocked for safety. The signals are passed through a manipulation block used to provide servo trim configuration (separate from the offset configuration exposed by J5) and output modifiers, functions to modify the signal due to hardware characteristics, after which the hardware abstraction layer is utilised to effect signals.
+          
+          For hardware other than the servos, the translation performed in the command translator block used the relevant hardware abstraction API instead of invoking the signal dispatcher, as seen in Figure~\ref{fig:softDesign-cmdTranslationFlow}.
           
         \subheading{Communication Transport Layer} \\\\
            All three servers interfaced with the wireless module by default (an operating system level interface). A common pattern that was carried across from this software component to the RSVP Server and Client was the pairing of WebSocket server modules with an accompanying translator module. The server-translator structure and interface is discussed in more detail in Section~\ref{subsec:commonSoftwareComponentDesign}. It can be seen in Figure~\ref{fig:softDesign-rceStructurePlan} that each part of the communication layer is exposed to the sequencing block, allowing them to be initialised and configured during a sequence as well as allowing for sequences to be triggered in an event-driven fashion. The RCEIO server was designed to handle message data of both control and telemetry types. It was decided that the implementation of RCEIO be a server endpoint and not a client endpoint so that the connection process on the RCE side remained as static as possible (i.e. requiring little configuration and logic). This left much of the network resolving and connection procedure up to the RSVP Server, a software component far more accessible to an operator if such access was required.
@@ -279,9 +310,9 @@
     \subsubsection{RSVP Server Design}
     \label{subsubsec:rsvpServersPlan}
       \subheading{Plan of Structure}\\\\
-        The RSVP Server was simpler in functional composition as it primarily handled communication. As with the RCE design, the Server consisted of the Node.js entry point and a system module which maintained the operation of the rest of the subcomponents. The Server consisted of four server endpoints, one of which was an HTTP server and the rest WebSockets, and one WebSocket client. All of the servers operated over the network interface provided by the Node.js runtime. The same data store structure used for the RCE was present in the Server design for state data and telemetry. Additionally, a connected client module was added to the design to manage RSVP Clients in terms of their access to various parts of the system.
+        The RSVP Server was simpler in functional composition as it primarily handled communication. As with the RCE design, the Server consisted of the Node.js platform and entry point and a system module which maintained the operation of the rest of the subcomponents. The Server consisted of four server endpoints, one of which was an HTTP server and the rest WebSockets, and one WebSocket client. All of the servers as well as the client-endpoint operated over the network interface provided by the Node.js runtime. The same data store structure used for the RCE was present in the Server design for state data and telemetry. Additionally, a connected client management module was added to the design to manage RSVP Clients in terms of their access to various parts of the system.
         
-        The Kurento Media Server is included in Figure~\ref{fig:softDesign-serverStructurePlan} even though it was a separate system process on the host operating system. The interface between this Media Server and the RSVP Server is discussed below.
+        The Kurento Media Server is included in Figure~\ref{fig:softDesign-serverStructurePlan} despite it being a separate system process on the host operating system. The interface between this Media Server and the RSVP Server is discussed below.
       
         \begin{figure}[h!]
           \centering
@@ -289,18 +320,139 @@
           \caption[Block diagram of the designed software structure for the RSVP Server.]{Block diagram of the designed software structure for the RSVP Server.}
           \label{fig:softDesign-serverStructurePlan}
         \end{figure}
-        
-        
-      
-      
+
+        \subheading{RCEIOClient}\\\\      
+          The RCEIOClient Websocket client-type endpoint served as the single message data communication link between the Server and the RCE, and as such, catered for control (uplink) and telemetry (primarily downlink) data. The RCEIOClient translator module routed incoming messages between the two Client-Server WebSocket channels where appropriate or stored incoming data in the data store. Conversely, messages from the two Client-Server channels intended for the RCE converged via the translator.
+
+        \subheading{ControlIO and TeleIO}\\\\
+          Communication between the RSVP Server and connected RSVP Clients was split between two WebSocket channels, the first being ControlIO. This channel was responsible for transmission of commands and control signals from the Client to the RCE, thus resulting in communication primarily in the uplink direction. Additional messages such as indication of the type control in use were communicated via this channel. Making this channel separate made it easier to securely restrict the rover control access to only one RSVP Client instance, managed by the connected client management system as discussed below. Software semantics played a part in this design choice as well.
+          
+          The TeleIO client channel was used for all telemetry data from either the RCE (although not connected, via RCEIOClient), Server or the Client.
+
+        \subheading{Client Management}\\\\         
+          The requirement for the control of the rover to be suitable in an educational environment or in places where many users might want to gain control created the need for management of the RSVP Client instances, specifically their allowed level of control. As such, the connected client management system was included in the Server design and utilised Socket.io's exposure of the list of connections on a particular channel. Although only one Client would have access to control communication at one time, all Clients were connected to the ControlIO channel and thus the management system used the list of Clients, each identified by a random, Socket.io-generated string ID, to keep track of disconnecting and connecting Clients. A proxy was built into the ControlIO pipeline which allowed the management system to block any attempted control communication from a Client whose ID did not match the ID of the Client allowed access.
+          
+          For the purpose of this project, the basis upon which Clients were granted access to rover control encompassed the first-come first-serve principle. This meant that Clients were required to request access for control in which case their ControlIO connection ID was inserted into a queue and once the ID reached the top, access was given (with notification thereof). The Client remained in control until disconnection or if they Client opted to relinquish access. However, the system was designed to be flexible and implementing other principles of scheduling control access could be achieved with ease requiring only a change of logic in the manipulation of the queue or at the point of proxy in ControlIO.
+          
+        \subheading{Kurento and Media Broadcasting}\\\\
+          The RSVP Server was responsible for the majority of the video broadcasting pipeline and thus the Kurento implementation made up a large part of the design. As discussed in previous sections, the RCE streamed the video via an RTSP connection to obtain the raw video data. The data was then passed into the implementation of the Kurento framework where it was streamed to the connected RSVP Clients via the Kurento Media Server. Figure~\ref{fig:softDesign-serverSideKurento} shows the relationships between each of the components involved in the video streaming mechanism from the RCE to the point at which RSVP Client instances connected to receive the broadcast. The diagram makes clear the difference in function of the KurentoIO WebSocket server and the Kurento Media Server. A key detail in the designed implementation of the broadcasting system was the fact that the Media Server ran as a separate process, as it was, in fact, a separate utility altogether. The intention behind bringing an intermediate server into the peer-to-peer principle of WebRTC communication was to improve on multimedia streaming and calling in areas such as multi-client broadcast which was a significant advantage for the nature of this project, transcoding multimedia (and the ability to offer multiple types of the same broadcast source to various different clients), recording, mixing and many other features \cite{kurentoDocsMediaServer_2016}. In the context of the RSVP Server, the KurentoIO subcomponent coordinated incoming ``calls'' or requested connections from Client instances via its WebSocket endpoint which was easily accessible by the Clients over the network. This method of communication was utilised throughout the connection negotiation process whereby the client initiates such a negotiation with an SDP offer making the Kurento mechanism component of KurentoIO aware of the type and shape of the Client concerned. The Server responds to the offer made and this cues the Client to send multiple ICE candidates each describing supported multimedia capabilities of the Client system as well as available transport mechanisms. The Server does the same and when a pair of ICE candidates agree, the connection is established. At the same time, communication is made with the Media Server process by means of yet another WebSocket connection along which the Kurento Protocol (JSON-RPC) is used to offload the connection established onto the Media Server. From this point onwards, the RSVP Client communicates directly with the Media Server. Network change negotiations as well as disconnection procedures are also performed on the KurentoIO connection.
+          
+          \begin{figure}
+            \centering
+            \includegraphics[width=0.8\linewidth]{figures/softDesign-serverSideKurento}
+            \caption[Diagram of the server-side relationships with the video stream components in the RCE-RSVP system.]{Diagram of the server-side relationships with the video stream components in the RCE-RSVP system.}
+            \label{fig:softDesign-serverSideKurento}
+          \end{figure}
+          
+          
     \subsubsection{RSVP Client Design}
+      \subheading{Plan of Structure}\\\\
+        The RSVP Client was a tightly integrated blend of static front-end components and JavaScript modules to turn the web view into a fully functional and responsive SPA. Figure~\ref{fig:softDesign-clientStructurePlan} shows the Client application code served from the RSVP Server as well as the WebSocket client-translator pairs for the discussed channels of communication including the implementation of the client-side Kurento library. The large development portion of this software component was the UI (user interface) which will make up the majority of this subsection.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=1\linewidth]{figures/softDesign-clientStructurePlan}
+          \caption[Block diagram of the designed software structure for the RSVP Server.]{Block diagram of the designed software structure for the RSVP Server.}
+          \label{fig:softDesign-clientStructurePlan}
+        \end{figure}
+        
+      \subheading{Layout Overview}\\\\
+        The style of layout of the UI at the highest level was in accordance with Google's Material Design specifications for applications, and consisted of an application content area with a swipeable menu panel on the left hand side. It was decided that two screens were to be developed, each one for each of the control styles. Prior to development of the UI using the technologies discussed, the two screens, menu panel, and each of the components in each of the screens were sketched to verify the validity of the layout and to ensure consistency of design throughout the development process, one prone to drift in style and design over time.
+        
+        Figure~\ref{fig:softDesign-rsvpClientLayoutOverview} shows the general layout plan of each of the two screens as well as the mobile equivalents. The project specifications indicated the requirement for the application to be mobile compatible, thus included in every design stage made in the desktop environment was a plan of the mobile version of that particular stage.
+        
+        \begin{figure}[h!]
+        \centering
+        \subfloat[Interactive control mode.]{
+          \includegraphics[width=1\linewidth]{figures/softDesign-rsvpClientLayoutOverview-Interactive.pdf}
+        } \qquad
+        \subfloat[RoSE control mode.]{
+          \includegraphics[width=1\linewidth]{figures/softDesign-rsvpClientLayoutOverview-RoSE.pdf}
+        }
+        \caption[Layout plan of the RSVP Client User Interface for both methods of control.]{Layout plan of the RSVP Client User Interface for both methods of control.}
+        \label{fig:softDesign-rsvpClientLayoutOverview}
+        \end{figure}             
+        
+        Each of the UI components shown in Figure~\ref{fig:softDesign-rsvpClientLayoutOverview} are discussed below.
+        
+      \subheading{Video Stream Component}\\\\
+        The stream section of the UI was designed to be simply a container element for the HTML video element which was to be attached to the Kurento framework instance. During page load, an internal JavaScript module reaches into the DOM and returns the \mintinline{js}{video} element to the Kurento framework, which handles displaying the received video stream in it.
+              
+      \subheading{Rover Controls (Interactive)}\\\\
+        The rover controls component, a mockup of which is included as Figure~\ref{fig:softDesign-controlUIComponentDesign}, was split into two sections, each positioned on the left- and right-hand bottom corners of the content area of both the desktop and mobile configurations. The left hand subcomponent holds the controls for rover traversal, which consist of an interactive two-dimensional joystick and two buttons for rotating the rover about it's central axis. The $y$-axis of the joystick controls the forwards and reverse velocity of the rover and the $x$-axis of the joystick controls the amount by which the rover will turn given some component of forwards or reverse velocity (in other words, the amount by which the wheels are rotated along the steering axis). The right component controls the angular position of the head about its pan and pitch axes and is sticky in behaviour allowing the user to position the head and have it remain in that position. A button above the head joystick allows the user to center the head upon pressing it.
+      
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.8\linewidth]{figures/softDesign-controlsUIComponentDesign}
+          \caption[Diagrammatic mockup of the interactive control component of the UI.]{Diagrammatic mockup of the interactive controls component of the UI.}
+          \label{fig:softDesign-controlUIComponentDesign}
+        \end{figure}
+        
+        \subheading{Rover Overview Component}\\\\
+          The rover overview component of the UI was designed to be a highly engaging graphical representation of the rover as a means of displaying telemetry from the rover's control software subcomponents. The design of the rover did not include feedback sensory hardware, thus the data used in this overview element was that of the signals used to drive the hardware. The data still gives an accurate estimation of the hardware state of the rover. The component consisted of an SVG graphic of the top view of the rover with wheels and a head that could dynamically rotate in-view. Included in the graphic were indicators for the proximity sensor data including whether or not they were triggering proximity/obstacle warnings. On either side of the component, sections for each of the hardware components displayed textual telemetry of their state, as seen in the mockup in Figure~\ref{fig:softDesign-roverOverviewUIComponentDesign}. The overview component was placed in the usable space (as in Figure~\ref{fig:softDesign-controlUIComponentDesign}) between both control element sections.
+        
+          \begin{figure}[h!]
+            \centering
+            \includegraphics[width=0.7\linewidth]{figures/softDesign-roverOverviewUIComponentDesign}
+            \caption[Diagrammatic mockup of the rover overview component of the UI.]{Diagrammatic mockup of the rover overview component of the UI.}
+            \label{fig:softDesign-roverOverviewUIComponentDesign}
+          \end{figure}
+        
+      \subheading{Rover Sequence Editor Component}\\\\
+        The RoSE component replaced the rover controls component when switching from the interactive style of control to the RoSE style. The component was designed to allow the user to compose a sequence of commands, view and edit the sequence and transmit the sequence to the rover for execution. Further, the component included controls for the control of execution of the sequence as well as reported back the status and progress of the sequence execution.
+        
+        Figure~\ref{fig:softDesign-sequenceEditorUIComponentDesign} shows the list of command items in the main area of the component. A new command could be created by clicking on the ``plus'' icon on the bottom bar section of the component, which would show a dialog box allowing the user to choose which command to create and afterwards a series of controls for entering the parameters of the command. Each command item contained the name of the command and a summary of the parameters that were entered into the new command dialog box. On the left of the command name, an icon showed the type of command (low-level, high-level or macro) and on the far right of the item an edit button to bring up the dialog box to edit the parameters of the command and a delete button to remove the command from the sequence. The items in the list could be reordered by dragging the item to a new location in the sequence.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=1\linewidth]{figures/softDesign-sequenceEditorUIComponentDesign}
+          \caption[Diagrammatic mockup of the RoSE-style sequence editor component of the UI.]{Diagrammatic mockup of the RoSE-style sequence editor component of the UI.}
+          \label{fig:softDesign-sequenceEditorUIComponentDesign}
+        \end{figure}        
+        
+        The sequence may be uploaded when complete, and executed if the RCE acknowledged the new sequence. The controls for uploading and controlling the execution of the uploaded sequence were placed on the right hand side of the bottom bar section. To simulate the strict procedure when creating, editing and executing sequences on the RSVP for \textit{Curiosity}, the sequence editor component only allowed the sequence to be executed if all new changes had been uploaded and disallowed editing if a sequence was uploaded until the edit button on the left hand side of the bottom bar section was pressed to put the component back into editing mode.
+        
+        During execution, the RCE indicated the command that was being executed in real time and the sequence editor component highlighted that command to show the user the progress of execution.
+        
+      \subheading{RCE System View}\\\\
+        To the left of the video stream container in the desktop layout (for both interactive and RoSE control configurations shown in Figure~\ref{fig:softDesign-clientStructurePlan}) was a tabbed view which contained two views, one of which was the RCE system view component. Telemetry related to the RCE system itself and various subsystem status data was shown in this view. The top section of the view consisted of four dial components to show the CPU and RAM usage of both the RCE Node.js process and the separate video stream utility process as discussed in Section~\ref{subsubsec:softDesign-rceDesign}. Below the dials was a list of the hardware control software components showing the initialisation and online status of each. Figure~\ref{fig:softDesign-rceSystemViewUIComponentDesign} shows the component design detail.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.75\linewidth]{figures/softDesign-rceSystemViewUIComponentDesign}
+          \caption[Diagrammatic mockup of the RCE system view component of tabbed telemetry container in the UI.]{Diagrammatic mockup of the RCE system view component of tabbed telemetry container in the UI.}
+          \label{fig:softDesign-rceSystemViewUIComponentDesign}
+        \end{figure}        
+        
+      \subheading{Server Status View}\\\\
+        The server status view was another page in the tabbed view as used for the RCE system view. This component was similar to the RCE system view, however, it showed data related to the RSVP Server. This was designed to give the user more insight into the real time operation of the server as well as be a helpful tool in the monitoring of the server for maintainers of the RSVP system.
+        
+        The server status view consisted of the status of the server instance, that of the Kurento Media Server instance as well as how many RSVP Client instances were connected to the server at that point in time.
+        
+      \subheading{Menu Component}\\\\
+        As mentioned, the application included a side panel that was designed to serve as a menu. Since the application did not require many pages or views, the menu was more functional than navigational, a classic menu use case. The menu allowed the user to perform the following operations:
+        
+        \begin{itemize}
+          \item \textbf{Start Stream:} The ``Start Stream'' button allowed the user to initiate the WebRTC call in an attempt to begin to receive the video stream. When the application was initially loaded, the stream started automatically. In the event that that user decided to stop the stream, or the stream disconnected due to a network error, the user could make use of this button to resume the stream.
+          \item \textbf{Request Control:} The ``Request Control'' button allowed the user to place their instance of the RSVP Client in the queue to gain access to control of the rover.
+          \item \textbf{Control Dropdown:} The ``Control'' dropdown element revealed two controls related to the style of control in use. The first control was a switch element which switched the control style between ``interactive'' and ``RoSE''. The second control allowed the user to select the level of difficulty of the simulation of control.
+          \item \textbf{Settings Dropdown:} The ``Settings'' dropdown element revealed a set of settings controls which included:
+          \begin{itemize}
+            \item RCE endpoint detail configuration (IP address)
+            \item a button to open the trim edit dialog
+            \item a button to reset the RCE if required (and the user has access to this command)
+          \end{itemize}
+        \end{itemize}
+      
+        % TODO: Diagram of the menu panel
     
     \subsubsection{Common Software Components Design}
     \label{subsec:commonSoftwareComponentDesign}
       Developing the full-stack in JavaScript meant that many of the subcomponents and features could share design patterns, technology choices and code implementations without the abruptness of having to design for differing language and/or platforms. It was quickly identified that many of these subcomponents were required in all three of the software components and as such, are discussed in this section.
       
-      % - Synchronised data store
-      % - WebSocket endpoint-translator pair
+      \subheading{Synchronised Data Store}\\\\
+        
+      
       \subheading{WebSocket Design}\\\\
         Since there were many WebSocket connections and hence subcomponents, a naming convention was introduced where the name of the endpoint subcomponent was formulated by \mintinline{js}{<subject>IO} and \mintinline{js}{Client} was appended if the endpoint was to connect to an already existing WebSocket server. Further, \mintinline{js}{Translator} was appended to the translator half of the WebSocket implementation. Figure~![] shows the designed interface between the WebSocket implementation subcomponents and the RCE.
       
