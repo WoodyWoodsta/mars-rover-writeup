@@ -444,13 +444,49 @@
           \end{itemize}
         \end{itemize}
       
-        % TODO: Diagram of the menu panel
-    
     \subsubsection{Common Software Components Design}
     \label{subsec:commonSoftwareComponentDesign}
       Developing the full-stack in JavaScript meant that many of the subcomponents and features could share design patterns, technology choices and code implementations without the abruptness of having to design for differing language and/or platforms. It was quickly identified that many of these subcomponents were required in all three of the software components and as such, are discussed in this section.
       
       \subheading{Synchronised Data Store}\\\\
+        During the design process for each of the software components, the need for a mechanism to reliably store global state data was realised. Operations across all modules within each of the components relied on the state of many other modules and thus a well designed central store for this state data was recognised as being beneficial to the design. More importantly, however, was the need for the communication of this state data between each of the components. One such example was the need for the RSVP Server to be aware of the initialisation status of the camera on the rover. Once the camera was initialised, that state change was required to be communicated across the network to indicate to the RSVP Server to initiate a connection with the camera streaming port on the RCE and to offer the stream to the Kurento Media Server.
+        
+        A further important detail in the data store requirement was for it to be asynchronously notifying. The nature of Node.js and JavaScript in the browser was one that was event-driven and this applied to data changes as well. The alternative to having event-based data change notifications was for points in the software components that require knowledge of changes in data to poll the central store of data at some predefined frequency and compare the data in search of differences. Since Node.js is single threaded, this would have had significantly negative impacts on the performance of the software components, especially in the context of this project where state data was prevalent.
+        
+        The opportunity to use the data store module for easy telemetric broadcast was also recognised during the design process. Data in the form of telemetry was able to be saved to the store and the configuration of the store structure would determine the channels along which such data would be broadcast, all of which would happen asynchronously.
+        
+        Operations that were required from the data store API included the ability to:
+        \begin{itemize}
+          \item set data,
+          \item read data,
+          \item register callback functions that would be executed upon the change of data at a particular path (i.e. listen to data changes),
+          \item listen to data changes at any level below a particular path in the data structure,
+          \item specify whether or not the data at a particular path was to be broadcast over a chosen WebSocket channel upon change,
+          \item receive data from store event emitters on other software components, across the network,
+          \item request that already existing data be broadcast from one software component to another, and
+          \item re-notify all appropriate listeners and WebSocket channel clients of already existing data.
+        \end{itemize}
+        
+        The module was designed to include a data store class definition which incorporated the required methods and event emitter features to provide the required functionality. For each of the software components, classes were instantiated with the required fields and notification channels and exposed to the rest of the modules in each system. Figure~\ref{fig:softDesign-dataStoreStructureNormal} shows the internal structure of one such data store and the use of the API in a typical read, set and notify scenario.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.8\linewidth]{figures/softDesign-dataStoreStructureNormal}
+          \caption[Diagram showing a functional sequence of typical interface between a data store instance and application code.]{Diagram showing a functional sequence of typical interface between a data store instance and application code.}
+          \label{fig:softDesign-dataStoreStructureNormal}
+        \end{figure}
+        
+        Software component A and in Figure~\ref{fig:softDesign-dataStoreStructureNormal} could each be either of the RCE, RSVP Server or RSVP Client software components. Component A creates a listener on a particular path's change of data with an associated callback function. Code elsewhere in the component sets new data to the store at that path at point \textbf{1} using the data store's \mintinline{js}{set} API method. This triggers an event to be fired which matches that of the listener registered previously, and thus the new data event reaches the listener at point \textbf{2} as well as the callback function is executed at point \textbf{3}. At the same time, a notification of the data change is broadcast to software component B via the configured WebSocket channel (which in this case could be either RCEIO, ControlIO or TeleIO) at point \textbf{4}. The same flow of operations would apply to the case where an change notification was received from software component B, in which case the callback function would be fired after having the data be received and ``set'' internally.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.8\linewidth]{figures/softDesign-dataStoreStructureRepushRequest}
+          \caption[Diagram showing a functional sequence of a request for a repush of data from a remote data store.]{Diagram showing a functional sequence of a request for a repush of data from a remote data store.}
+          \label{fig:softDesign-dataStoreStructureRepushRequest}
+        \end{figure}        
+        
+        Figure~\ref{fig:softDesign-dataStoreStructureRepushRequest} shows the flow of operations in the event that the application code of software component A requests that software component B resends (repush's) all data at a particular path (point \textbf{1}). The request is sent to component B via a WebSocket channel at point \textbf{2} and the component repushes the data at point \textbf{3} making use of its data store's \mintinline{js}{repush} API method. The same process of the event reaching the listener and the callback being executed applies as in the first example. Requesting data was particularly useful when one or more of the software components had to be restarted and required resynchronisation of its data with the already online software components.
+        
         
       
       \subheading{WebSocket Design}\\\\
