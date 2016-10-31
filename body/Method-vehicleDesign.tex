@@ -367,13 +367,157 @@
         
               
     \subsubsection{Head and Neck}
-      - Neck mount
-      - Neck Hinge and Actuation
-      - Head
-    
+      It was decided during the conceptual design phase that both the neck and the head assembly be 3D printed and mounted to the top of the rover deck. Since there were two axes of rotation of the head required, as well as at least one piece to facilitate mounting the assembly, three separate components in total were required (a minimum). The assembly also aimed to minimise the amount of movement that components that facilitated mounting of the servos were subjected to for friendlier cable routing. At the same time, the ease of 3D printing such an assembly had an effect on the approach taken when designing the structure and configuration of the components as well as the components themselves. As a result, the configuration designed consisted of a static mount piece, a middle section, referred to as the neck, which allowed mounting of both servos for the two axes of rotation and a head sub-assembly to mount the camera and the ultrasonic sensor.
+      
+      \subheading{Neck Mount}\\\\
+        The neck mount piece provided the support for the neck and head assembly in its entirety. Besides including holes for mounting to the deck of the rover, the component featured a small blind hole at the top center surface into which the shaft of the pan-axis servo could fit and be fastened to. A smaller hole right through the center allowed the servo shaft screw to be tightened so that the shaft did not spin in its mount.
+        
+        Figure~\ref{fig:mechDesign-neckMount} shows the detail of the neck mount component.
+
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.49\linewidth]{figures/mastMount-top}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=3cm 17cm 3cm 1cm, width=0.49\linewidth]{figures/mastMount-top-iso}
+        }
+        \caption[Detailed drawings of the neck mount component in the head and neck sub-assembly]{Detailed drawings of the neck mount component in the head and neck sub-assembly}
+        \label{fig:mechDesign-neckMount}
+        \end{figure}
+
+      \subheading{Neck Hinge and Actuation}\\\\
+        The center piece in the neck-head assembly, referred to as the neck hinge, was designed to facilitate the mounting of two servos: one for pan movement and the other for pitch movement. As discussed, the pan-axis servo which by definition was facing downwards towards the rover deck surface would fit into hole in the top of the neck mount and suspend the rest of the neck-head assembly. Fitted into the neck hinge component was the pitch-axis servo which was displaced from the pan-axis servo by 90 degrees. Multiple configurations involving the placement of the servos were considered and one which had the smallest volumetric footprint as well as required the least amount of 3D printing material was chosen for obvious reasons. The configuration had the servos positioned flat against each other with support material positioned at the servo mounting holes, the assembly of which can be seen in Figure~\ref{fig:mechDesign-neckHingeServoSubExpl}. Figure~\ref{fig:mechDesign-neckHinge} shows the detailed drawing of the neck hinge component without the servos.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/neck-hinge}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 18cm 4cm 1cm, width=0.55\linewidth]{figures/neck-hinge-iso}
+        }
+        \caption[Detailed drawings of the neck hinge component in the head and neck sub-assembly]{Detailed drawings of the neck hinge component in the head and neck sub-assembly}
+        \label{fig:mechDesign-neckHinge}
+        \end{figure}
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[clip, trim=3cm 17cm 3cm 1cm, width=1\linewidth]{figures/neck-hinge-servo-sub-expl}
+          \caption[Exploded isometric view of the neck hinge and servo assembly]{Exploded isometric view of the neck hinge and servo assembly}
+          \label{fig:mechDesign-neckHingeServoSubExpl}
+        \end{figure}
+
+      \subheading{Head}\\\\
+        The head sub-assembly provided an enclosure for the web camera as well as a surface onto which the head ultrasonic sensor was mounted. As mentioned, the very least number of components required for the two degree of freedom assembly was three, however, the head sub-assembly required two additional pieces. These components were added to reduce the complexity of the components and therefore improve on 3D printing time and material use.
+        
+        The head enclosure consisted of two components: a flat base and a box-like canopy. The canopy included an arched cut-out which allowed the camera, mounted on the inside, to be exposed to the outside world. The canopy was designed as a separate piece so that it could be removed to install and access the camera. As a minimisation of the footprint required by the fastening of the canopy to the base component, inset neodymium magnets were placed at all four corners of the canopy and base components such that the canopy clicked onto the base. Additionally, the canopy was designed to be as photo-realistic as possible to the head on \textit{Curiosity} as this was one of the rover's recognisable and characteristic components from an aesthetic perspective.
+        
+        The second extra piece included in the head sub-assembly was a right-angled bracket designed to be mounted to the shaft of the pitch-axis servo using a cross-shaped servo horn and fastened to the bottom of the head base component.
+        
+        Figures~\ref{fig:mechDesign-headBasePlate}, \ref{fig:mechDesign-headCanopy} and \ref{fig:mechDesign-headRightBracket} show detailed views of the three head components.
+
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/headBaseplate}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 18cm 4cm 1cm, width=0.55\linewidth]{figures/headBaseplate-iso}
+        }
+        \caption[Detailed drawings of the head base component in the head and neck sub-assembly]{Detailed drawings of the head base component in the head and neck sub-assembly}
+        \label{fig:mechDesign-headBasePlate}
+        \end{figure}
+
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/head-canopy}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 18cm 4cm 1cm, width=0.55\linewidth]{figures/head-canopy-iso}
+        }
+        \caption[Detailed drawings of the head canopy component in the head and neck sub-assembly]{Detailed drawings of the head canopy component in the head and neck sub-assembly}
+        \label{fig:mechDesign-headCanopy}
+        \end{figure}
+
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/right-bracket}
+        }%
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 18cm 4cm 1cm, width=0.55\linewidth]{figures/right-bracket-iso}
+        }
+        \caption[Detailed drawings of the right bracket component in the head and neck sub-assembly]{Detailed drawings of the right bracket component in the head and neck sub-assembly}
+        \label{fig:mechDesign-headRightBracket}
+        \end{figure}
+
+      \subheading{Final Sub-assembly}\\\\
+        The final sub-assembly of the neck and head components, including the servos is shown in Figure~\ref{fig:mechDesign-headSubDetail}.
+        
+        \begin{figure}[H]
+        \centering
+        \subfloat[]{
+          \includegraphics[clip, trim=3cm 18cm 3cm 1cm, width=0.7\linewidth]{figures/headSub}
+        }
+        \qquad
+        \subfloat[]{
+          \includegraphics[clip, trim=4cm 17cm 4cm 1cm, width=0.7\linewidth]{figures/headSub-iso}
+        }
+        \caption[Detailed drawings of the working, dynamic assembly of the head and neck system]{Detailed drawings of the working, dynamic assembly of the head and neck system}
+        \label{fig:mechDesign-headSubDetail}
+        \end{figure}
+        
     \subsubsection{Body}
-    
+      The body was a significant part of the rover, designed as a mounting platform for most of the rover's other mechanical and electronic components. The conceptual analysis of the proposed ideas for the assembly of the body settled on the use of acrylic sheet. The body was rectangularly box-shaped and, for the purpose of access to the electronics which were to be mounted internally, the bottom was left open. This meant that five separate panels were designed to be cut from the acrylic sheet and later glued together to form the structure. Once finalising the dimensions of the panels, the required mount points were collated and added to the design. Mounting requirements for the body were as follows:
+      
+      \begin{itemize}
+        \item \textbf{Deck/Top Panel:}
+        \begin{itemize}
+          \item Neck and head assembly
+          \item Differential bar midpoint shaft
+          \item Aesthetic detail components
+        \end{itemize}
+        \item \textbf{Left and Right Panel:}
+        \begin{itemize}
+          \item Suspension rocker hinge shaft
+          \item Bottom cover magnet mount pieces
+          \item Aesthetic detail components
+        \end{itemize}
+        \item \textbf{Rear Panel:}
+        \begin{itemize}
+          \item Rear ultrasonic sensor
+          \item Aesthetic detail components
+        \end{itemize}
+        \item \textbf{Front Panel:}
+        \begin{itemize}
+          \item Front ultrasonic sensor
+          \item Aesthetic detail components
+        \end{itemize}
+      \end{itemize}
+      
+      Aesthetic detail components were those designed to add realism to the rover body and are discussed further in Section~\ref{subsubsec:softDesign-aestheticDetails}. A series of slots were added to the edges of each of the panels which fit into the those of adjacent panels for structural integrity and positioning accuracy whilst glueing. Figure~\ref{fig:mechDesign-perspex} shows the detailed drawings of each of the panels, the same drawings used for laser cutting the 3mm acrylic sheet.
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[clip, trim=0cm 13cm 1cm 0cm, width=1\linewidth]{figures/perspex}
+        \caption[Drawings of the five acrylic sheet panels including labels indicating the mount points]{Drawings of the five acrylic sheet panels including labels indicating the mount points}
+        \label{fig:mechDesign-perspex}
+      \end{figure}
+      
     \subsubsection{Aesthetic Details}
+    \label{subsubsec:softDesign-aestheticDetails}
+      To achieve the realism desired for the rover model, a number of extra components were designed to be 3D printed and mounted to the rover body component. The design and construction of the body made this suitable and a satisfactory level of realism was possible due to the 3D printing manufacture of the components. The following aesthetic detail components were designed, the drawings of which are not included:
+      
+      \begin{itemize}
+        \item MMRTG
+        \item Rear shoulders
+        \item Fore shoulders
+        \item Four rover deck components
+        \item Observation tray
+        \item Panel detail pieces for the front, left and right panels
+      \end{itemize}
     
   \subsection{Electrical Design}
     \subsubsection{Actuation}

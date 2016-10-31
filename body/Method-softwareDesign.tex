@@ -15,7 +15,7 @@
     \begin{figure}[h!]
       \centering
       \includegraphics[width=0.7\linewidth]{figures/softDesign-useOverview}
-      \caption[Diagramatic depiction of a typical use scenario of the software system]{Diagramatic depiction of a typical use scenario of the software system}
+      \caption[Diagramatic depiction of a typical use scenario of the software system.]{Diagramatic depiction of a typical use scenario of the software system.}
       \label{fig:softDesign-useOverview}
     \end{figure}
 
@@ -30,7 +30,7 @@
       \begin{figure}[h!]
         \centering
         \includegraphics[width=1\linewidth]{figures/softDesign-sysArchitectureStructure}
-        \caption[Diagram outlining the basic software system component structure]{Diagram outlining the basic software system component structure}
+        \caption[Diagram outlining the basic software system component structure.]{Diagram outlining the basic software system component structure.}
         \label{fig:softDesign-sysArchitectureStructure}
       \end{figure}
       
@@ -50,7 +50,7 @@
         \begin{figure}[h!]
           \centering
           \includegraphics[width=0.8\linewidth]{figures/softDesign-nodeEventLoop}
-          \caption[Diagram showing the Node.js architecture's event-loop execution design]{Diagram showing the Node.js architecture's event-loop execution design (adapted from \cite{fig:softDesign-nodeEventLoop_cite1} and \cite{fig:softDesign-nodeEventLoop_cite2})}
+          \caption[Diagram showing the Node.js architecture's event-loop execution design.]{Diagram showing the Node.js architecture's event-loop execution design (adapted from \cite{fig:softDesign-nodeEventLoop_cite1} and \cite{fig:softDesign-nodeEventLoop_cite2}).}
           \label{fig:softDesign-nodeEventLoop}
         \end{figure}
         
@@ -71,7 +71,7 @@
       \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\linewidth]{figures/softDesign-sysfsExample}
-        \caption[Simplified diagram showing the interface between peripheral hardware and code running in the Linux user space]{Simplified diagram showing the interface between peripheral hardware and code running in the Linux user space (adapted from \cite{fig:softDesign-sysfsExample_cite1} and \cite{fig:softDesign-sysfsExample_cite2})}
+        \caption[Simplified diagram showing the interface between peripheral hardware and code running in the Linux user space.]{Simplified diagram showing the interface between peripheral hardware and code running in the Linux user space (adapted from \cite{fig:softDesign-sysfsExample_cite1} and \cite{fig:softDesign-sysfsExample_cite2}).}
         \label{fig:softDesign-sysfsExample}
       \end{figure}
       
@@ -93,14 +93,14 @@
             led.strobe();
           });
         \end{minted}
-        \caption{Example initialisation of a device and an LED in J5}
+        \caption{Example initialisation of a device and an LED in J5.}
         \label{code:softDesign-j5ExampleLed}
       \end{code}
       
       \begin{figure}[h!]
         \centering
         \includegraphics[width=0.5\linewidth]{figures/softDesign-rceHardwarePlatformStack}
-        \caption[Diagram of the hardware stack designed for the RCE]{Diagram of the hardware stack designed for the RCE}
+        \caption[Diagram of the hardware stack designed for the RCE.]{Diagram of the hardware stack designed for the RCE.}
         \label{fig:softDesign-rceHardwarePlatformStack}
       \end{figure}
       
@@ -139,7 +139,7 @@
             },
           }
         \end{minted}
-        \caption{An example of a structured data message}
+        \caption{An example of a structured data message.}
         \label{code:softDesign-structuredDataExample}
       \end{code}
       
@@ -159,7 +159,7 @@
       \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\linewidth]{figures/softDesign-socketVideoStreaming}
-        \caption[Diagram of the typical flow of data using Socket.io to stream a video feed]{Diagram of the typical flow of data using Socket.io to stream a video feed}
+        \caption[Diagram of the typical flow of data using Socket.io to stream a video feed.]{Diagram of the typical flow of data using Socket.io to stream a video feed.}
         \label{fig:softDesign-socketVideoStreaming}
       \end{figure}
       
@@ -170,7 +170,7 @@
       \begin{figure}[h!]
         \centering
         \includegraphics[width=0.8\linewidth]{figures/softDesign-webRTCArch}
-        \caption[Diagram of the WebRTC architecture highlighting the video component of the streaming WebRTC provides]{Diagram of the WebRTC architecture highlighting the video component of the streaming WebRTC provides (adapted from \cite{fig:softDesign-webRTCArch_cite})}
+        \caption[Diagram of the WebRTC architecture highlighting the video component of the streaming WebRTC provides.]{Diagram of the WebRTC architecture highlighting the video component of the streaming WebRTC provides (adapted from \cite{fig:softDesign-webRTCArch_cite}).}
         \label{fig:softDesign-webRTCArch}
       \end{figure}
       
@@ -178,13 +178,13 @@
       
       \begin{figure}[h!]
       \centering
-      \subfloat[Without intermediate server for video streaming (strictly peer-to-peer)]{
+      \subfloat[Without intermediate server for video streaming (strictly peer-to-peer).]{
         \includegraphics[width=0.49\linewidth]{figures/softDesign-webRTCBroadcastP2PExample.pdf}
       }%
-      \subfloat[With intermediate server for video streaming\label{fig:softDesign-webRTCBroadcastExamples-b}]{
+      \subfloat[With intermediate server for video streaming\label{fig:softDesign-webRTCBroadcastExamples-b}.]{
         \includegraphics[width=0.49\linewidth]{figures/softDesign-webRTCBroadcastServerExample.pdf}
       }
-      \caption[Simplified diagrams of typical WebRTC connection configurations]{Simplified diagrams of typical WebRTC connection configurations}
+      \caption[Simplified diagrams of typical WebRTC connection configurations.]{Simplified diagrams of typical WebRTC connection configurations.}
       \label{fig:softDesign-webRTCBroadcastExamples}
       \end{figure}
       
@@ -193,10 +193,7 @@
       Detailed design of the system with the implementation of Kurento's media server will be covered in the design and development sections to follow.
   \subsection{Subsystem Design}
     With the primary technology choices made, all three of the software system components were designed in a functional sense, removed as far as possible from implementation and code detail. For brevity, the design (and development) descriptions that follow are written in ``as-built'' style with little reference to many of the design iterations and variety of design choices made along the way. Multiple solutions to a particular aspect or component design problem are discussed where significant.
-    
-%    Overall Plan of Structure
-%    Breakdown
-    
+        
     \subsubsection{RCE Design}
     \label{subsubsec:softDesign-rceDesign}
       \subheading{Plan of Structure}\\\\
@@ -487,8 +484,17 @@
         
         Figure~\ref{fig:softDesign-dataStoreStructureRepushRequest} shows the flow of operations in the event that the application code of software component A requests that software component B resends (repush's) all data at a particular path (point \textbf{1}). The request is sent to component B via a WebSocket channel at point \textbf{2} and the component repushes the data at point \textbf{3} making use of its data store's \mintinline{js}{repush} API method. The same process of the event reaching the listener and the callback being executed applies as in the first example. Requesting data was particularly useful when one or more of the software components had to be restarted and required resynchronisation of its data with the already online software components.
         
-        
       
       \subheading{WebSocket Design}\\\\
-        Since there were many WebSocket connections and hence subcomponents, a naming convention was introduced where the name of the endpoint subcomponent was formulated by \mintinline{js}{<subject>IO} and \mintinline{js}{Client} was appended if the endpoint was to connect to an already existing WebSocket server. Further, \mintinline{js}{Translator} was appended to the translator half of the WebSocket implementation. Figure~![] shows the designed interface between the WebSocket implementation subcomponents and the RCE.
-      
+        As described, the WebSocker implementations comprised of the server/client endpoint (the instance of Socket.io) and a second module, named the translator, which served as a handler of incoming and outgoing messages. Since there were many WebSocket connections and hence subcomponents, a naming convention was introduced where the name of the endpoint subcomponent was formulated by \mintinline{js}{<subject>IO} and \mintinline{js}{Client} was appended if the endpoint was to connect to an already existing WebSocket server. Further, \mintinline{js}{Translator} was appended to the translator half of the WebSocket implementation. Figure~\ref{fig:softDesign-webSocketDesign} shows the designed interface between the WebSocket implementation subcomponents and the RCE.
+        
+        \begin{figure}[h!]
+          \centering
+          \includegraphics[width=0.75\linewidth]{figures/softDesign-webSocketDesign}
+          \caption[Diagram showing the interface with and structure of the Socket.io-translator module pair.]{Diagram showing the interface with and structure of the Socket.io-translator module pair.}
+          \label{fig:softDesign-webSocketDesign}
+        \end{figure}
+        
+        A simple mapping of incoming message events and outgoing message methods was made between the Socket.io instance and the translator. On incoming messages, the translator decides the correct behaviour based on the type of message as well as, in some cases, data sent with the message. The translator also exposes an API which can be used as convenience methods to send standard types of messages. This relieves application code having to package the message and payload when sending such a message, which could have also become a point of weakness in case of programmatic errors or change in design. Data change events from data stores are also fed into the translator to notify other software components.
+                
+           
