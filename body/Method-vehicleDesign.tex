@@ -20,7 +20,7 @@
             
       The reference model, which was in Standard Tessellation Language (STL) format, was imported into a CAD package with millimetre units and evaluated in that state to result in a scale of 1:1.7037 (reference model as to \textit{Curiosity}). The dimensions shown in Table~\ref{tab:design-referenceDimensions} are of priority components and subsystems only, omitting details related to components that were intended to serve aesthetic purposes only (such as a mock-up of the RTG).
       
-      \begin{table}[H]
+      \begin{table}[h!]
       \centering
       \begin{tabular}{@{}cccc@{}}
       \toprule
@@ -55,7 +55,7 @@
     \subsubsection{Layout Plan}
       The dimensions in Table~\ref{tab:design-referenceDimensions} were used to construct a plan of the layout of subsystems to be used for further detailed design. The plan can be seen in Figure~\ref{fig:mechDesign-layoutPlan} along with selected dimensions from the table.
       
-      \begin{figure}[H]
+      \begin{figure}[h!]
         \centering
         \includegraphics[clip, trim=1cm 11cm 1cm 0cm, width=0.9\linewidth]{figures/mechDesign-layoutPlan}
         \caption[Isometric view of the 3D layout plan with a subset of the external dimensions shown]{Isometric view of the 3D layout plan with a subset of the external dimensions shown}
@@ -66,7 +66,7 @@
     \subsubsection{Standard Features}
       Prior to designing and developing the components and parts in detail, standard feature dimensions and sizes were set up to maintain a level of consistency throughout the process. This included features such as holes, walls and fasteners and served as a general guideline allowing for variation of these parameters if required. Table~\ref{tab:featureStandards} highlights these feature details.
       
-      \begin{table}[H]
+      \begin{table}[h!]
       \centering
       \begin{tabular}{@{}llL{0.6\textwidth}@{}}
       \toprule
@@ -85,7 +85,7 @@
       
       The design started with the identification of the components required and a map of how they would be fitted together which included the names of each part for identification throughout the process. Figure~\ref{fig:mechdesign-suspensionLinkageMap} shows this mapping, which can be considered as a lower-level conceptual plan of the system.
       
-      \begin{figure}[H]
+      \begin{figure}[h!]
         \centering
         \includegraphics[width=1\linewidth]{figures/mechDesign-suspensionLinkageMap}
         \caption[Schematic diagram of a top view of the suspension system]{Schematic diagram of a top view of the suspension system}
@@ -94,7 +94,7 @@
       
       It was noted that the ratios of the tubing or beams on \textit{Curiosity} (and rocker-bogie mechanisms in general) were important since it determined the system's range of motion, affecting the rover's ability to traverse the terrain. The reference model in \cite{nasa3Dprint} was not able to provide this kind of detail, and so the angles and positions of the centre-points of joints and axes of pivots and wheels had to be constructed from reference images of the rover. What was known was the distance of the wheels away from the side of the rover body, that the pivot centre-points were directly above the centres of the wheels and that the aft rocker-tube and the fore bogie-tube were parallel to the body of the rover in the $x$-$y$ plane. Figure \ref{fig:mechDesign-suspensionReferences} includes the images that were used to find these details.
       
-      \begin{figure}[H]
+      \begin{figure}[h!]
       \centering
       \subfloat[]{
         \includegraphics[width=.45\linewidth]{figures/mechDesign-suspensionReference1.jpg}
@@ -109,7 +109,7 @@
 
       A skeleton layout generated from the positional data obtained is shown in Figure~\ref{fig:mechDesign-suspension3d} where a 2D sketch was created as a starting point from which a 3D sketch of the layout was formed. The skeleton sketch was rigid in the position whereby all three wheels were at rest on a flat, horizontal surface parallel to the rover body.
             
-      \begin{figure}[H]
+      \begin{figure}[h!]
         \centering
         \includegraphics[width=0.9\linewidth]{figures/suspension3D}
         \caption[Isometric view of the 3D sketch of the generated suspension system skeleton used for positioning of designed parts]{Isometric view of the 3D sketch of the generated suspension system skeleton used for positioning of designed parts}
@@ -136,7 +136,7 @@
         
         Chosen was the plug that was hexagonal in shape but had edges which were filleted to match the inside surface of the aluminium tube. This was a hybridisation of the cylindrical plug, which introduced a very low window of tolerance in the manufacture of the joints, and the simple hexagonal plug. The filleted edges increased the contact surface area with the inside of the tube, improving the effectiveness of the fit, whilst allowing for greater manufacturing tolerances. In case the plugs proved to be lacking the required strength, a hole could have been drilled down the centre of the plug and a steel rod could be glued into place to strengthen the joint, specifically at the intersection of the middle body and the plug. A nut and bolt was added to the plug-tube assembly as in Figure~\ref{fig:mechDesign-plugTubeBearingDetail} to improve the fitting and prevent rotation of the tube around the axis of the plug.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
           \centering
           \includegraphics[clip, trim=2cm 17cm 2cm 1cm, width=0.8\linewidth]{figures/plug-tube-bearing}
           \caption[An isometric exploded view of the plug-tube-bearing assembly concept for the suspension system]{An isometric exploded view of the plug-tube-bearing assembly concept for the suspension system}
@@ -147,14 +147,14 @@
         
         Finally, features for the press-fitting of bearings were added to the joints that required them. Bearings were chosen at this point to be of dimensions shown in Figure~\ref{fig:mechDesign-bearingShaftDetail} in which the shaft diameter is also shown. A single bearing alone was not suitable to provide support against bending torques brought about when the shafts were to be put under load, thus each free-moving joint had two bearings on either extremity. A hole through the centre of the bearing bores of $\diameter8$ mm was included to allow the shafts to extend to the outwards facing bearings. The final designs for each of the three joints are shown in Figures~\ref{fig:mechDesign-rockerJointDetail}, \ref{fig:mechDesign-bogieJointFixedDetail} and \ref{fig:mechDesign-bogieJointFreeDetail}.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
           \centering
           \includegraphics[clip, trim=2cm 16cm 2cm 3cm, width=0.7\linewidth]{figures/bearing-shaft-detail}
           \caption[Detail of the bearings and shaft chosen for the entire design]{Detail of the bearings and shaft chosen for the entire design}
           \label{fig:mechDesign-bearingShaftDetail}
         \end{figure}        
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=4cm 18cm 4cm 1cm, width=.59\linewidth]{figures/rocker-joint.PDF}
@@ -166,7 +166,7 @@
         \label{fig:mechDesign-rockerJointDetail}
         \end{figure}
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 18cm 6cm 1cm, width=.45\linewidth]{figures/bogie-joint-free.PDF}
@@ -178,7 +178,7 @@
         \label{fig:mechDesign-bogieJointFreeDetail}
         \end{figure}
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=4cm 20cm 4cm 1cm, width=.65\linewidth]{figures/bogie-joint-fixed.PDF}
@@ -199,7 +199,7 @@
         
         The same bearing bores and centre hole as on the joint components was added to the cylindrical core of the centre wheels for mounting to the aluminium shafts. The press-fitting of bearings into the wheels was to be of the same nature as that of the joints. Figures~\ref{fig:mechDesign-outerWheelDetail} and \ref{fig:mechDesign-midWheelDetail} show the outer and centre wheel details.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 16cm 6cm 1cm, width=.5\linewidth]{figures/tire-outer}
@@ -212,7 +212,7 @@
         \label{fig:mechDesign-outerWheelDetail}
         \end{figure}
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 16cm 6cm 1cm, width=.5\linewidth]{figures/tire-mid}
@@ -230,7 +230,7 @@
         
         The front and rear pivots differed slightly due to the angle of entry of the rocker and bogie tubes towards the centre-points of the wheel assembly were different. Managing the differences in angles was aided by use of the 3D skeleton sketch. Again, the front and rear pivots from the left hand side were mirrored to produce parts for the right hand side suspension assembly.
        
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 20cm 4cm 2cm, width=0.55\linewidth]{figures/wheel-pivot}
@@ -247,7 +247,7 @@
         
         The strut was designed to maintain the curved appearance as on \textit{Curiosity} but to take into account the strength of the component. A flat platform above the wheel included holes for mounting of the steering servo's horn and this curved downwards into the strut section of the component. The strut curve consisted of a flat section to offer strength against bending in the typical direction as loaded (the $x$-axis) with a rib type extrusion from the rear facing side of the strut for increased support and tabs on which to mount the driving servo. The design was then mirrored for the rest of the corners and the final detail can be seen in Figure~\ref{fig:mechDesign-wheelStrutDetail}.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=4cm 17cm 4cm 2cm, width=0.59\linewidth]{figures/wheel-strut}
@@ -263,7 +263,7 @@
 
       Having designed the parts around the skeleton sketch, where they were kept fixed to preserve the angle details linking them, another assembly was created into which the parts were re-added and mated in a manner more typical of the way that they would be assembled. The assembly allowed simulation of the movement and this functionality was used to analyse the assembly for interferences and to ensure that the structure moved the way it was required. Figure~\ref{fig:mechDesign-suspensionSubObstacle} shows the linkages positioned as if the subsystem was navigating over an obstacle. Each individual part was then mirrored and assembled to form the opposite side of the suspension system. The CAD package ensured that the mirrored parts were dynamically updated should one of the original parts have changed.
       
-      \begin{figure}[H]
+      \begin{figure}[h!]
       \centering
       \subfloat[]{
         \includegraphics[clip, trim=2cm 15cm 2cm 1cm, width=0.9\linewidth]{figures/suspensionSub}
@@ -276,7 +276,7 @@
       \label{fig:mechDesign-suspensionSubDetail}
       \end{figure}
       
-      \begin{figure}[H]
+      \begin{figure}[h!]
         \centering
         \includegraphics[width=1\linewidth]{figures/suspensionSub-obstacle}
         \caption[Render of one side of the suspension system navigating over an obstacle]{Render of one side of the suspension system navigating over an obstacle}
@@ -286,7 +286,7 @@
     \subsubsection{Differential}
       Design of the differential involved a partially completed design of the body structure which contained details of the mounting points of the suspension system and thus the position of the connection point on the rocker joint, as well as the centre point of articulation of the differential bar as acquired from the reference model. The concept chosen for this subsystem included a 3D printed differential bar, printed hinges and threaded-bar (rods) attached to the hinges to link the differential to the rocker joint. The need for hinges was to provide the rods with the degrees of freedom required taking into the account the arced motions of an end of the differential bar in the $x$-$y$-plane and rocker joint in the $x$-$z$-plane. The articulation of the differential system and the resulting motion of the rods is depicted in Figure~\ref{fig:mechDesign-differentialMotion}, each of the two views showing two positions in the motion.
       
-      \begin{figure}[H]
+      \begin{figure}[h!]
       \centering
       \subfloat[Top view\label{fig:mechDesign-differentialMotion-a}]{\includegraphics[clip, trim=2cm 26cm 2cm 4cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionTop.pdf}}
       \qquad
@@ -322,7 +322,7 @@
         
         Detailed drawings of both hinge assemblies can be seen in Figures~\ref{fig:mechDesign-singleAxisHingeDetail} and \ref{fig:mechDesign-twoAxisHingeDetail}.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=9cm 24cm 6cm 0cm, width=0.4\linewidth]{figures/rod-hing-jointSide}
@@ -335,7 +335,7 @@
         \label{fig:mechDesign-singleAxisHingeDetail}
         \end{figure}
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=5cm 18cm 4cm 0cm, width=0.44\linewidth]{figures/two-axis-hinge}
@@ -352,7 +352,7 @@
       \subheading{Final Sub-assembly}\\\\
         Figure~\ref{fig:mechDesign-differentialSubDetail} shows detail of the differential sub-assembly as generated in the CAD package used and was analysed for interferences and functional integrity.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=3cm 22cm 3cm 0cm, width=1\linewidth]{figures/diff-sub}
@@ -374,7 +374,7 @@
         
         Figure~\ref{fig:mechDesign-neckMount} shows the detail of the neck mount component.
 
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.49\linewidth]{figures/mastMount-top}
@@ -389,7 +389,7 @@
       \subheading{Neck Hinge and Actuation}\\\\
         The center piece in the neck-head assembly, referred to as the neck hinge, was designed to facilitate the mounting of two servos: one for pan movement and the other for pitch movement. As discussed, the pan-axis servo which by definition was facing downwards towards the rover deck surface would fit into hole in the top of the neck mount and suspend the rest of the neck-head assembly. Fitted into the neck hinge component was the pitch-axis servo which was displaced from the pan-axis servo by 90 degrees. Multiple configurations involving the placement of the servos were considered and one which had the smallest volumetric footprint as well as required the least amount of 3D printing material was chosen for obvious reasons. The configuration had the servos positioned flat against each other with support material positioned at the servo mounting holes, the assembly of which can be seen in Figure~\ref{fig:mechDesign-neckHingeServoSubExpl}. Figure~\ref{fig:mechDesign-neckHinge} shows the detailed drawing of the neck hinge component without the servos.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/neck-hinge}
@@ -417,7 +417,7 @@
         
         Figures~\ref{fig:mechDesign-headBasePlate}, \ref{fig:mechDesign-headCanopy} and \ref{fig:mechDesign-headRightBracket} show detailed views of the three head components.
 
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/headBaseplate}
@@ -429,7 +429,7 @@
         \label{fig:mechDesign-headBasePlate}
         \end{figure}
 
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/head-canopy}
@@ -441,7 +441,7 @@
         \label{fig:mechDesign-headCanopy}
         \end{figure}
 
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=6cm 19cm 6cm 0cm, width=0.44\linewidth]{figures/right-bracket}
@@ -456,7 +456,7 @@
       \subheading{Final Sub-assembly}\\\\
         The final sub-assembly of the neck and head components, including the servos is shown in Figure~\ref{fig:mechDesign-headSubDetail}.
         
-        \begin{figure}[H]
+        \begin{figure}[h!]
         \centering
         \subfloat[]{
           \includegraphics[clip, trim=3cm 18cm 3cm 1cm, width=0.7\linewidth]{figures/headSub}
@@ -520,12 +520,49 @@
       \end{itemize}
     
   \subsection{Electrical Design}
+    The electrical component of the rover involved supplying power to the RCE board, actuation, sensors and camera and included the electrical interfaces between these components. This section covers the design of these interfaces, the supply of power and the detailed choice of electrical hardware and components for this part of the project. Due to project time constraints the driving principle behind all electrical hardware was COTS design and the intention of turning towards complete and built components and systems before falling back onto systems built from first principles as a part of the project. This was also beneficial for individuals wanting to get involved as part of the open sourcing of the project. Including as many COTS components that are available to as many people as possible improved the accessibility of the project and the notion of education and outreach as a whole.
+  
     \subsubsection{Actuation}
+      The device for position- and velocity-based actuation during the conceptual design phase was servos of the sub-micro size and after investigation into the availability of multiple models of the servo type, the Hextronics HXT900 servo was chosen. The servo, a 9g, plastic-geared component requiring a 3V-6V supply, offered 180 degrees of movement at a maximum of 1.6kg per cm of torque. The range of motion meant that is was suitable for the steering of the four corner wheels as well as pan and pitch actuation of the head above the neck sub-assembly. However, the decision to use the servos for driving the four corner wheels meant that the servos required continuous rotation and not the limit range. The continuous motion was also required to be controlled from the perspective of velocity and not position. It was found that servos designed for continuous rotation were available but were not suitable for the project budget. An alternative solution was found, whereby the range-limited HXT900s could be altered to result in velocity controlled continuous servos. These were used and the alterations involved are discussed in Section~\ref{sec:vehicleBuildAndManufacture}.
+      
+      Standard communication applied for the HXT900 servo component, an analog-type device. The servo required power and ground connections and a third line for a PWM signal. The pulse width determined, in the case of the range-limited servos, position, and velocity in the case of the modified continuous servos. This signal was to originate from the Intel Edison board, however, the low level implementation of PWM signal generation on the device had significant limitations which meant that an alternative means had to be found. Additionally, the Intel Edison Arduino breakout board only offered six PWM signal pins and the rover actuation system required ten. The solution was to use a 16 channel PWM extension board which was compatible with the header and pin layout of the Intel Edison board, allowing for flexible control of many servo components. The PWM extension, manufactured by Adafruit, interfaced with the Intel Edison by means of a two-wire I$^2$C connection which meant that the rest of the Intel Edison board's pins were available for use elsewhere. The PWM extension also included short-circuit and reverse-polarity protection for increased system robustness as well as a breadboard section which was used for multiple other electrical subsystems discussed further.
+      
     \subsubsection{Sensors}
-    \subsubsection{Camera}
+      The three HC-SR04 ultrasonic proximity sensors provided elementary spatial awareness to the rover, specifically to the control system as part of the RCE. The sensors, mounted to the front and rear body panels and to the front of the head, operated at a 5V supply and communicated via an analog interface similar to that of the servos. Other than power and ground connections, the sensor had two other pins, one for input trigger signals and the other a range measurement output signal. The sensor required the trigger pin to be held high, at TTL level, for a minimum of 10$\mu$S to signal to the on board devices that a measurement was desired. The sensor then emitted a series of 40kHz sonic bursts and measured the time it took for the six bursts to arrive back at the sensor audio interface. The sensor then generated a signal of a single pulse over the output line, the length of which was proportional to the range measured. The pulse duration varied from 116$\mu$S to 23.2ms and the RCE was required to time the length of this pulse in order to obtain the measurement.
+      
+      However, as discussed in this report as part of the software design phase, the software runtime (as well as the operating system) did not cater for signal input timing of the required accuracy. An I$^2$C interface-able backpack device was available which converted the analog pulses to digital signals easily read in by the Intel Edison board. Due to local unavailability of this device, a fallback solution was to design and develop a pulse to analog voltage converter which could be fed into the ADC device on the Intel Edison board. The design involved triggering the sensor at a specified interval passing the output pulse through an RC filter circuit to result in a transient analog voltage signal representative of the average period of the pulses over a designed time-constant. This also decoupled the RCE trigger timing from the timing required for reading the resulting measurement signal therefore the voltage level from the pulse to voltage converter could be sampled at a point which was most suitable. The RC filter included included an LM358 operational amplifier in a unity-gain configuration as a buffer for the input pin of the Intel Edison board. Due to its simplicity, the schematic is not shown.
+            
     \subsubsection{Power}
-    \subsubsection{System Interfaces}
+      The crux of the electrical component of the rover was the supply of power to all the electrical devices. As per the specifications, the rover was required to be self-powered and this was achieved by means of a battery to be mounted to the inside of the rover body. The battery, a three-cell, lithium-polymer type with a capacity of 1000mAh, was chosen based on its popularity in the remote-control vehicle industry and featured a high current output capability (low internal resistance), a good supply choice for servo motors which draw noisy current and induce high voltages due to their nature of operation. Operating between 12.4V and 11.3V, the battery was compatible with a wide range of balancing chargers.
+      
+      In order to design the power supply network, a table (Table~\ref{tab:elecDesign-powerRequirements}) of voltage requirements and approximate current usages was drawn up and totalled to verify the suitability of the battery as well as determine if additional electronics was required.
+      
+      \begin{table}[h!]
+      \centering
+      \begin{tabular}{@{}lll@{}}
+      \toprule
+      Device                               & Voltage Requirement (V) & Current Usage (A) \\ \midrule
+      10$\times$ HXT900 Servo Motors       & 3-6                     & 2.5               \\
+      Intel Edison Arduino Board           & 7-15                    & 0.3               \\
+      $3\times$ HC-SR04 Ultrasonic Sensors & 5                       & 0.045             \\
+      Web Camera                           & 5 (USB)                 & Max 0.5 (USB)     \\
+      $3\times$ Pulse to Analog Converters & 5 (TTL)                 & 0.05               \\ \midrule
+      \multicolumn{2}{r}{\textbf{TOTAL}}                             & \textbf{3.445}    \\ \bottomrule
+      \end{tabular}
+      \caption{Table showing the voltage supply requirements and approximate current usage of each of the electrical devices}
+      \label{tab:elecDesign-powerRequirements}
+      \end{table}
+      
+      It must be noted that the Intel Edison board included on-board 5V and 3.3V regulators (for low current internal and external supply) which left the servo and Intel Edison board requirements to be satisfied. This was solved by the inclusion of a switch mode buck converter device (which made use of the XL4015\footnote{XL4015: a 5A, 180KHz, 36V Buck DC to DC converter}) with voltage and current adjustments and a maximum current supply of 5A. Since the Intel Edison board required it the least 7V, and only one output voltage could be provided to the electrical network, the servos were supplied 1V over their maximum. Investigation into the effects of oversupply on the HXT900 as well as thorough testing at this voltage indicated that the supply was suitable. Thus, the buck converter was adjusted to supply 7V, a step down from the voltage provided by the battery. The boost converter module brought several benefits to the design including, short-circuit protection, current limiting, elementary power filtering and an indication of the presence of power. Therefore, the current supply budget was easily accommodated by the battery chosen and suitable for the buck converter at the worst case scenario of all devices drawing maximum current simultaneously.
+      
+      The HC-SR04 sensors and pulse to analog converters were supplied from the Intel Edison board supply and the camera via the USB port supply.
     
-  \subsection{Integration of Mechanical and Electrical Designs}
-    \subsubsection{Internal Electronics Mounting}
-    \subsubsection{Cables and Wiring}
+    \subsubsection{Overall Electrical Schematic}
+      Once the electrical sub-systems had been designed and the hardware choices made, an plan of the entire electrical system was drawn up as shown in Figure~\ref{fig:elecDesign-electricalSchematic} and included power supply and communication interfaces.
+      
+      \begin{figure}[h!]
+        \centering
+        \includegraphics[width=1\linewidth]{figures/elecDesign-electricalSchematic}
+        \caption[Simplified schematic plan of the entire electrical system including power supply and interfaces.]{Simplified schematic plan of the entire electrical system including power supply and interfaces.}
+        \label{fig:elecDesign-electricalSchematic}
+      \end{figure}
