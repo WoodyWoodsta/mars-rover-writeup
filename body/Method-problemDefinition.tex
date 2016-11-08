@@ -6,6 +6,7 @@
   As an initiation of the project, the requirements were explored and collated below into a list of those pertaining to the vehicle itself in a sense of the hardware as well as the software that encompassed the operation of the vehicle as an educational piece. The requirements made sure to maintain as little reference to technologies available as possible as this detail was to be further developed after analysis of the requirements on a functional level.
   
   \subsection{Project Requirements}
+  \label{subsec:probDef-projectRequirements}
   \begin{enumerate}
     \item Develop and build a model of the Mars \textit{Curiosity} rover. The rover model should:
     \begin{enumerate}
@@ -60,18 +61,19 @@
     
     
   \subsection{Technical Specifications}
-    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}). The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design. Section~\ref{sec:secondary-objectives} adds to the these specifications a list of secondary objectives which were considered during the design process, but were not mandatory.
+    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}. The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design. Section~\ref{sec:secondary-objectives} adds to the these specifications a list of secondary objectives which were considered during the design process, but were not mandatory.
     
     \subsubsection{Vehicle Specifications}
+    \label{subsec:probDef-vehicleSpecifications}
       \begin{itemize}
-        \item Mechanical
-        \begin{itemize}
+        \item \textbf{Mechanical}
+        \begin{RM}
           \item General Specifications:
-          \begin{itemize}
+          \begin{RM}
             \item Must be as proportional as possible to the Curiosity rover on Mars
-          \end{itemize}
+          \end{RM}
           \item Body:
-          \begin{itemize}
+          \begin{RM}
             \item Box shaped
             \item Allow mounting of the mast and differential on the top surface
             \item Allow mounting of the suspension system on either side
@@ -79,145 +81,145 @@
             \item Allow mounting of additional detail such as side panels and other mockup objects
             \item Allow mounting of electrical internals
             \item Provide protection/coverage of electrical internals from the external environment
-          \end{itemize}
+          \end{RM}
           \item Mast:
-          \begin{itemize}
+          \begin{RM}
             \item Provide mount point for the head module
             \item Facilitate full rotation about the $z$-axis (camera panning/yaw axis)
             \item Facilitate at least $120^\circ$ degrees rotation about the $y$-axis (camera pitching axis)
             \item Be structurally secure providing robustness against lateral forces on mounted head module
-          \end{itemize}
+          \end{RM}
           \item Head:
-          \begin{itemize}
+          \begin{RM}
             \item Be mounted onto the mast module
             \item Provide mount point for a sensor
             \item Allow mounting of a camera module
-          \end{itemize}
+          \end{RM}
           \item Suspension:
-          \begin{itemize}
+          \begin{RM}
             \item Ensure body stability
             \item Maintain stability despite uneven terrain. This includes terrain which might require asymmetrical articulation of the system (a rock underneath one side of the rover and flat terrain underneath the other)
-          \end{itemize}
+          \end{RM}
           \item Wheels and Hubs/Pivots:
-          \begin{itemize}
+          \begin{RM}
             \item Match the shape and proportion of the wheels on Curiosity
             \item Provide traction required for the proposed terrain
             \item Have steering capabilities which would amount to arc pattern traversal as well as rotation of the rover around a central fixed point
-          \end{itemize}
-        \end{itemize}
+          \end{RM}
+        \end{RM}
         
-        \item Electrical
-        \begin{itemize}
+        \item \textbf{Electrical}
+        \begin{RE}
           \item Actuation:
-          \begin{itemize}
+          \begin{RE}
             \item Provide continuous rotational actuation for driving. The actuation speed should be controllable and must be of high enough torque to satisfy traversal specifications
             \item Provide sufficient magnitude rotational actuation for turning of the wheels for steering. The rotational position should be controllable and must be of high enough torque to facilitate turning of the wheels in-place
             \item Provide required magnitude rotational actuation for panning and pitching of the head/mast module. Both axes must allow positional control
-          \end{itemize}
+          \end{RE}
           \item Central Control:
-          \begin{itemize}
+          \begin{RE}
             \item Host onboard software system for control of hardware
             \item Facilitate wireless communications with the server
             \item Interface with actuation and sensory input hardware
             \item Have performance capabilities sufficient for processing and streaming of video data from the head module
-          \end{itemize}
+          \end{RE}
           \item Power:
-          \begin{itemize}
+          \begin{RE}
             \item Provide power for the central control hardware as well as actuation and sensor hardware components
             \item Fit inside or on the body module
             \item Have the ability to be turned switched off or on
             \item Allow convenient removal of source
             \item Allow easy access to charging ports
             \item Provide a means of indication of voltage for telemetry and low-battery warnings
-          \end{itemize}
+          \end{RE}
           \item Sensors:
-          \begin{itemize}
-            \item Provide immediate environment data required to implement elementary obstacle detection and avoidance
+          \begin{RE}
+            \item\label{li:probDef-spec-sensors-immediateObstacleData} Provide immediate environment data required to implement elementary obstacle detection and avoidance
             \item Be mounted in locations similar to those on \textit{Curiosity}
             \item Be compatible with the central control module in terms of data interface
-          \end{itemize}
+          \end{RE}
           \item Camera:
-          \begin{itemize}
+          \begin{RE}
             \item Facilitate a monoscopic video feed
             \item Be mountable to the inside of the head module
             \item Be compatible with the central control module in terms of data interface
-          \end{itemize}
-      \end{itemize}
+          \end{RE}
+      \end{RE}
     \end{itemize}
       
     \subsubsection{Software System Specifications}
       \begin{itemize}
-        \item Rover Embedded Software
-        \begin{itemize}
+        \item \textbf{Rover Embedded Software}
+        \begin{RS}
           \item General Specifications:
-          \begin{itemize}
+          \begin{RS}
             \item Allow connection of a remote client for telemetry and control as well as another for video streaming
             \item Be robust against hardware errors and intermittent communication so as to maintain operation in these circumstances
-          \end{itemize}
+          \end{RS}
           \item Control:
-          \begin{itemize}
+          \begin{RS}
             \item Provide a programmatic means to peripheral hardware access
             \item Translate control input commands into hardware output signals for control of peripheral hardware components
             \item Declare/define and execute programmatic sequences facilitating procedures such as system booting, communication initialisations, hardware initializations, self diagnosis ![probably need to make a list of the required sequences]
-          \end{itemize}
+          \end{RS}
           \item Telemetry:
-          \begin{itemize}
+          \begin{RS}
             \item Emit system telemetry to the connected client consisting of system, process and hardware state as well as sequence execution notifications
-          \end{itemize}
+          \end{RS}
           \item Video Stream:
-          \begin{itemize}
+          \begin{RS}
             \item Provide a stream of the video data to the connected client
             \item Provide video resolution on or above VGA (640x480) resolution
-          \end{itemize}
-        \end{itemize}
+          \end{RS}
+        \end{RS}
         
-        \item Server
-        \begin{itemize}
+        \item \textbf{Server}
+        \begin{RS}[resume]
           \item General Requirements:
-          \begin{itemize}
+          \begin{RS}
             \item Manage communication with the rover system
             \item Manage communication with the connected web clients
             \item Serve web application to the connected web clients
             \item Manage roles of the connected web clients with respect to their level of access and ability to control the rover
-          \end{itemize}
+          \end{RS}
           \item Video Broadcast:
-          \begin{itemize}
+          \begin{RS}
             \item Connect to and accept video data from the rover video stream
             \item Broadcast video stream to a scalable number of connected user clients
             \item Be robust against communication intermittency in terms of connection with the rover system
-          \end{itemize}
+          \end{RS}
           \item Data Relay:
-          \begin{itemize}
+          \begin{RS}
             \item Relay control input commands from a controlling web client to the rover
             \item Provide a means of simulating long-distance communication 
             \item Relay telemetry data from the rover system to the connected web clients
             \item Relay state information of the rover system and server system to the connected web clients
-          \end{itemize}
-        \end{itemize}
+          \end{RS}
+        \end{RS}
           
-        \item Web Client
-        \begin{itemize}
+        \item \textbf{Client}
+        \begin{RS}[resume]
           \item General Requirements:
-          \begin{itemize}
+          \begin{RS}
             \item ![Fill out]
-          \end{itemize}
+          \end{RS}
           \item Control:
-          \begin{itemize}
+          \begin{RS}
             \item Provide two means of control of the rover, if access is granted:
             \begin{enumerate}
               \item RoSE-style command sequence input, allowing composition of a sequence of commands and playback of such commands
               \item Interactive joystick/button interface
             \end{enumerate}
-          \end{itemize}
+          \end{RS}
           \item Telemetry:
-          \begin{itemize}
+          \begin{RS}
             \item Accept and display telemetry received from the rover via the server and from the server itself
-          \end{itemize}
+          \end{RS}
           \item Video Feed:
-          \begin{itemize}
+          \begin{RS}
             \item Accept and display video feed received from the broadcast
-          \end{itemize}
-        \end{itemize}
+          \end{RS}
+        \end{RS}
       \end{itemize}
     
     ![Need to include something about the outreach specifications]

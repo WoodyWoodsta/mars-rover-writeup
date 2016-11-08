@@ -1,4 +1,28 @@
 \chapter{Rover Post-Development}
   \section{Final Product}
+    Figures~![] and ![] show the fully assembled rover model taken before the testing phase of the project.
+    
+    ![Rover full image]
+    ![Rover top and side images]
+    
+    Figures~![], ![] and ![] show the completed RSVP Client user interface in each of the two control modes.
   
   \section{Testing}
+    Before verification of the project specifications, the rover model and software systems were analysed in a series of test scenarios. All systems were kept online during the tests (including the video stream) and the results documented. The tests were filmed and the results video is included in the report submission.
+    
+    Due to lack of a Mars-like environment or terrain surface, the test on rough terrain was omitted. This type of testing as well as research and development of a Martian terrain simulation environment is mentioned as a possible future work in Section~![].
+    
+    \begin{TEST}
+      \item\label{test:stationaryTest} \textbf{Stationary Test:} The first test performed which involved placing the rover in the designed and assembled stand. The test included performing the self-diagnostics test sequence and using the interactive and RoSE control styles to verify the successful operation of the rover without the presence of terrain. Figure~![] shows the rover model positioned in the stand.
+      
+      ![Stand image]
+      
+      \item\label{test:collisionTest} \textbf{Smooth Surface Collision Avoidance Test:} The rover was then placed on a smooth office-floor surface and commanded to traverse in a straight line towards a large obstacle. The test verified the rovers ability to perform rudimentary obstacle avoidance and prevent control in the presence of an obstacle larger than the rover's traversal capabilities.
+      
+      \item\label{test:obstacleTest} \textbf{Smooth Surface Single-side Obstacle Traversal Test:} In this test, the rover was commanded to traverse a smooth surface with an A-framed shaped obstacle in an attempt to replicate a similar test performed on \textit{Curiosity}. The test verified the performance and effectiveness of the rocker-bogie suspension in minimising the body tilt and rock during traversal of uneven ground. Figure~![] shows the rover traversing the obstacle.
+      
+      ![Obstacle image]
+      
+      \item\label{test:serverLoadTest} \textbf{RSVP Server Load Test:} The final test, in which a typical number of RSVP Clients were instantiated, connected and allowed to stream the video was performed to verify the RSVP Server's ability to handle a typical Client congestion situation.
+    
+    \end{TEST}

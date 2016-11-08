@@ -39,7 +39,7 @@
     \subsubsection{Project Dependencies}
       Each project made use of multiple open source Node.js modules which were listed in each of the projects' \mintinline{text}{package.json} file. The dependencies are downloaded from remote repositories during the install process provided by the package manager that is bundled in the distribution of Node.js, called \mintinline{js}{npm} (Node.js Package Manager). These packages are listed in Appendix~\ref{appendix:openSourceList} together with a description of each. Towards the end of the project another dependency management tool, \mintinline{js}{yarn}\footnote{Yarn Package Manager - \url{https://github.com/yarnpkg/yarn}}, was used as it provided better caching and faster dependency resolution.
       
-    \subsubsection{Johnny-Five Hardware Abstraction}
+    \subsection{Johnny-Five Hardware Abstraction}
       A standard skeletal structure for each of the abstractions written for hardware sub-systems was developed to maintain the consistency of the APIs. Since the \mintinline{js}{edison-io} module, which bridged between the JavaScript \mintinline{js}{mraa} implementation and the J5 \mintinline{js}{Board} instance, was a singleton module, each abstraction file need not have imported a reference to the already existing and running \mintinline{js}{Board}. Snippet~\ref{code:exampleHwAbstractionSkeleton} shows the structure of such an abstraction as well as serves as an example of the general structure of all JavaScript files written for all projects.
       
       \begin{code}
@@ -97,11 +97,11 @@
           // === Private ===
           // All private methods are placed here. These methods are not exported and can only be used in this file.
         \end{minted}
-        \caption{Example skeleton used for the hardware abstraction of each hardware sub-system}
+        \caption{Example skeleton used for the hardware abstraction of each hardware sub-system (\mintinline{js}{<hardware-subsystem>}).}
         \label{code:exampleHwAbstractionSkeleton}
       \end{code}
       
-    \subsubsection{Control Implementation}
+    \subsection{Control Implementation}
       The Section~\ref{sec:softwareDesign} has already covered the command translation and control pipeline. Details regarding implementation of the pipeline are omitted due to complexity of the software and can be seen in the source code provided with this report. This section briefly covers two of the significant control implementation details.
       
       \subheading{List of Commands}\\\\
@@ -246,7 +246,7 @@
       \subheading{Traversal Servo Control} \\\\
         The position of the wheels on the rover meant that traversal of the rover along arced paths required the wheels to be at the correct angles and to be operating at differing angular velocities in order to prevent under- or over-rotation. Turning to the left along a gradual arc, for example, required the left side wheels to operate slower than the right side wheels as well as the left side wheels to be angled more than the right. This was simply because the arc radius of the inside wheels was smaller than that of the outside wheels making the tangents different as well as the perimeters different and thus the velocity required to traverse the perimeters differed.
         
-        Commands that required this type of motion or traversal calculated the angles and velocities based on the measured physical position of each wheel. Included in the calculations were two simplifying assumptions: that the angle passed to J5 in the hardware abstraction was exactly representative of the output angle of the steering servos, and that the continuous servo velocity versus J5 input velocity parameter was a linear relationship. The latter assumption was tested as well as justified by the principle of operation of the servos. The continuous servo modification meant that the motor speed of the servo device was controlled by means of the input PWM signal. Figure~![] shows the wheel layout and the arc lines used to formulate the relationships between the arc factor and the resulting wheels angles and velocities.
+        Commands that required this type of motion or traversal calculated the angles and velocities based on the measured physical position of each wheel. Included in the calculations were two simplifying assumptions: that the angle passed to J5 in the hardware abstraction was exactly representative of the output angle of the steering servos, and that the continuous servo velocity versus J5 input velocity parameter was a linear relationship. The latter assumption was tested as well as justified by the principle of operation of the servos. The continuous servo modification meant that the motor speed of the servo device was controlled by means of the input PWM signal. Figure~\ref{fig:softDev-arcCalculations} shows the wheel layout and the arc lines used to formulate the relationships between the arc factor and the resulting wheels angles and velocities.
         
         \begin{figure}[h!]
           \centering
@@ -322,10 +322,90 @@ function _computeArc(arcFactor) {
           \label{code:arcCalculationMethod}
         \end{code}
       
-    \subsubsection{Kurento Implementation}
+    \subsection{Socket.io Channels}
+      The Socket.io channels used throughout the project is summarised in Table~\ref{tab:softDev-socketChannelResponsiblities} based on discussions thereof in the software design sections.
+      
+      \begin{table}[h!]
+      \centering
+      \begin{tabular}{@{}L{0.11\textwidth}L{0.15\textwidth}L{0.4\textwidth}L{0.2\textwidth}@{}}
+      \toprule
+      Socket.io Channel & Applicable Software Components                                    & Description                                                                                                                                                                                                                    & Channel Data Responsibilities                                                                                                                                                   \\ \midrule
+      RCEIO             & \begin{tabular}[c]{@{}l@{}}RCE\\ RSVP Server\end{tabular}         & Serves as the only method of message data type communication between the RCE and the RSVP Server.                                                                                                                              & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of commands\\ - Transmission of telemetry\\ - Synchronisation of data stores\\ - Transport of custom requests\end{tabular}                    \\
+      KurentoIO         & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The signalling between the implementation of Kurento on the RSVP server and those on the connected RSVP Clients. Servers as the transport for SDP and ICE offers as well as other signalling events between the two endpoints. & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of SDP offers\\ - Transmission of ICE candidates\end{tabular}                                                                             \\
+      ControlIO         & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The first of the two message data specific channels between the RSVP Server and the RSVP Client. Handles control data and is restricted to only the client that is in control of the rover.                                    & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of RoSE commands\\ - Transmission of interactive control signals\\ - Transmission of other control related events and messages\end{tabular} \\
+      TeleIO            & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The second channel between the RSVP Server and the RSVP Client facilitating all types of telemetry.                                                                                                                            & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of telemetry data\\ - Synchronisation of data stores\end{tabular}                                                                         \\ \bottomrule
+      \end{tabular}
+      \caption{Table summarising the responsibilities of each of the implemented Socket.io channels.}
+      \label{tab:softDev-socketChannelResponsiblities}
+      \end{table}
     
-    \subsubsection{Socket.io Channels}
+      Each Socket.io endpoint component in the endpoint-translator pair included in initialisation method which registered the WebSocket channel and attached the required listeners to the instance. The listeners that were registered referenced handler methods exposed by the translator component keeping the endpoint component simple. The endpoint component also provided lower level methods for performing operations such as sending custom requests. Snippet~\ref{code:softDev-socketEndpointExample} includes an example endpoint implementation structure.
+      
+      \begin{code}
+        \begin{minted}{js}
+          import * as rceIOTranslator from './<channel>-translator'; // The translator associated with the socket channel
+          import Socket from 'koa-socket'; // The Node.js module providing the Socket.io implementation for the server stack used in this particular software component
+          
+          const log = debug('rce:socket');
+          
+          let <channel>;
+          
+          /**
+           * Initialise the socket instance and attach the associated handlers to it
+           */
+          export default function init() {
+            // Instantiate the socket
+            <channel> = new Socket('<channel>');
+          
+            // Listen on the `connection` event to detect a successful connection
+            socket.on('connection', () => {
+              store.rceState.set('<channel>.connected', true); // Update the store to reflect the new state of the connection
+            });
+            
+            // Register the listeners associated with the channel, passing in references to the translator methods
+            socket.on('data', <channel>Translator.onData);
+            socket.on('post', <channel>Translator.onPost);
+            socket.on('request', <channel>Translator.onRequest);
+          }
+          
+          /**
+           * Send a `request` type message via the socket, with a given payload
+           * @param	{String}	type		The type of request
+           * @param {Object}	payload	Payload to include with the message
+           *
+           * This is an example of a custom low level operation included in the endpoint API
+           */
+          export function sendRequest(type, payload) {
+            <channel>.broadcast('request', { type, payload });
+          }
+          
+        \end{minted}
+        \caption{An example Socket.io endpoint file where \mintinline{js}{<channel>} is the name of the channel.}
+        \label{code:softDev-socketEndpointExample}
+      \end{code}
     
-    \subsubsection{RCE Video Streaming Utility}
-      use the Linux tool \mintinline{js}{Video4Linux2} (\mintinline{js}{v4l2}) supporting streaming video in realtime from hardware available on the operating system, including devices of the UVC driver-less class. Another tool, \mintinline{js}{ffmpeg}, which leveraged \mintinline{js}{v4l2} for video capture, allowed the creation of an HTTP and RTSP server which could be connected to from an external endpoint on the network. However, tests performed with an \mintinline{js}{ffmepg} implementation
+    \subsection{RCE Video Streaming Utility}
+      A candidate solution to the video streaming on the RCE software component was to use the Linux tool \mintinline{js}{Video4Linux2} (\mintinline{js}{v4l2}) which allowed streaming of video in realtime from hardware available to the operating system, including devices of the UVC driver-less class. Another tool, \mintinline{js}{ffmpeg}, which leveraged \mintinline{js}{v4l2} for video capture, allowed the creation of an HTTP and RTSP server which could be connected to from an external endpoint on the network. However, tests performed with an \mintinline{js}{ffmepg} implementation proved the tool unsuitable for the project due to low reliability and high CPU cost. Yet another utility was found, \mintinline{js}{mjpeg-streamer}, which was also tested and found to be a well performing and reliable alternative to \mintinline{js}{ffmpeg}. \mintinline{js}{mjpeg-streamer} provided streaming of the video data in one command line (Snippet~\ref{code:mjpeg-streamerCmdLine}), which was spawned as a child process by the RCE as in Snippet~\ref{code:mjpeg-streamerChildProcess}.
+      
+      \begin{code}
+        \begin{minted}{js}
+'/usr/local/bin/mjpg_streamer -i "/usr/local/lib/input_uvc.so -d /dev/video0 -n -r 640x480 -f 30" -o "/usr/local/lib//output_http.so -n -p 8080 -w /usr/local/www"'
+        \end{minted}
+        \caption{The \mintinline{js}{bash} command which was executed to invoke \mintinline{js}{mjpeg-streamer} and stream the video data via the specified port.}
+        \label{code:mjpeg-streamerCmdLine}
+      \end{code}
+      
+      \begin{code}
+        \begin{minted}{js}
+          import child from 'child_process'; // A Node.js provide API for spawning additional processes outside that of the Node.js program
+          
+          // Spawn the camera process
+          camProcess = child.exec(config.hardware.cameraStartCmdLine, (err) => {
+            // Errors handled here
+          });
+        \end{minted}
+        \caption{Snippet showing the spawning of a child process in which \mintinline{js}{mjpeg-streamer} was invoked.}
+        \label{code:mjpeg-streamerChildProcess}
+      \end{code}
+      
       

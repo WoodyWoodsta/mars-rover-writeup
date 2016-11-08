@@ -1,8 +1,183 @@
 \section{Post-development Verification of Specifications}
-
-\section{Discussion}
-
-Here is what the results mean and how they tie to existing literature...
-
-Discuss the relevance of your results and how they fit into the theoretical work you described in your
-literature review.
+  Having performed the aforementioned tests on the rover model and the complete software system, a full post-development verification was performed in which each of the requirements as outlined in Section~\ref{subsec:probDef-vehicleSpecifications} were analysed against the final product. The analysis aimed to determine if each requirement was satisfied and this was used as a platform for discussion on the entire design, development and the project in general (thus justifying the lack of a ``Discussions'' section in this report).
+  
+  \begin{itemize}
+    \item \textbf{Mechanical}
+    \begin{RM}
+      \item General Specifications:
+      \begin{RM}
+        \item \textbf{Partially Satisfied}\\
+        All components of the vehicle were proportional to the 3D reference model \cite{nasa3Dprint} provided by NASA except in the mast and head assembly, whereby the servo and camera dimensions did not allow for smaller components, and in the beams of the suspension system.
+        
+        \textbf{Proposed improvements:}
+        \begin{itemize}
+          \item Sourcing of a smaller camera module would allow for a smaller camera head assembly together with better planning of the mounting of the camera inside of the head cavity.
+          \item A smaller ultrasonic proximity sensor would alleviate the requirement for the extension of the head canopy for mounting purposes.
+        \end{itemize}
+      \end{RM}
+      \item Body:
+      \begin{RM}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}\\
+        Mounting of the DC to DC Converter module and the pulse to analog converters was moved from the body to an additional acrylic piece fastened to the PWM extension module.
+        \item \textbf{Fully Satisfied}
+      \end{RM}
+      \item Mast:
+      \begin{RM}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Partially Satisfied}\\
+        The range of actuation in the servo components chosen for the panning axis rotation of the head was limited to $180^\circ$.
+        
+        \textbf{Proposed Improvements:}
+        \begin{itemize}
+          \item Make use of a servo component capable of offering full rotation. This type of servo was not available at the time of design and development of the project.
+        \end{itemize}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Partially Satisfied}\\
+        Using the servo shaft for mounting reduced the structural stability of the assembly due to play in the plastic gears of the component. While the rigidity of the mast and head assembly was well within that which was required for operation, improved rigidity would have been possible with an alternative mounting configuration and/or use of metal gear servos. This is discussed further in Section~\ref{subsec:rec-servoSuitability}.
+      \end{RM}
+      \item Head:
+      \begin{RM}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RM}
+      \item Suspension:
+      \begin{RM}
+        \item \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
+        \item \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
+      \end{RM}
+      \item Wheels and Hubs/Pivots:
+      \begin{RM}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        While the traction capability of the designed wheels was not tested due to lack of a terrain, the wheels replicated the traction pattern on the tires of \textit{Curiosity}.
+        \item \textbf{Fully Satisfied} as tested in \ref{test:collisionTest}.
+      \end{RM}
+    \end{RM}
+    
+    \item \textbf{Electrical}
+    \begin{RE}
+      \item Actuation:
+      \begin{RE}
+        \item \textbf{Fully Satisfied} as tested in \ref{test:stationaryTest} and \ref{test:obstacleTest}.
+        \item \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
+        \item \textbf{Fully Satisfied}
+      \end{RE}
+      \item Central Control:
+      \begin{RE}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied} as partially tested in \ref{test:collisionTest}.
+        \item \textbf{Fully Satisfied}
+      \end{RE}
+      
+      Note that the choice of the Intel Edison was suitable for the designed rover, however, the severely limited control of the GPIO pins and other peripherals such as PWM could have been avoided if another device was chosen. This is further discussed in Section~\ref{subsec:rec-choiceOfRCEBoard}.
+      
+      \item Power:
+      \begin{RE}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RE}
+      \item Sensors:
+      \begin{RE}
+        \item \textbf{Partially Satisfied}\\
+        Due to the limitations in the Intel Edison's ability to measure input electrical pulses, the pulse to analog conversion solution introduced a significant increase in the response time of the distance measurements. This meant that while satisfactory data was acquired, it was not immediate and thus affected the speed of obstacle detection.
+        
+        \textbf{Proposed Improvements:}
+        \begin{itemize}
+          \item Source the I$^2$C backpack designed to allow the Intel Edison to correctly interface with the HC-SR04 Sensors.
+          \item Source digital proximity sensors or range-finders.
+        \end{itemize} 
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Not Satisfied} as discussed in the analysis of \ref{li:probDef-spec-sensors-immediateObstacleData}.
+      \end{RE}
+      \item Camera:
+      \begin{RE}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Partially Satisfied}\\
+        Post-manufacture modifications to the head canopy printed part had to be made to allow mounting of the camera. Due to the time-scale of the project, ordering of components and design of the components within the mechanical system had to occur simultaneously. The dimensions of the web camera module were unknown during the design of the mast assembly.
+        \item \textbf{Fully Satisfied}
+      \end{RE}
+  \end{RE}
+\end{itemize}
+  
+\subsubsection{Software System Specifications}
+  \begin{itemize}
+    \item \textbf{Rover Embedded Software}
+    \begin{RS}
+      \item General Specifications:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Control:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Telemetry:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Video Stream:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+    \end{RS}
+    
+    \item \textbf{Server}
+    \begin{RS}[resume]
+      \item General Requirements:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Video Broadcast:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied} as tested in \ref{test:serverLoadTest}.
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Data Relay:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Partially Satisfied}
+        The means by which long distance communication was simulated was rudimentary in that it consisted only of a time delay below 60 seconds. This was not an accurate depiction of the communication dynamic between Earth and \textit{Curiosity}, however, such a simulation would have taken away from the experience of the user.
+        \item \textbf{Fully Satisfied}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+    \end{RS}
+      
+    \item \textbf{Client}
+    \begin{RS}[resume]
+      \item General Requirements:
+      \begin{RS}
+        \item ![Fill out]
+      \end{RS}
+      \item Control:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Telemetry:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+      \item Video Feed:
+      \begin{RS}
+        \item \textbf{Fully Satisfied}
+      \end{RS}
+    \end{RS}
+  \end{itemize}
