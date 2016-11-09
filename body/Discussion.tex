@@ -1,5 +1,5 @@
 \section{Post-development Verification of Specifications}
-  Having performed the aforementioned tests on the rover model and the complete software system, a full post-development verification was performed in which each of the requirements as outlined in Section~\ref{subsec:probDef-vehicleSpecifications} were analysed against the final product. The analysis aimed to determine if each requirement was satisfied and this was used as a platform for discussion on the entire design, development and the project in general (thus justifying the lack of a ``Discussions'' section in this report).
+  Having performed the aforementioned tests on the rover model and the complete software system, a full post-development verification was performed in which each of the requirements as outlined in Section~\ref{subsec:probDef-vehicleSpecifications} were analysed against the final product. The analysis aimed to determine if each requirement was satisfied and this was used as a platform for discussion of the entire design, development and the project in general.
   
   \begin{itemize}
     \item \textbf{Mechanical}
@@ -14,6 +14,7 @@
           \item Sourcing of a smaller camera module would allow for a smaller camera head assembly together with better planning of the mounting of the camera inside of the head cavity.
           \item A smaller ultrasonic proximity sensor would alleviate the requirement for the extension of the head canopy for mounting purposes.
         \end{itemize}
+        \item \textbf{Fully Satisfied} and further discussed in Section~\ref{subsec:rec-aesthetics}.
       \end{RM}
       \item Body:
       \begin{RM}
@@ -154,7 +155,7 @@
       \item Data Relay:
       \begin{RS}
         \item \textbf{Fully Satisfied}
-        \item \textbf{Partially Satisfied}
+        \item \textbf{Partially Satisfied}\\
         The means by which long distance communication was simulated was rudimentary in that it consisted only of a time delay below 60 seconds. This was not an accurate depiction of the communication dynamic between Earth and \textit{Curiosity}, however, such a simulation would have taken away from the experience of the user.
         \item \textbf{Fully Satisfied}
         \item \textbf{Fully Satisfied}
@@ -163,10 +164,6 @@
       
     \item \textbf{Client}
     \begin{RS}[resume]
-      \item General Requirements:
-      \begin{RS}
-        \item ![Fill out]
-      \end{RS}
       \item Control:
       \begin{RS}
         \item \textbf{Fully Satisfied}
@@ -181,3 +178,23 @@
       \end{RS}
     \end{RS}
   \end{itemize}
+  
+\section{Discussion}
+  \subsection{Servos as the Mechanism for Actuation}
+    \label{subsec:rec-servoSuitability}
+    The Hextronik HXT900 servos were chosen for all types of actuation, including driving of the wheels which required the modification of the internal control electronics and gearing to allow for continuous rotation. During the testing of the model, it was found that the modifications made to the shaft and output gear assembly introduced a significant amount of instability to the splined shaft of the servo. The result of this decrease in stability was observed in the tests performed whereby the drive wheels did not maintain horizontal alignment. It was also found that, in general, the shaft servo-horn mounts exhibited a noticeable amount flexure under small forces. This was unanticipated, however, it did not prevent the successful mounting of the head and neck assembly, wheel pivot and strut assemblies and that of the wheels.
+    
+    The HXT900 servos performed well for the steering component of actuation with satisfactory response time and torque.
+  
+  \subsection{Choice of RCE Board}
+    \label{subsec:rec-choiceOfRCEBoard}
+    The Intel Edison together with the Arduino Breakout extension board was the hardware platform of choice for the RCE. During the conceptual design and development stage of the project, it was anticipated to provide the required performance and degree of connectivity for the project, as well as offered the required hardware interfaces. However, during design and development of the RCE, difficulties were faced with the hardware as well as in the platform form-factor and technology stack in general. The Intel Edison Arduino Breakout extension board contained multiple design flaws which were poorly documented and addressed.
+    
+    Difficulties were also faced in the general platform technology stack, being the use of Node.js and Linux in the context of embedded hardware and control. The Intel Edison's operating system stack prevented the low level hardware access that would have been convenient in terms of the control subcomponent of the RCE. The use of \mintinline{js}{sysfs} as a means of software-hardware interface subjected the control to the non-determinism of the Linux operating system such as with the inability to accurately time pulse inputs from the HC-SR04 sensors. \mintinline{js}{sysfs} distanced the execution of user code from the control of hardware thus making the Intel Edison better suited to applications with more emphasis on embedded connectivity as opposed to the control of hardware and acquisition of data. However, this was not to be incorrectly contrasted with the benefits of being able to use JavaScript and Node.js together with the plethora of open-source software in the embedded context.
+  
+  \subsection{Aesthetic Accuracy and Model Realism}
+  \label{subsec:rec-aesthetics}
+    The use of 3D printing for the majority of the components allowed for a high degree of realism as well as provided better than expected strength and suitability from a mechanical perspective. Various aspects of the model could have been improved in terms of aesthetic accuracy (\ref{li:probDef-spec-mechanical-realism}). The use of M3 sized fasteners for the majority of the mounting took away from the realism of the model and was identified as an over-design as far as structural stability was concerned. The use of M2 fasteners (or smaller) would have improved the aesthetics of the rover and still been a suitable means to fastening of components. The use of nut and bolt fasteners for the aluminium tubing as part of the suspension system also detracted from the realism of this system and could have been replaced with set screws for a less dominant appearance.
+    
+    However, the objective of the model design was for it to be accurate enough to be easily recognised as a replication of \textit{Curiosity} and this was successfully achieved.
+  
