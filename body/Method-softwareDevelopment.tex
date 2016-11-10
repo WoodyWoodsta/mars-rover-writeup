@@ -1,6 +1,6 @@
 \section{Software Development}
 \label{sec:softwareDevelopment}
-  Previously mentioned was the manner in which the software design and development workflow differed from those of the mechanical and electrical systems as well as the fact that the software system design was driven by the mechanical design and engineering choices within. For these reasons, many structural and functional design and development choices in the software system were made after the design. This section briefly covers those design choices as well as describes the environment in which the software was developed and deployed.
+  Previously mentioned was the manner in which the software design and development workflow differed from those of the mechanical and electrical systems as well as the fact that the software system design was driven by the mechanical design and engineering choices therein. For these reasons, many structural and functional design and development choices in the software system were made after the design. This section briefly covers those design choices as well as describes the environment in which the software was developed and deployed.
     
   \subsection{Development Environment}
     \subsubsection{Project Structures}
@@ -102,10 +102,10 @@
       \end{code}
       
     \subsection{Control Implementation}
-      The Section~\ref{sec:softwareDesign} has already covered the command translation and control pipeline. Details regarding implementation of the pipeline are omitted due to complexity of the software and can be seen in the source code provided with this report. This section briefly covers two of the significant control implementation details.
+      Section~\ref{sec:softwareDesign} has already covered the command translation and control pipeline. Details regarding implementation of the pipeline are omitted due to complexity of the software and can be seen in the source code provided with this report. This section briefly covers two of the significant control implementation details.
       
       \subheading{List of Commands}\\\\
-        Several commands were implemented to be used for the control of the rover in both interactive and RoSE control modes. The scope for the commands that were possible to be implemented was wide. For time constraint reasons, only a few of the potential commands were implemented to serve as a proof of concept of the command architecture and supporting sub-system. Below is a list of the commands implemented followed by an example of one of the commands as implemented in code in Snippet~\ref{code:commandDefExample}.
+        Several commands were implemented to be used for the control of the rover in both interactive and RoSE control modes. The scope for the commands that were possible to be implemented was wide. For time constraint reasons, only a few of the potential commands were implemented to serve as a proof of concept of the command architecture and supporting sub-system. Below is a list of the commands implemented followed by an example of one of the commands as implemented in code in Snippet~\ref{code:commandDefExample}. Units for the different parameters specified for each command were kept consistent. Angles were specified in degrees, velocities a percentage of the maximum (a user specified variable which was possible to configure in an additional trim configuration UI), durations in seconds and arc factors a number between $-1$ and 1.
         
         \begin{itemize}
           \item \textbf{Pause Command:} Commands the rover to ``do nothing'' for a specified length of time.
@@ -113,7 +113,7 @@
             \item \textbf{Type:} Low
             \item \textbf{Parameters:}
             \begin{itemize}
-              \item \textbf{Duration:} The length of time to pause for.
+              \item \textbf{Duration:} The length of time to pause.
             \end{itemize}
           \end{itemize}
           
@@ -133,7 +133,7 @@
             \item \textbf{Type:} Low
             \item \textbf{Parameters:}
             \begin{itemize}
-              \item \textbf{Duration:} The length of time to drive the wheel for.
+              \item \textbf{Duration:} The length of time to drive the wheel.
               \item \textbf{Wheel:} The wheel to drive.
               \item \textbf{Velocity:} The velocity at which the wheel should drive.
               \item \textbf{Direction:} The drive direction (forwards or reverse).
@@ -167,7 +167,7 @@
             \item \textbf{Type:} Macro
             \item \textbf{Parameters:}
             \begin{itemize}
-              \item \textbf{Duration:} The length of time to rotate for.
+              \item \textbf{Duration:} The length of time to rotate.
               \item \textbf{Velocity:} The velocity at which to rotate.
               \item \textbf{Direction:} The direction in which to rotate (clockwise or counter-clockwise).
             \end{itemize}
@@ -327,18 +327,17 @@ function _computeArc(arcFactor) {
       
       \begin{table}[h!]
       \centering
-      \begin{tabular}{@{}L{0.11\textwidth}L{0.15\textwidth}L{0.4\textwidth}L{0.2\textwidth}@{}}
-      \toprule
-      Socket.io Channel & Applicable Software Components                                    & Description                                                                                                                                                                                                                    & Channel Data Responsibilities                                                                                                                                                   \\ \midrule
-      RCEIO             & \begin{tabular}[c]{@{}l@{}}RCE\\ RSVP Server\end{tabular}         & Serves as the only method of message data type communication between the RCE and the RSVP Server.                                                                                                                              & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of commands\\ - Transmission of telemetry\\ - Synchronisation of data stores\\ - Transport of custom requests\end{tabular}                    \\
-      KurentoIO         & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The signalling between the implementation of Kurento on the RSVP server and those on the connected RSVP Clients. Servers as the transport for SDP and ICE offers as well as other signalling events between the two endpoints. & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of SDP offers\\ - Transmission of ICE candidates\end{tabular}                                                                             \\
-      ControlIO         & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The first of the two message data specific channels between the RSVP Server and the RSVP Client. Handles control data and is restricted to only the client that is in control of the rover.                                    & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of RoSE commands\\ - Transmission of interactive control signals\\ - Transmission of other control related events and messages\end{tabular} \\
+      \begin{tabular}{@{}L{0.12\textwidth}L{0.15\textwidth}L{0.45\textwidth}L{0.2\textwidth}@{}}
+      \toprule \textbf{Socket.io Channel} & \textbf{Applicable Software Components}                                    & \textbf{Description}                                                                                                                                                                                                                    & \textbf{Channel Data Responsibilities}                                                                                                                                                   \\ \midrule
+      RCEIO             & \begin{tabular}[c]{@{}l@{}}RCE\\ RSVP Server\end{tabular}         & Serves as the only method of message data type communication between the RCE and the RSVP Server.                                                                                                                              & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of commands\\ - Transmission of telemetry\\ - Synchronisation of data stores\\ - Transport of custom requests\end{tabular}                    \\ \midrule
+      KurentoIO         & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The signalling between the implementation of Kurento on the RSVP server and those on the connected RSVP Clients. Servers as the transport for SDP and ICE offers as well as other signalling events between the two endpoints. & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of SDP offers\\ - Transmission of ICE candidates\end{tabular}                                                                             \\ \midrule
+      ControlIO         & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The first of the two message data specific channels between the RSVP Server and the RSVP Client. Handles control data and is restricted to only the client that is in control of the rover.                                    & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of RoSE commands\\ - Transmission of interactive control signals\\ - Transmission of other control related events and messages\end{tabular} \\ \midrule
       TeleIO            & \begin{tabular}[c]{@{}l@{}}RSVP Server\\ RSVP Client\end{tabular} & The second channel between the RSVP Server and the RSVP Client facilitating all types of telemetry.                                                                                                                            & \begin{tabular}[c]{@{}L{0.2\textwidth}@{}}- Transmission of telemetry data\\ - Synchronisation of data stores\end{tabular}                                                                         \\ \bottomrule
       \end{tabular}
       \caption{Table summarising the responsibilities of each of the implemented Socket.io channels.}
       \label{tab:softDev-socketChannelResponsiblities}
       \end{table}
-    
+
       Each Socket.io endpoint component in the endpoint-translator pair included in initialisation method which registered the WebSocket channel and attached the required listeners to the instance. The listeners that were registered referenced handler methods exposed by the translator component keeping the endpoint component simple. The endpoint component also provided lower level methods for performing operations such as sending custom requests. Snippet~\ref{code:softDev-socketEndpointExample} includes an example endpoint implementation structure.
       
       \begin{code}

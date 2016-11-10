@@ -1,5 +1,5 @@
 \section{Post-development Verification of Specifications}
-  Having performed the aforementioned tests on the rover model and the complete software system, a full post-development verification was performed in which each of the requirements as outlined in Section~\ref{subsec:probDef-vehicleSpecifications} were analysed against the final product. The analysis aimed to determine if each requirement was satisfied and this was used as a platform for discussion of the entire design, development and the project in general.
+  Having performed the aforementioned tests on the rover model and the complete software system, a full post-development verification was performed in which the final product were analysed and verified against each of the requirements as outlined in Section~\ref{subsec:probDef-vehicleSpecifications}. The analysis aimed to determine if each requirement was satisfied and this was used as a platform for discussion of the entire design, development and the project in general.
   
   \begin{itemize}
     \item \textbf{Mechanical}
@@ -56,7 +56,7 @@
       \begin{RM}
         \item \textbf{Fully Satisfied}
         \item \textbf{Fully Satisfied}
-        While the traction capability of the designed wheels was not tested due to lack of a terrain, the wheels replicated the traction pattern on the tires of \textit{Curiosity}.
+        While the traction capability of the designed wheels was not tested due to lack of a suitable test terrain, the wheels replicated the traction pattern on the tyres of \textit{Curiosity}.
         \item \textbf{Fully Satisfied} as tested in \ref{test:collisionTest}.
       \end{RM}
     \end{RM}
@@ -156,7 +156,7 @@
       \begin{RS}
         \item \textbf{Fully Satisfied}
         \item \textbf{Partially Satisfied}\\
-        The means by which long distance communication was simulated was rudimentary in that it consisted only of a time delay below 60 seconds. This was not an accurate depiction of the communication dynamic between Earth and \textit{Curiosity}, however, such a simulation would have taken away from the experience of the user.
+        The means by which long distance communication was simulated was rudimentary in that it consisted only of a time delay below 60 seconds. This was not an accurate depiction of the communication dynamic between Earth and \textit{Curiosity}, however, such a simulation would have detracted from the experience of the user.
         \item \textbf{Fully Satisfied}
         \item \textbf{Fully Satisfied}
       \end{RS}
@@ -188,13 +188,13 @@
   
   \subsection{Choice of RCE Board}
     \label{subsec:rec-choiceOfRCEBoard}
-    The Intel Edison together with the Arduino Breakout extension board was the hardware platform of choice for the RCE. During the conceptual design and development stage of the project, it was anticipated to provide the required performance and degree of connectivity for the project, as well as offered the required hardware interfaces. However, during design and development of the RCE, difficulties were faced with the hardware as well as in the platform form-factor and technology stack in general. The Intel Edison Arduino Breakout extension board contained multiple design flaws which were poorly documented and addressed.
+    The Intel Edison together with the Arduino Breakout extension board was the hardware platform of choice for the RCE. During the conceptual design and development stage of the project, it was anticipated to provide the required performance and degree of connectivity for the project, as well as offered the required hardware interfaces. However, during design and development of the RCE, difficulties were encountered with the hardware as well as in the platform form-factor and technology stack in general. The Intel Edison Arduino Breakout extension board contained multiple design flaws which were poorly documented and addressed.
     
-    Difficulties were also faced in the general platform technology stack, being the use of Node.js and Linux in the context of embedded hardware and control. The Intel Edison's operating system stack prevented the low level hardware access that would have been convenient in terms of the control subcomponent of the RCE. The use of \mintinline{js}{sysfs} as a means of software-hardware interface subjected the control to the non-determinism of the Linux operating system such as with the inability to accurately time pulse inputs from the HC-SR04 sensors. \mintinline{js}{sysfs} distanced the execution of user code from the control of hardware thus making the Intel Edison better suited to applications with more emphasis on embedded connectivity as opposed to the control of hardware and acquisition of data. However, this was not to be incorrectly contrasted with the benefits of being able to use JavaScript and Node.js together with the plethora of open-source software in the embedded context.
+    Difficulties were also encountered in the general platform technology stack, being the use of Node.js and Linux in the context of embedded hardware and control. The Intel Edison's operating system stack prevented the low-level hardware access that would have been convenient in terms of the control subcomponent of the RCE. The use of \mintinline{js}{sysfs} as a means of software-hardware interface subjected the control to the non-determinism of the Linux operating system such as with the inability to accurately time pulse inputs from the HC-SR04 sensors. \mintinline{js}{sysfs} distanced the execution of user code from the control of hardware thus making the Intel Edison better suited to applications with more emphasis on embedded connectivity as opposed to the control of hardware and acquisition of data. However, this was not to be incorrectly contrasted with the benefits of being able to use JavaScript and Node.js together with the plethora of open-source software in the embedded context.
   
   \subsection{Aesthetic Accuracy and Model Realism}
   \label{subsec:rec-aesthetics}
-    The use of 3D printing for the majority of the components allowed for a high degree of realism as well as provided better than expected strength and suitability from a mechanical perspective. Various aspects of the model could have been improved in terms of aesthetic accuracy (\ref{li:probDef-spec-mechanical-realism}). The use of M3 sized fasteners for the majority of the mounting took away from the realism of the model and was identified as an over-design as far as structural stability was concerned. The use of M2 fasteners (or smaller) would have improved the aesthetics of the rover and still been a suitable means to fastening of components. The use of nut and bolt fasteners for the aluminium tubing as part of the suspension system also detracted from the realism of this system and could have been replaced with set screws for a less dominant appearance.
+    The use of 3D printing for the majority of the components allowed for a high degree of realism as well as provided better than expected strength and suitability from a mechanical perspective. Various aspects of the model could have been improved in terms of aesthetic accuracy (\ref{li:probDef-spec-mechanical-realism}). The use of M3 sized fasteners for the majority of the mounting took away from the realism of the model and was identified as an over-design as far as structural stability was concerned. The use of M2 fasteners (or smaller) would have improved the aesthetics of the rover and still been a suitable means to fastening of components. The use of nut and bolt fasteners for the aluminium tubing as part of the suspension system also detracted from the realism of this system and could have been replaced with set screws for a less prominent appearance.
     
     However, the objective of the model design was for it to be accurate enough to be easily recognised as a replication of \textit{Curiosity} and this was successfully achieved.
   

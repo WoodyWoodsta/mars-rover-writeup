@@ -1,16 +1,16 @@
 \chapter{Recommendations and Future Work}
   \section{Recommendations}
     \subsection{RCE Hardware Platform}
-      As discussed in Section~\ref{subsec:rec-choiceOfRCEBoard}, the Intel Edison exhibited hardware-software limitations which negatively impacted the performance of some of the peripherals. A candidate solution would be to split the responsibility of the RCE between two devices. The Intel Edison performed well for scheduling, communication and video streaming and thus remains a suitable device for those responsibilities. A separate micro-controller module could be designed to accompany the Intel Edison, and would handle control of hardware and acquisition of data from hardware with the required performance and accuracy. The accompanying module could communicated with the Intel Edison via a serial interface such as I$^2$C and potentially alleviate the requirement for the Arduino extension module thus reducing the RCE boards spatial footprint.
+      As discussed in Section~\ref{subsec:rec-choiceOfRCEBoard}, the Intel Edison exhibited hardware-software limitations which negatively impacted the performance of some of the peripherals. A candidate solution would be to split the responsibility of the RCE between two devices. The Intel Edison performed well for scheduling, communication and video streaming and thus remains a suitable device for those responsibilities. A separate micro-controller module could be designed to accompany the Intel Edison, and would handle control of hardware and acquisition of data from hardware with the required performance and accuracy. The accompanying module could communicate with the Intel Edison via a serial interface such as I$^2$C and potentially alleviate the requirement for the Arduino extension module thus reducing the RCE boards spatial footprint.
       
     \subsection{Web Camera}
-      The web camera chosen included many unnecessary features which were not required by the design. It is recommended that a smaller web camera module be used to decrease the required size of the head component and thus bring the mast assembly to within proportions.
+      The web camera chosen included many unnecessary features which were not required by the design. It is recommended that a smaller web camera module be used to decrease the required size of the head component and thus bring the camera and head sensor assembly to within proportions.
       
     \subsection{Proximity Sensors}
       The HC-SR04 ultrasonic sensors provided accurate proximity measurements, but were large in comparison to the majority of the body components. A smaller proximity sensor device would dominate less the overall aesthetic of the rover. If the Intel Edison is to be used for data acquisition, a proximity sensor with a digital interface would benefit the design.
       
     \subsection{Drive Servos}
-      It is recommended to use servos designed to be continuously rotating to ensure stability of the mounting of wheels. Servos with metal gears would also bring torque and robustness benefits to the driving of the wheels and the rover's traversal capabilities in general.
+      It is recommended to use servos designed for continuous rotation to ensure stability of the mounting of wheels. Servos with metal gears would also bring torque and robustness benefits to the driving of the wheels and the rover's traversal capabilities in general.
       
   \section{Future Work}
     \subsection{Rover Model as Mission and Operations Test Bed}
