@@ -1,9 +1,9 @@
 \chapter{Rover Model Development Methodology}
 \section{Development Objectives}
   \subsection{Problem Definition}
-  The project aimed to propagate the theme of science education and outreach, leveraging the modern technologies of today, through the development of a working, scaled down version of the \textit{Curiosity} rover. The project brief indicated that the typical use case as desired by the client was to have the rover simulate chosen, significant features of the rover on Mars to shed some light on the level of capability of space technologies that are currently in operation. The model will be set either in a simulated Martian environment or in a small display area and be required to be remotely controllable, providing video and telemetry to viewers and viewer's devices the same way the RSVP would to the flight team at JPL.
+  The project aims to support science education and outreach, leveraging the modern technologies of today, through the development of a working, scaled down version of the \textit{Curiosity} rover. The project brief indicated that the typical use case as desired by the client was to have the rover simulate chosen, significant features of the rover on Mars to shed some light on the level of capability of space technologies that are currently in operation. The model will be set either in a simulated Martian environment or in a small display area and is required to be remotely controllable, providing video and telemetry to viewers and viewer's devices the same way the \textit{Curiosity} RSVP would to the flight team at JPL.
   
-  As an initiation of the project, the requirements were explored and collated below into a list of those pertaining to the vehicle itself in a sense of the hardware as well as the software that encompassed the operation of the vehicle as an educational piece. The requirements made sure to maintain as little reference to technologies available as possible as this detail was to be further developed after analysis of the requirements on a functional level.
+  As an initiation of the project, the requirements were explored and collated below into a list of those pertaining to the vehicle itself in a sense of the hardware as well as the software that encompassed the operation of the vehicle. The requirements made as little reference to technologies available as possible as this detail was to be further developed after analysis of the requirements on a functional level.
   
   \subsection{Project Requirements}
   \label{subsec:probDef-projectRequirements}
@@ -21,7 +21,7 @@
     \item Develop a software system to accompany the above rover in its functioning. The software system should:
     \begin{enumerate}
       \item be able to receive data in the form of video and telemetry from the model,
-      \item be able to present the data received to users or operators in an interactive manner on a platform that is available and accessible,
+      \item be able to present the data received to users or operators in an interactive manner on a platform that is readily available and accessible,
       \item allow input of commands or control by the users in a manner which is both friendly to a wide range of audiences and age groups and as closely representative of the manner in which JPL's flight team would do so,
       \item transmit these commands to the model to be executed, and
       \item facilitate the reception and transmission of the above data wirelessly.
@@ -33,25 +33,22 @@
     
     \begin{itemize}
       \item Typical exhibition space limited to a dimension of 3m x 3m
-      \item 
+      \item Availability and access to 3D printing facilities
     \end{itemize}
     
     ![Fill out]
     
   \subsection{Functional Analysis}
-    The client requirements as highlighted in the previous sub-section were analysed to result in a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but is instead the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
+    The client requirements as highlighted in the previous sub-section were analysed to develop a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but is instead the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
     
-    The current requirements distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing natural design approaches made it suitable to discuss them separately, where appropriate. The specifications indicated the possibility of a subset of \textit{Curiosity's} primary functions be included in the model. The requirement of a video feed as well as simulated terrain traversal implied there be at least the mast subsystem, which included the moving head components, and a functioning wheel and suspension system that could be controlled. The ability to drive the rover as well as point the camera via motion of the head component was deemed a combination of functions that would contribute well towards providing an engaging experience for the users. These two systems were driving of the inclusion of the accompanying systems and components, a breakdown of which can be seen in Figure~\ref{fig:specs-functionalBreakdown}.
+    The current manner in which the requirements were formulated distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing natural design approaches made it suitable to discuss them separately, where appropriate. The specifications indicated the possibility of a subset of \textit{Curiosity's} primary functions being included in the model. The requirement of a video feed as well as simulated terrain traversal implied there be at least the mast subsystem, which included the moving head components, and a functioning wheel and suspension system that could be controlled. The ability to drive the rover as well as point the camera via motion of the head component was deemed a combination of functions that would contribute well towards providing an engaging experience for the users. These two systems drove the inclusion of the accompanying systems and components, a breakdown of which can be seen in Figure~\ref{fig:specs-functionalBreakdown}.
     
     \begin{figure}[h]
       \centering
       \includegraphics[width=0.6\textwidth]{figures/specs-functionalBreakdown}
-      \caption[Diagram showing the simplified breakdown of functional entities of the project]{Diagram showing the simplified breakdown of functional entities of the project}
+      \caption[High-level breakdown of functional entities of the project]{High-level breakdown of functional entities of the project}
       \label{fig:specs-functionalBreakdown}
     \end{figure}
-    
-    ![Fill out]
-    ![Need to include something about outreach]
     
     \subsubsection{Rover Equivalence and Terminology}
     \label{subsubsec:rover-equivalence}
@@ -61,7 +58,7 @@
     
     
   \subsection{Technical Specifications}
-    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}. The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design. Section~\ref{sec:secondary-objectives} adds to the these specifications a list of secondary objectives which were considered during the design process, but were not mandatory.
+    The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}. The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design.
     
     \subsubsection{Vehicle Specifications}
     \label{subsec:probDef-vehicleSpecifications}
@@ -70,7 +67,7 @@
         \begin{RM}
           \item General Specifications:
           \begin{RM}
-            \item Be as proportional as possible to the Curiosity rover on Mars
+            \item Be as dimensionally accurate as possible to the Curiosity rover on Mars
             \item\label{li:probDef-spec-mechanical-realism} Exhibit a satisfactory level of realism and external aesthetic accuracy
           \end{RM}
           \item Body:
@@ -88,7 +85,7 @@
             \item Provide mount point for the head module
             \item Facilitate full rotation about the $z$-axis (camera panning/yaw axis)
             \item Facilitate at least $120^\circ$ degrees rotation about the $y$-axis (camera pitching axis)
-            \item Be structurally secure providing robustness against lateral forces on mounted head module
+            \item Be structurally secure providing robustness against lateral forces on the mounted head module
           \end{RM}
           \item Head:
           \begin{RM}
@@ -103,8 +100,8 @@
           \end{RM}
           \item Wheels and Hubs/Pivots:
           \begin{RM}
-            \item Match the shape and proportion of the wheels on Curiosity
-            \item Provide traction required for the proposed terrain
+            \item Match the shape and proportion of the wheels on \textit{Curiosity}
+            \item Provide traction required for an analogue Martian terrain
             \item Have steering capabilities which would amount to arc pattern traversal as well as rotation of the rover around a central fixed point
           \end{RM}
         \end{RM}
@@ -127,7 +124,7 @@
           \item Power:
           \begin{RE}
             \item Provide power for the central control hardware as well as actuation and sensor hardware components
-            \item Fit inside or on the body module
+            \item Power supply unit must fit inside or on the body module
             \item Have the ability to be turned switched off or on
             \item Allow convenient removal of source
             \item Allow easy access to charging ports
@@ -142,7 +139,7 @@
           \item Camera:
           \begin{RE}
             \item Facilitate a monoscopic video feed
-            \item Be mountable to the inside of the head module
+            \item Be mountable inside the head module
             \item Be compatible with the central control module in terms of data interface
           \end{RE}
       \end{RE}
@@ -170,7 +167,7 @@
           \item Video Stream:
           \begin{RS}
             \item Provide a stream of the video data to the connected client
-            \item Provide video resolution on or above VGA (640x480) resolution
+            \item Provide video resolution on or above VGA (640$\times$480) resolution
           \end{RS}
         \end{RS}
         
@@ -218,6 +215,3 @@
           \end{RS}
         \end{RS}
       \end{itemize}
-  
-  \subsection{Secondary Objectives}
-  \label{sec:secondary-objectives}

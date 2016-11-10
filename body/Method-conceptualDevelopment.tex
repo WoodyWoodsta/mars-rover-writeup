@@ -1,7 +1,9 @@
 \section{Conceptual Design and Development}
-  It was clear from the composed list of specifications that both electrical and mechanical aspects of the project required development of a large number of parts. In a typical conceptual design process, one could propose a number of complete concepts (i.e. incorporating all aspects of the project) and then make a judgement based on analysis of these concepts. For this project, it was decided that each of the subcomponents outlined in the specifications be conceptually envisioned separately with consideration of neighbouring or related subcomponents and the compatibility between each. Analysis was then undertaken for each of the subcomponents and a final design was composed in a convergent manner, taking the best concept from each of the analyses.
+  It was clear from the list of specifications that both electrical and mechanical aspects of the project required development of a large number of parts. In a typical conceptual design process, one could propose a number of complete concepts (i.e. incorporating all aspects of the project) and then make a judgement based on analysis of these concepts. For this project, it was decided that each of the subcomponents outlined in the specifications be conceptually envisioned separately with consideration of neighbouring or related subcomponents and the compatibility between each. Analysis was then undertaken for each of the subcomponents and a final design was composed in a convergent manner, taking the best concept from each of the analyses.
   
-  The fact that the design of \textit{Curiosity} off which this model was based helped to maintain structure during a highly parallel, componentised conceptual development. However, the majority of the software components and some hardware components relied on the design of other components therefore the design process was not \textit{entirely} parallel. In fact, in the case of the vehicle development, it was due to it being largely a process of replication that most of the conceptual development involved material and manufacture design choices as opposed to brand new conceptual ideas that required analysis of design feasibility.
+  The project requirement to produce a high-fidelity replica of \textit{Curiosity} helped to maintain structure during a highly parallel, componentised conceptual development. However, the majority of the software components and some hardware components relied on the design of other components therefore the design process was not \textit{entirely} parallel. In fact, in the case of the vehicle development, it was due to it being largely a process of replication that most of the conceptual development involved material and manufacture design choices, as opposed to new conceptual ideas that would have required analysis of design feasibility.
+  
+  After descriptions of each of the component concepts, a weighted comparative analysis was performed and the results of each of these analyses is tabulated. A selection of attributes relevant to each component was given a weight on a scale of one to five indicating the importance of the attribute to the design. Each of the concepts was given a score for each attribute. A weighted sum of each of the concepts' scores resulted in a final score used to determine which concept was more suitable for the design.
   
   \subsection{Rover Concept Proposals}
   \label{subsec:rover-concept-proposals}    
@@ -15,18 +17,18 @@
         \item \textbf{Perspex/Acrylic Sheet Assembly:} The next idea involved creating the box by designing and cutting panels from acrylic sheet of acceptable thickness, and later fusing the panels to form the structure. Cut-outs could have been included in the design together with holes for shafts and mounting points, which may also have been drilled after the fact. Internal support structures could have been included if the strength of the bonds or of the structure in general was in question due to the fact that acrylic sheet offers high flexibility. Figure~![] shows an example of how the panels might be assembled.
         
         ![Perspex concept render]
-        \item \textbf{3D Printing:} One of the aims of the project was to develop the model with high realism in an attempt to make the use of the simulator an engaging and appealing experience. The idea of 3D printing the box structure was considered and it would have allowed for a large degree of detail to be included at little additional effort or cost. Most features such as mounting points (those beyond just holes) and aesthetic detail could have been designed on top of base and internal structural support. A material could have been chosen which might offer the required rigidity, however, due to the nature of the manufacturing process, specifically the reliance on heat for the deforming of the plastic filament in the printing process, 3D printed components would not provide the same strength and robustness as compared to that of the other concepts. A 3D model of the rover created and published by NASA was found which was intended for 3D printing. Of specific interest was the body component which shows the detail that is achievable with this method a render of which is in Figure~![].
+        \item \textbf{3D Printing:} One of the aims of the project was to develop the model with high realism in an attempt to make the use of the simulator an engaging and appealing experience. The idea of 3D printing the box structure was considered and it would have allowed for a large degree of detail to be included at little additional effort or cost. Most features such as mounting points (those beyond just holes) and aesthetic detail could have been designed on top of base and internal structural support. A material could have been chosen which might offer the required rigidity, however, due to the nature of the manufacturing process, specifically the reliance on heat for the deforming of the plastic filament in the printing process, 3D printed components would not provide the same strength and robustness as compared to that of the other concepts. A 3D model intended for 3D printing of \textit{Curiosity} created and published by NASA was found \cite{nasa3Dprint}. Of specific interest was the body component which shows the detail that is achievable with this method, a render of which is in Figure~![].
         
         ![Figure of 3D nasa body model]
         
-        \item \textbf{Milled Aluminium:} Aluminium was another concept that was considered due to its easier manipulative qualities (compared to those of steel) as well as significant reductions in weight. The box structure could have been milled from a block to form the hollow structure that is required, using CNC technology. Holes for mounting and a fair degree of aesthetic detail, which may not have lived up to that achievable by 3D printing means, may have been possible as well. Having the box structure made from aluminium would have meant that threaded holes for mounting would have been possible, eliminating the need for full-stack fasteners.
+        \item \textbf{Milled Aluminium:} Aluminium was another concept that was considered due to its improved manipulative properties (compared to those of steel) as well as significant reductions in weight. The box structure could have been milled from a block to form the hollow structure that is required, using CNC technology. Holes for mounting and a fair degree of aesthetic detail, which may not have lived up to that achievable by 3D printing means, may have been possible as well. Having the box structure made from aluminium would have meant that threaded holes for mounting would have been possible, eliminating the need for full-stack fasteners.
       \end{enumerate}
       
       \subheading{Discussion}\\\\
-      All of the above concepts were achievable, however, each drew on very different material requirements and manufacturing techniques. Carbon fibre moulding and setting was seen as being a potentially difficult process in terms of ensuring an accurate outcome as it relied on a larger degree of manual manufacturing input. It was also the only idea that required extra components to be manufacture in support, namely the mould around which it would have been formed. The other three concepts allowed for more direct CAD-to-finished-product processes and the automation involved in the manufacture of them meant higher accuracy and less manual input. Since the model was small in scale, a design choice discussed further on in this report, strength of components and the weight of other components was far less of a priority as compared to resistance to heat and level of detail.
+      All of the above concepts were practical, however, each drew on very different material requirements and manufacturing techniques. Carbon fibre moulding and setting was seen as being a potentially difficult process in terms of ensuring an accurate outcome as it relied on a larger degree of manual manufacturing input. It was also the only idea that required extra components to be manufactured in support, namely the mould around which it would have been formed. The other three concepts allowed for more direct CAD-to-finished-product processes and the automation involved in the manufacture of them meant higher accuracy and less manual input. Since the model was small in scale (a design choice discussed further on in this report) strength of components and the weight of other components was far less of a priority as compared to resistance to heat and level of detail.
       
       \subheading{Comparative Analysis}\\\\
-      Table~\ref{tab:concept-compAnalysisBody} shows the weighted comparative analysis of the body concepts.
+      A comparative analysis of the four options for the design and manufacture of the body is shown in Table~\ref{tab:concept-compAnalysisBody}.
       
       \begin{table}[H]
       \centering
@@ -48,9 +50,9 @@
       \label{tab:concept-compAnalysisBody}
       \end{table}
     \subsubsection{Suspension System}
-      The suspension system of the rover was a critical part with respect to the traversal requirements. It was decided up front that the system replicate the feature as it was on \textit{Curiosity} in both appearance and in operation. The Rocker-bogie mechanical principle employed for the \textit{Curiosity's} suspension system was simple and robust and therefore made clear the decision to use the principle in the model as well. The design problem here was more concerned with the structure and material of the joints as well as how they would be fitted with the beams/rods that links the system together. Another design consideration was that of the differential cross-beam that was mounted to the top of the \textit{Curiosity} which articulated around a center point. The choice of differential bar was dealt with in a separate analysis.
+      The suspension system of the rover was a critical part with respect to the traversal requirements. It was decided up front that the rover should replicate this feature as it was on \textit{Curiosity} in both appearance and in operation. The Rocker-bogie mechanical principle employed for the \textit{Curiosity's} suspension system was simple and robust and therefore made clear the decision to use the principle in the model as well. The design problem here was more concerned with the structure and material of the joints as well as how they would be fitted with the beams/rods that links the system together. Another design consideration was that of the differential cross-beam mounted to the top of \textit{Curiosity} which articulates around a center point. The choice of differential bar was dealt with in a separate analysis.
       
-      All of the concepts imply the use of shafts and bearings for free articulation between each of the rocker-bogie sections.
+      All of the concepts discussed below imply the use of shafts and bearings for free articulation between each of the rocker-bogie sections.
       
       \subheading{Concepts}
       \begin{itemize}
@@ -69,9 +71,11 @@
       \end{itemize}
 
       \subheading{Discussion}\\\\
-      The fully 3D printed concept was appealing in that it offered the most direct path from CAD design to the finished product but had much reduced structural qualities as opposed to that of the other concepts. Using a combination of tubing and manufactured joints made sense in terms of the nature of the features and aluminium tubing provided strength beyond what was required, at least as far as the tubing itself was concerned. Brackets made from sheet metal may have offered the best weight (that is, the lightest weight contribution) but required extra manual manufacture as well as would not have been suited to mounting bearings and the tubes whilst maintaining mount rigidity. Both milled aluminium and 3D printed joints solved this problem with the ability of being able to provide more rigidity for fastening tubes and fitting bearings. However, milled joints were bound in structure to the block of aluminium from which they were to be milled, meaning that in one particular plane, the axes of the joints would not have been able to be angled such as required by the suspension design.
+      The fully 3D printed concept was appealing in that it offered the most direct path from CAD design to the finished product but had much reduced structural qualities as opposed to that of the other concepts. Using a combination of tubing and manufactured joints made sense in terms of the nature of the features and aluminium tubing provided strength beyond what was required, at least as far as the tubing itself was concerned. Brackets made from sheet metal may have offered the best weight (that is, the lightest weight contribution) but required extra manual manufacture and would not have been suited to mounting bearings and the tubes whilst maintaining mount rigidity. Both milled aluminium and 3D printed joints solved this problem with the ability of being able to provide more rigidity for fastening tubes and fitting bearings. However, milled joints were bound in structure to the block of aluminium from which they were to be milled, meaning that in one particular plane, the axes of the joints would not have been able to be angled such as required by the suspension design.
       
       \subheading{Comparative Analysis}
+      A comparative analysis of these four options of design and manufacture of the suspension system is shown in Table~\ref{tab:concept-compAnalysisSus}.
+      
       \begin{table}[H]
       \centering
       \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}C{0.12\textwidth}@{}}
@@ -92,19 +96,21 @@
       \end{table}
       
     \subsubsection{Differential System}
-      The differential system comprised of a beam or arm that articulated about a center point on the top surface of the body and linkage mechanisms connecting the ends of the arm to the rocker pivot point on either side's suspension system. Due to the motion of the differential, strength was only required in the horizontal plane which gives reason for the thin, flat design of that on \textit{Curiosity}. The linkages on the ends of the bar required hinges with two degrees of freedom, the detail of which is discussed further on in this report. Once again, the principle of operation of this subsystem was taken from \textit{Curiosity} itself and therefore was not the design choice to be made here.
+      The differential system on \textit{Curiosity} comprises a beam or arm that articulates about a centre point on the top surface of the body and linkage mechanisms connecting the ends of the arm to the rocker pivot point on either side's suspension system. Due to the motion of the differential, strength is only required in the horizontal plane which gives reason for the thin, flat design of \textit{Curiosity}. Once again, the principle of operation of this subsystem was taken from \textit{Curiosity} itself and therefore was not the design choice to be made here. Considered were several possible material options to implement the differential bar on the rover. The linkages on the ends of the bar required hinges with two degrees of freedom, the detail of which is discussed further on in this report.
       
       \subheading{Concepts}
       \begin{itemize}
-        \item \textbf{Acrylic Sheet Bar with Steel Cord Linkage:} Since the differential bar was required to take forces in the horizontal plane, the bar did not have to be round and a conceptual idea involved cutting out the flat bar from acrylic sheet. The acrylic sheet would have been thick enough such that it be press fitted onto a bearing and shaft in the center of the body deck. The ends of the differential would then have been connected to the extensions on the main suspension joint by means of steel cord. The cord would have allowed for the degrees of freedom required given the interface between the differential bar and the suspension and each of their component axes of motion.
+        \item \textbf{Acrylic Sheet Bar with Steel Cord Linkage:} Since the differential bar was required to take forces in the horizontal plane, the bar did not have to be round and a conceptual idea involved cutting out the flat bar from acrylic sheet. The acrylic sheet would have been thick enough to be press fitted onto a bearing and shaft in the centre of the body deck. The ends of the differential bar would then have been connected to the extensions on the main suspension joint by means of steel cord. The cord would have allowed for the degrees of freedom required given the interface between the differential bar and the suspension and each of their component axes of motion.
         
         \item \textbf{3D Printed Bar with 3D Printed Hinge Pieces:} Instead of cutting the bar from acrylic sheet, this concept envisioned the bar being 3D printed. The linkages would have also been 3D printed as two parts per hinge bolted together and each end of the hinge (one at the suspension and one on the differential bar) would be joined together using threaded bar, secured by use of fasteners.
       \end{itemize}
       
       \subheading{Discussion}\\\\
-      Since the acrylic sheet is already flat, it suits the problem well and is easier in terms of manufacture compared to a 3D printed version. Holes for the bearings and the hinges on the ends of the bar could be included in the cutting process. Two sheets could have been glued together to form a thicker beam in the case that the bearing was thicker than the sheet. The 3D printed version, however, would have been of designed thickness thus allowing custom fitting for the bearing. Although steel cord was considered given it's flexibility and thus ability to cater for the ranges and axes of motion of either ends of the linkage, it was shortly dismissed given that it would have only been able to provide support in tension and not in compression. A fixed threaded bar, as proposed in the second concept, provides support in both tension and compression situations, therefore meeting the requirements. Threaded bar was chosen for easy fastening as well as providing the ability to adjust the extension of the linkage for fine tuning the balance of the suspension-differential system and ultimately the balance of the rover. In any case, a weighted comparison was still made in Table~\ref{tab:concept-compAnalysisDiff} since the 3D printed hinges were still compatible with the idea an acrylic sheet differential.
+      Since the acrylic sheet is already flat, it suits the requirement well and is easier in terms of manufacture compared to a 3D printed version. Holes for the bearings and the hinges on the ends of the bar could be included in the cutting process. Two sheets could have been glued together to form a thicker beam in the case that the bearing was thicker than the sheet. The 3D printed version, however, would have been of designed thickness thus allowing custom fitting for the bearing. Although steel cord was considered given its flexibility and thus ability to cater for the ranges and axes of motion of either ends of the linkage, it was rapidly dismissed given that it would have only been able to provide support in tension and not in compression. A fixed threaded bar, as proposed in the second concept, provides support in both tension and compression situations, therefore meeting the requirements. Threaded bar was chosen for easy fastening as well as providing the ability to adjust the extension of the linkage for fine tuning the balance of the suspension-differential system and ultimately the balance of the rover. In any case, a weighted comparison was still made in Table~\ref{tab:concept-compAnalysisDiff} since the 3D printed hinges were still compatible with the idea an acrylic sheet differential.
       
       \subheading{Comparative Analysis}
+      A comparative analysis of these two options for the design and manufacture of the differential system is shown in Table~\ref{tab:concept-compAnalysisDiff}.
+      
       \begin{table}[H]
       \centering
       \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.2\textwidth}C{0.2\textwidth}@{}}
@@ -128,22 +134,24 @@
     \subsubsection{Wheel Hubs and Pivots}
       The center wheels were fixed in rotation about the $z$-axis and thus the mounting features of these two wheels were included in the suspension system as in the previous concept section. The front and rear wheel pairs, however, were required to rotate in order to provide steering to the rover and therefore had to accommodate for this rotation as well as actuation components for this motion. The wheel pivots were also required to be attached to the suspension system.
       
-      The concepts developed for these components followed very similar concepts to those of the suspension hinges as they offered the same principles of articulation and mounting. The final decision would therefore be in accordance to the suspension system final design.
+      The concepts developed for these components followed very similar concepts to those of the suspension hinges as they offered the same principles of articulation and mounting. The final decision would therefore be in accordance with the final design of the suspension system.
       
     \subsubsection{Wheels}
-      The wheels on \textit{Curiosity} are signature features in aesthetics as well as, of course, in function. The wheel shape includes the characteristic curved cross-section which has benefits for terrain like that on Mars and are unique in the thinness of their outer surface or skin. It was noted that the relative strength of the wheels on the scaled model that was being developed would be required to be significantly less than on \textit{Curiosity} and so the design choice here was based primarily on the resulting aesthetic accuracy as the wheels would serve as a great feature in which to fulfil the client requirement of the model being highly realistic.
+      The wheels on \textit{Curiosity} are signature features in aesthetics as well as, of course, in function. The wheel shape includes the characteristic curved cross-section which has benefits for terrain like that on Mars and are unique in the thinness of their outer surface or skin. It was noted that the relative strength of the wheels on the scaled model that was being developed would be required to be significantly less than on \textit{Curiosity} and so the design choice here was based primarily on the resulting aesthetic accuracy as the wheels would serve as a key feature in which to fulfil the client requirement of the model being highly realistic.
       
       \subheading{Concepts}
       \begin{itemize}
-        \item \textbf{3D Printed Wheels:} The fact that the wheels had the distinct shape that they did meant that 3D printing them would render highly accurate representations in terms of their shape on those of \textit{Curiosity}. The design would include holes and points at which shafts and/or bearings could be fitted without the need for drilling or any other type of post-produce manipulations.
+        \item \textbf{3D Printed Wheels:} The fact that the wheels had the distinct shape that they did meant that 3D printing them would render highly accurate representations in terms of their shape compared to those of \textit{Curiosity}. The design would include holes and points at which shafts and/or bearings could be fitted without the need for drilling or any other type of post-produce manipulations.
         
-        \item \textbf{Off-the-shelf RC Wheels:} Another option was to purchase read-made wheels and tires intended for use on radio-controlled cars. The wheels would have points for mounting by default and would offer the benefits of a rubber tire over that of plastic. Once again, this idea was borrowed from the OpenCuriosity model in ![]. The project indicated that this method was successful in function.
+        \item \textbf{Off-the-shelf RC Wheels:} Another option was to purchase ready made wheels and tires intended for use on radio-controlled cars. The wheels would have points for mounting by default and would offer the benefits of a rubber tire over that of plastic. Once again, this idea was borrowed from the OpenCuriosity model in ![]. The project indicated that this method was successful in function.
       \end{itemize}
       
-      \subheading{Discussion}
+      \subheading{Discussion}\\\\
          While the 3D printed wheels would have offered less structural robustness as ready-made wheels designed to endure high impact, gravel environments, there was no requirement for the model to traverse any faster or in any better manner than \textit{Curiosity} and thus the added benefit of the rubber tires and strong wheels would be an over-design. Although the RC wheels would have had points at which shafts could be fitted, and potentially even bearings already installed, this would impose limitations on the size of the shafts chosen. In the case of the 3D printed wheels, holes sizes could have been chosen to work with materials and bearings that were available.
          
       \subheading{Comparative Analysis}
+        A comparative analysis of these two options for representing the wheels is shown in Table~\ref{tab:concept-compAnalysisWheel}.
+      
         \begin{table}[H]
         \centering
         \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.2\textwidth}C{0.2\textwidth}@{}}
@@ -165,7 +173,7 @@
         \end{table}
       
     \subsubsection{Neck and Head}
-      The mast of the model required rotation about the $z$-axis and a joint about which an additional axis of rotation was possible to result in two degrees of freedom for the head component. \textit{Curiosity} employed a hinge mounted to the bottom of a second, smaller box structure, the head, which rotated to provide camera pitch. The pitch actuation mechanism was situated atop a second mechanism which provided actuation for pan-axis rotation. The size of \textit{Curiosity} allowed smart fitting of the motors in-line with the mast shaft and embedded in the head mount hinge, however, the scaled model was not able to accommodate for motors in this way. ![Put this in the detailed design, concept designs are meant to be somewhat ideal!] It was decided that it be acceptable for the mast assembly to be out of proportion, visually, in order to be able to fit the required actuation (the component choices of which were largely based on availability).
+      The mast of the model required rotation about the $z$-axis and a joint about which an additional axis of rotation was possible to result in two degrees of freedom for the head component. \textit{Curiosity} employed a hinge mounted to the bottom of a second, smaller box structure, the head, which rotated to provide camera pitch. The pitch actuation mechanism was situated atop a second mechanism which provided actuation for pan-axis rotation. The size of \textit{Curiosity} allowed smart fitting of the motors in-line with the mast shaft and embedded in the head mount hinge, however, the scaled model was not able to accommodate motors in this way.
       
       \subheading{Concepts}
       \begin{itemize}
@@ -178,7 +186,7 @@
           \label{fig:concepts-aluMast}
         \end{figure}
         
-        \item \textbf{Full 3D Printed Assembly:} As opposed to making use of the aluminium tube, this concept employs 3D printing for the full assembly which would be mounted to the top of the rover body with no portion of it extending below the deck. The camera-pan actuation would be the same as in the previous concept but the camera-pitch actuation mechanism would be brought above the level of the rover deck. Further, an actuation mechanism that combines both axes of motion could ave been developed to reduce the spatial footprint that it might have incurred. The width of the base of the mast, at the mounting point, would be increased to provide structural support.
+        \item \textbf{Full 3D Printed Assembly:} As opposed to making use of aluminium tubing, this concept employs 3D printing for the full assembly which would be mounted to the top of the rover body with no portion of it extending below the deck. The camera-pan actuation would be the same as in the previous concept but the camera-pitch actuation mechanism would be brought above the level of the rover deck. Further, an actuation mechanism that combines both axes of motion could have been developed to reduce the spatial footprint that it might have incurred. The width of the base of the mast, at the mounting point, would be increased to provide structural support.
         
         \begin{figure}[H]
           \centering
@@ -190,9 +198,11 @@
       \end{itemize}
       
       \subheading{Discussion}\\\\
-        Positioning one of the two component actuation mechanisms inside the body had benefits for the spatial footprint above the rover deck, however, the implications of taking up more space inside the body were far greater given the intended use of that area. Having the entire tube mast rotate within the opening hole from below the deck might have increased the torque requirements on the actuation mechanism, dependant on the nature of the opening. The intended use of the opening was to provide structural support and any fit tolerance introduced to improve the torque requirements of the actuation would negatively impact the effectiveness of the hole feature in its support function. This could have been solved with a bearings, however, that would have incurred addition room for mounting.
+        Positioning one of the two component actuation mechanisms inside the body had benefits for the spatial footprint above the rover deck, however, the implications of taking up more space inside the body were far greater given the intended use of that area. Having the entire tube mast rotate within the opening hole from below the deck might have increased the torque requirements on the actuation mechanism, dependant on the nature of the opening. The intended use of the opening was to provide structural support and any fit tolerance introduced to improve the torque requirements of the actuation would negatively impact the effectiveness of the hole feature in its support function. This could have been solved with a bearings, however, that would have incurred additional room for mounting.
       
       \subheading{Comparative Analysis}
+      A comparative analysis of the two options for the construction of the neck and head assembly is shown in Table!\ref{tab:concept-compAnalysisMast}.
+      
         \begin{table}[H]
         \centering
         \begin{tabular}{@{}L{0.3\textwidth}C{0.12\textwidth}C{0.2\textwidth}C{0.2\textwidth}@{}}
@@ -209,7 +219,7 @@
         Strength & 5 & 5 & 4 \\ \midrule
         \multicolumn{2}{r}{\textbf{Total}} & 3.200 & \textbf{3.514} \\ \bottomrule
         \end{tabular}
-        \caption{Comparative analysis of the wheel and tire concepts}
+        \caption{Comparative analysis of the neck and head assembly concepts}
         \label{tab:concept-compAnalysisMast}
         \end{table}
       
@@ -219,7 +229,7 @@
       \subheading{Concepts}
       \begin{itemize}
         \item \textbf{High Torque DC Motors:} Using high torque DC motors would have been the most accurate replication of the actuation as used on \textit{Curiosity}, as each of the mechanisms had high-ratio gearboxes attached to the brushless motors. The DC motors would have been controlled by means of PWM which would have resulted in an output angular velocity. For this reason, a control loop mechanism would have to be employed for positional motor control in the case of the subsystems that required it.
-        \item \textbf{Analog RC Servos:} A candidate alternative to using high torque DC motors that was considered was servos, intended for radio-control vehicle use, into which a high-torque gearbox was already built. An example of this type of motor is shown in Figure~\ref{fig:concepts-servoMotorExample}. The motors operated using a pulse signal of which the width translated to a specific position as a percentage of the motor's rated angular range.
+        \item \textbf{Analog RC Servos:} A candidate alternative to using high torque DC motors that was considered was servos, intended for radio-control vehicle use, into which a high-torque gearbox was already built. An example of this type of motor is shown in Figure~\ref{fig:concepts-servoMotorExample}. The motors operate using a pulse signal of which the width translated to a specific position as a percentage of the motor's rated angular range.
         
         \begin{figure}[H]
           \centering
@@ -237,14 +247,14 @@
     
     \subsubsection{Central Control System}
     \label{subsubsec:central-control-system}
-      The central control system was a critical component not only to the rover, but to the conceptual design process as it was an enabler/disabler of many of the candidate solutions. Discussed here are the electronic hardware comparisons made with respect to the central control system. The software design process took on a secondary priority approach and as such, the hardware choices were driving of the design (not without consideration of implications in the software system). As will be mentioned in full in the detailed design section, it was intended to follow a COTS design approach as far as possible given the time-frame of the project as well as the notion of keeping the design open to others who might be familiar with the hardware components chosen with respect to the aim of open sourcing. As far as education and outreach is concerned, familiar hardware is well suited to helping users and those involved in the project learn the principles of a rover design.
+      The central control system was a critical component not only to the rover, but to the conceptual design process as it was an enabler/disabler of many of the candidate solutions. Discussed here are the electronic hardware comparisons made with respect to the central control system. The software design process took on a secondary priority approach and as such, the hardware choices were driving of the design (not without consideration of implications in the software system). As will be mentioned in full in the detailed design section, it was intended to follow a COTS design approach as far as possible given the time-frame of the project as well as the notion of keeping the design open to others who might be familiar with the hardware components chosen with respect to the aim of open sourcing. As far as education and outreach is concerned, familiar hardware is well suited to helping users and those involved in the project learn the principles of rover design.
       
-      Conceptual candidate systems included popular, small, single-board computers, sized appropriately with the intention of fitting the system in the body of the model. Note that the lower-level device class suited to deeper embedded software applications was considered and would have proved suitable if it was not for the video streaming requirements. It was anticipated that the video feed would require on-rover encoding and compression and thus imposing the need for a better performing device capable of running a high-level operating system. The requirements for this system, which included wireless communication and embedded interfaces, were kept in mind when performing the comparative analysis. Notable specifications in accordance with the requirements are shown for each of the boards.
+      Conceptual candidate systems included popular, small, single-board computers, sized appropriately with the intention of fitting the system in the body of the model. Note that the lower-level device class suited to deeper embedded software applications was considered and would have proved suitable if it were not for the video streaming requirements. It was anticipated that the video feed would require on-rover encoding and compression and thus imposing the need for a better performing device capable of running a high-level operating system. The requirements for this system, which included wireless communication and embedded interfaces, were kept in mind when performing the comparative analysis. Notable specifications in accordance with the requirements are shown for each of the boards.
       
       \subheading{Concepts}
       \begin{itemize}
         \item \textbf{Raspberry Pi Model B:}
-          The Raspberry Pi was a credit-card sized single-board computer which was developed with the intention of aiding computer-science education. It made use of a well-performing CPU as well as an on-chip GPU making it suitable for low-end, media-based computational applications. Raspberry Pi computers have a very large online community from which vast resources were available.
+          The Raspberry Pi is a credit-card sized single-board computer which was developed with the intention of aiding computer-science education. It made use of a well-performing CPU as well as an on-chip GPU making it suitable for low-end, media-based computational applications. Raspberry Pi computers have a very large online community from which vast resources were available.
           
           Notable specifications (for the 3rd generation model):
           \begin{itemize}
@@ -253,7 +263,7 @@
             \item \textbf{Storage:} None, microSD Card Slot
             \item \textbf{GPIOs:} 40 pins, 
             \item \textbf{Network Connectivity:} Bluetooth 4.1 and Bluetooth Low Energy, 100 Mb Ethernet, 2.4 GHz wireless
-            \item \textbf{Other External Interfaces:} 4x USB 2.0, Camera Serial Interface (CSI)
+            \item \textbf{Other External Interfaces:} 4$\times$ USB 2.0, Camera Serial Interface (CSI)
           \end{itemize}
         \item \textbf{Orange Pi:}
           The Orange Pi, an open source variant to the Raspberry Pi, was considered as it offered much the same capabilities as the Rasberry Pi. It was able to run many open source operating systems such as Debian and Ubuntu.
@@ -265,11 +275,11 @@
             \item \textbf{Storage:} None, microSD Card Slot, SATA 2.0 Connector
             \item \textbf{GPIOs:} 40 pin header, 
             \item \textbf{Network Connectivity:} 1 Gb Ethernet, 2.4 GHz wireless
-            \item \textbf{Other External Interfaces:} 4x USB 2.0, Camera Serial Interface (CSI)
+            \item \textbf{Other External Interfaces:} 4$\times$ USB 2.0, Camera Serial Interface (CSI)
           \end{itemize}
           
         \item \textbf{Beaglebone Green Wireless:}
-          The Beaglebone Green is another small board as part of the Beaglebone device family, a range of single board computers that have been developed to bridge the gap between embedded electronics and computers. The green version is better suited for embedded applications compared to that of the black version and was the only Beaglebone device that had wireless connection capabilities.
+          The Beaglebone Green is another small board as part of the Beaglebone device family, a range of single-board computers that have been developed to bridge the gap between embedded electronics and computers. The green version is better suited for embedded applications compared to that of the black version and was the only Beaglebone device that had wireless connection capabilities.
           
           Notable specifications \cite{mouserbeaglebone_2016}:
           \begin{itemize}
@@ -278,11 +288,11 @@
             \item \textbf{Storage:} 4 GB eMMC
             \item \textbf{GPIOs:} 65 pins, 
             \item \textbf{Network Connectivity:} Bluetooth 4.1, Bluetooth Low Energy, 2.4 GHz wireless
-            \item \textbf{Other External Interfaces:} 4x USB 2.0
+            \item \textbf{Other External Interfaces:} 4$\times$ USB 2.0
           \end{itemize}
           
         \item \textbf{Intel Edison:}
-          The Intel Edison is less of a single board computer and more of a complete system on chip mounted to a small board intended for use in the Internet-of-Things industry as well as for mobile and wearable products. The tiny module can further be mounted to a breakout board which provides USB interfaces and a GPIO through-hole grid.
+          The Intel Edison is less of a single-board computer and more of a complete system on chip mounted to a small board intended for use in the Internet-of-Things industry as well as for mobile and wearable products. The tiny module can further be mounted to a breakout board which provides USB interfaces and a GPIO through-hole grid.
 
           Notable specifications ![cite]:
           \begin{itemize}
@@ -291,7 +301,7 @@
             \item \textbf{Storage:} 4 GB eMMC
             \item \textbf{GPIOs:} 28 pins, 
             \item \textbf{Network Connectivity:} Bluetooth 4, 2.4 GHz wireless
-            \item \textbf{Other External Interfaces:} 1x USB 2.0, 1x USB Serial (UART), as provided by the breakout board
+            \item \textbf{Other External Interfaces:} 1$\times$ USB 2.0, 1$\times$ USB Serial (UART), as provided by the breakout board
           \end{itemize}
  
         \item \textbf{Intel Edison w/ Arduino Breakout Expansion:}
@@ -306,12 +316,12 @@
             \item \textbf{Memory:} 256 MB
             \item \textbf{Storage:} None, SD Card Slot
             \item \textbf{Network Connectivity:} 1 Gb Ethernet Port
-            \item \textbf{Other External Interfaces:} 3x USB 2.0, 1x USB Serial (UART)
+            \item \textbf{Other External Interfaces:} 3$times$ USB 2.0, 1$\times$ USB Serial (UART)
           \end{itemize}
       \end{itemize}
       
       \subheading{Discussion:}\\\\
-        After careful research into each of the above candidate products, it was decided that all of the boards were suitable for the central computing system of the rover. All of the devices were capable of running high-level operating systems as well as had some means of connecting to a video capture device as well as providing hardware interfaces that might have been required. However, caution was taken to choose a device that would not be over-powered for the application nor provide breakouts and interfaces that would have been left unused. At this point in the design process, it was difficult to determine the exact computational requirements and so the design choice was made based on anticipative measures. It must also be noted that the choice was largely influenced by availability and cost of the devices.
+        After careful research into each of the above candidate products, it was decided that all of the boards were suitable for the central computing system of the rover. All of the devices were capable of running high-level operating systems as well as had some means of connecting to a video capture device as well as providing hardware interfaces that might have been required. However, caution was taken to choose a device that would not be over-powered for the application nor provide breakouts and interfaces that would have been left unused. At this point in the design process, it was difficult to determine the exact computational requirements and so the design choice was made based on anticipative measures. It must be noted that the choice was also strongly influenced by availability and cost of the devices.
         
         \begin{table}[H]
         \centering
@@ -345,7 +355,7 @@
       \end{itemize}
       
       \subheading{Discussion}\\\\
-        The performance benefit of candidate cameras was not possible to determine based on their interface type, but rather the manufacturer and the designed specifications. It was decided that the camera be chosen based on compatibility with the central control system and availability of such a device.
+        The performance benefit of candidate cameras was not possible to determine based on their interface type, but rather the manufacturer and the designed specifications. It was decided that the camera be chosen based on compatibility with the central control system and local availability of such a device.
       
     \subsubsection{Proximity}
       ![Fill out]
@@ -361,17 +371,17 @@
     \end{figure}
     
     \begin{enumerate}[label=\Alph*.]
-      \item It was decided that the body be made from acrylic sheet panels glued together to form the box structure required. The panel design, cutting and assembly was considered easier compared to the manufacturing of carbon fibre and 3D printing as well as being strong enough to provide the central structural support.
-      \item The suspension system was to be constructed from 3D printed joints and aluminium tubing for the superior total weight of the assembly and the concept's compatibility with fittings to be made for mounting the wheels. The fact that the joints were to be 3D printed meant that it would become easy to model and print the arbitrary angles of that of the suspension design without the manufacture limitations imposed by other methods and materials. The joints allowed for the design to maintain an accurate representation of that on \textit{Curiosity} without sacrificing function and meant that close fit parts such as bearings could be easily incorporated into the design without imposing constraints on the choice of those types of parts.
-      \item A full 3D printed bar with printed hinges was to be used for the differential system due to the acrylic sheet and steel cord not being suitable for the required function. As mentioned in the concept's discussion, the 3D printed differential bar meant that a bearing could be correctly mounted for the motion required. The hinge on the differential bar side would be connected to the suspension side hinge by a threaded bar. As will be discussed, the connecting threaded bar could be used to adjust the distance between the hinges thus providing the ability to finely balance the rover during assembly.
-      \item The wheels were to be 3D printed which would allow for superior aesthetic accuracy and custom fit design for bearings and actuation. The 3D printed wheels would be lighter than bought wheels and was deemed worth the incurred manufacture time and cost.
-      \item The head and neck (mast) was to be fully 3D printed to make it more suitable to being mounted to the top of the rover deck without any portion of it extending into the body of the rover, taking up space required for the electronics. 3D printing meant the ability to accommodate for the chosen means of actuation. The head would be designed to consist of two parts so that access to the internals of the head was possible. This sub-assembly was then to be mounted to parts connected to the actuation and further parts for mounting on the rover deck.
-      \item Choice of actuation settled upon the use of RC servos. The servos were to be of a suitable size, preferably ``sub-micro''\footnote{A ``sub-micro'' servo motor is one of a range of standard sized servos for robotics and radio-controlled vehicle applications}, and compatible in interface with the central control system. The servos chosen were highly geared and were to provide the required torque for actuation of the head and wheels. The servos would have standard mounting holes making incorporation into the design an easier process.
+      \item It was decided that the body be made from acrylic sheet panels glued together to form the box structure. The panel design, cutting and assembly was considered easier compared to the manufacturing carbon fibre on 3D printing, as well as being strong enough to provide the central structural support.
+      \item The suspension system was to be constructed from 3D printed joints and aluminium tubing respecting the minimisation of weight of the assembly and the concept's compatibility with fittings to be made for mounting the wheels. The fact that the joints were to be 3D printed meant that it would become easy to model and print the required angles of the \textit{Curiosity} suspension design without the manufacturing limitations imposed by other methods and materials. The joints allowed for the design to maintain an accurate representation of that on \textit{Curiosity} without sacrificing function. This approach also meant that close fit parts such as bearings could be easily incorporated into the design without imposing constraints on the choice of those types of parts.
+      \item A full 3D printed bar with printed hinges was to be used for the differential system due to the acrylic sheet and steel cord not being suitable for the required function. As mentioned in the discussion of the design concept, the 3D printed differential bar meant that a bearing could be correctly mounted for the motion required. The hinge on the differential bar side would be connected to the suspension side hinge by a threaded bar. As will be discussed, the connecting threaded bar could be used to adjust the distance between the hinges thus providing the ability to balance the rover finely during assembly.
+      \item The wheels were to be 3D printed which would allow for superior aesthetic accuracy and custom fit design for bearings and actuation. The 3D printed wheels would also be lighter than bought wheels. Because of these advantages, 3D printing of the wheels was deemed worth the incurred manufacturing time and cost.
+      \item The head and neck (mast) was to be fully 3D printed to make it more suitable for mounting on top of the rover deck without any portion of it extending into the body of the rover, taking up space required for the electronics. 3D printing meant the ability to accommodate for the chosen means of actuation. The head would be designed to consist of two parts so that access to the internal components of the head was possible. This sub-assembly was then to be mounted to parts connected to the actuation and further parts for mounting on the rover deck.
+      \item Choice of actuation settled upon the use of RC servos. The servos were to be of a suitable size, preferably ``sub-micro''\footnote{A ``sub-micro'' servo motor is one of a range of standard sized servos for robotics and radio-controlled vehicle applications.}, and compatible in interface with the central control system. The servos chosen were highly geared to provide the required torque for actuation of the head and wheels. The servos would have standard mounting holes making incorporation into the design an easier process.
       \item The camera was to be a USB (UVC-compatible) webcam chosen based on availability. The camera would be suitable for use with the chosen central control system and significantly lower in cost compared to the other concept options. It was decided that a webcam be physically altered to be suitable for incorporation into the design of the head.
     \end{enumerate}
     
     Not shown in Figure~\ref{fig:concepts-finalconceptrender} is the central control system, which was to be mounted on the inside of the body structure. The Intel Edison with the Arduino breakout expansion was chosen due to availability of the product as well as its compatibility with add-on hardware, the advantage of which was in the increased development process as a result. The Intel Edison was regarded as being better suited to the performance and computational requirements over the other boards and provided the necessary hardware interfaces for the primary functions and associated hardware for the system throughout.
     
-    As discussed in the functional analysis, \textit{Curiosity's} robotic arm subsystem was not included in the model due to time and cost constraints on the project. The design processed aimed to make the addition of this type of a feature possible in potential future work on the project.
+    As discussed in the functional analysis, \textit{Curiosity's} robotic arm subsystem was not included in the model due to time and cost constraints on the project. However, the design allows the addition of this subsystem in the future.
 
     
