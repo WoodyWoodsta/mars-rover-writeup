@@ -1,4 +1,5 @@
 \chapter{Recommendations and Future Work}
+\label{chap:recommendationsAndFutureWork}
   \section{Recommendations}
     \subsection{RCE Hardware Platform}
       As discussed in Section~\ref{subsec:rec-choiceOfRCEBoard}, the Intel Edison exhibited hardware-software limitations which negatively impacted the performance of some of the peripherals. A candidate solution would be to split the responsibility of the RCE between two devices. The Intel Edison performed well for scheduling, communication and video streaming and thus remains a suitable device for those responsibilities. A separate micro-controller module could be designed to accompany the Intel Edison, and would handle control of hardware and acquisition of data from hardware with the required performance and accuracy. The accompanying module could communicate with the Intel Edison via a serial interface such as I$^2$C and potentially alleviate the requirement for the Arduino extension module thus reducing the RCE boards spatial footprint.
