@@ -436,9 +436,9 @@
           \item \textbf{Control Dropdown:} The ``Control'' dropdown element revealed two controls related to the style of control in use. The first control was a switch element which switched the control style between ``interactive'' and ``RoSE''. The second control allowed the user to select the level of difficulty of the simulation of control.
           \item \textbf{Settings Dropdown:} The ``Settings'' dropdown element revealed a set of settings controls which included:
           \begin{itemize}
-            \item RCE endpoint detail configuration (IP address)
-            \item a button to open the trim edit dialog
-            \item a button to reset the RCE if required (and the user has access to this command)
+            \item RCE endpoint detail configuration (IP address);
+            \item a button to open the trim edit dialog;
+            \item a button to reset the RCE if required (and the user has access to this command).
           \end{itemize}
         \end{itemize}
       
@@ -455,13 +455,13 @@
         
         Operations that were required from the data store API included the ability to:
         \begin{itemize}
-          \item set data,
-          \item read data,
-          \item register callback functions that would be executed upon the change of data at a particular path (i.e. listen to data changes),
-          \item listen to data changes at any level below a particular path in the data structure,
-          \item specify whether or not the data at a particular path was to be broadcast over a chosen WebSocket channel upon change,
-          \item receive data from store event emitters on other software components, across the network,
-          \item request that already existing data be broadcast from one software component to another, and
+          \item set data.
+          \item read data.
+          \item register callback functions that would be executed upon the change of data at a particular path (i.e. listen to data changes).
+          \item listen to data changes at any level below a particular path in the data structure.
+          \item specify whether or not the data at a particular path was to be broadcast over a chosen WebSocket channel upon change.
+          \item receive data from store event emitters on other software components, across the network.
+          \item request that already existing data be broadcast from one software component to another.
           \item re-notify all appropriate listeners and WebSocket channel clients of already existing data.
         \end{itemize}
         

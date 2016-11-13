@@ -15,7 +15,20 @@
       
   \section{Future Work}
     \subsection{Rover Model as Mission and Operations Test Bed}
+      During the development of the rover model, it became apparent that the model could be used in a more scientific manner. The rover could be used as a test bed for many of the systems and software algorithms for all aspects of the operation of this type of exploratory vehicle. This might include the testing of path planning algorithms or perhaps newly developed optical obstacle detection and avoidance systems with supporting automation.
+      
     \subsection{Martian Environment Simulation}
     \label{subsec:fut-martianEnvironmentSimulation}
+      As an extension to the project, research on methods of developing small scale and low-cost but accurate Martian environments could be done to support test-bed-like applications of such a rover model as well as improve the educational value and user engagement when operating the rover.
+    
     \subsection{Steroscopic Video Feed}
+      While the rover model in this project only required a monoscopic video stream, some of the cameras on \textit{Curiosity} are placed in pairs to provide stereoscopic imagery of the subject. This was designed for extraction of depth data as well as for operator immersion. A second camera could be added to the rover model in this project, along with modifications to the RCE board to allow for a second camera input, to provide a similar experience to the visualisation component of the RSVP used at JPL. 
+    
     \subsection{Direct Control Capabilities}
+      While it was deemed acceptable for the system to rely on a central server endpoint for the operation of the rover model in this project, improvements to the accessibility of operation could be achieved by designing a second mode of operation in which the server component of the software system is removed and the RSVP Clients communicate directly with the RCE system. The platform or device hosting the RSVP Client would connect to the RCE Board's wireless access point and the RCE would offer server endpoint functionality and video broadcast. Investigations into the performance limitations as a result would need to be made.
+      
+    \subsection{Improved RoSE Sequencing Editing}
+      The RoSE control interface in this project was greatly simplified due to lack of time. Improvements could be made to the editor component of the RSVP Client UI such as the ability to organise sequences into folders or groups, save sequences or portions thereof for later use and the addition of many other commands for operation of all aspects of the rover.
+    
+    \subsection{Hardware Feedback Telemetry}
+      Currently, the rover model does not have the ability to report the actual hardware states due to lack of sensors and other electronics required to obtain such data. The rover model could be extended to include sensors to provide more accurate state data to the RSVP Client and even to the RCE itself which could be used to improve the control of hardware and implement proper fault detection.

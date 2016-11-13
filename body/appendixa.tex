@@ -1,6 +1,159 @@
 \chapter{List of Contributory Open Source Projects}
 \label{appendix:openSourceList}
-
-Add any information here that you would like to have in your project but is not necessary in the main
-text. Remember to refer to it in the main text. Separate your appendices based on what they are for
-example. Equation derivations in Appendix A and code in Appendix B etc.
+  All three of the software projects made use of a multitude of open source modules made available by the Node.js Package Manager. These dependencies are classified into development dependencies, those used to aid development of the applications, and application dependencies, those used in the application itself. Both sets of dependencies are listed below.
+  
+  \section{Development Dependencies}
+    \begin{itemize}
+    \item \textbf{Babel}: JavaScript compiler used to transform code between the different versions of JavaScript.
+      \begin{itemize}
+        \item \textbf{Repository URL:} \url{https://github.com/babel/babel}
+        \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+      \end{itemize}
+      
+    \item \textbf{Browserify}: A compiler module which bundles Node.js modules into source files that can be loaded in environments without file-system support (i.e. browsers).
+      \begin{itemize}
+        \item \textbf{Repository URL:} \url{https://github.com/substack/node-browserify}
+        \item \textbf{Used in:} RSVP Client
+      \end{itemize}
+      
+    \item \textbf{Babelify}: A plugin for Browserify that transforms JavaScript code during the bundling process.
+      \begin{itemize}
+        \item \textbf{Repository URL:} \url{https://github.com/babel/babelify}
+        \item \textbf{Used in:} RSVP Client
+      \end{itemize}
+      
+    \item \textbf{Watchify}: A plugin for Browserify that replicates the behaviour of watch building in Babel, where the files in the project are automatically built on save.
+      \begin{itemize}
+        \item \textbf{Repository URL:} \url{https://github.com/substack/watchify}
+        \item \textbf{Used in:} RSVP Client
+      \end{itemize}
+      
+    \item \textbf{Concurrently}: A command-line tool for running multiple \mintinline{js}{npm} scripts from the same project simultaneously.
+      \begin{itemize}
+        \item \textbf{Repository URL:} \url{https://github.com/kimmobrunfeldt/concurrently}
+        \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+      \end{itemize}
+      
+    \item \textbf{Yarn}: A package manager for Node.js and Bower projects (an alternative to \mintinline{js}{npm}) which provides improved dependency resolution and determinism as well as package caching.
+      \begin{itemize}
+        \item \textbf{Repository URL:} \url{https://github.com/yarnpkg/yarn}
+        \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+      \end{itemize}
+    \end{itemize}
+    
+  \section{Application Dependencies}
+    \begin{itemize}
+      \item \textbf{\mintinline{js}{debug}}: Provides categorised and coloured output log statements with easy management features.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/visionmedia/debug}
+          \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{eventemitter3}}: A third-party, third revision of the built-in \mintinline{js}{eventemitter} library provided by Node.js which brings support for custom events in JavaScript. \mintinline{js}{eventemitter3} adds the ability to associate with a listener a context and brings better performance to the event API.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/primus/eventemitter3}
+          \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{object-path}}: A small module used to allow access to deep object properties specified by a path string.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/primus/eventemitter3}
+          \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+        \end{itemize}
+        
+      \item \textbf{Socket.io}: A wrapper library for the browser WebSocket API, simplifying both server and client endpoints of a WebSocket connection. Real-time, bidirectional, event-based communication.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/socketio/socket.io/}
+          \item \textbf{Used in:} RCE, RSVP Server, RSVP Client
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{socket.io-client}}: The client library module for Socket.io.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/socketio/socket.io-client}
+          \item \textbf{Used in:} RSVP Server, RSVP Client
+        \end{itemize}
+        
+      \item \textbf{koa.js}: A web server framework designed to cascade server middleware in a more fluent and easier to maintain manner.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/koajs/koa}
+          \item \textbf{Used in:} RCE, RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{koa-bodyparser}}: A middleware plugin for koa.js which parses and outputs the body of an incoming HTTP request.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/koajs/bodyparser}
+          \item \textbf{Used in:} RCE, RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{koa-logger}}: A middleware plugin for koa.js which logs server HTTP activity.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/koajs/logger}
+          \item \textbf{Used in:} RCE, RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{koa-router}}: A middleware plugin for koa.js which allows easy routing of HTTP requests.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/alexmingoia/koa-router}
+          \item \textbf{Used in:} RCE, RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{koa-socket}}: A middleware plugin for koa.js which acts as a wrapper for Socket.io server endpoints, allowing for implementation of a Socket.io server expressed in a koa.js-like middleware style.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/mattstyles/koa-socket}
+          \item \textbf{Used in:} RCE, RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{koa-static}}: A middleware plugin for koa.js which simply serves static files at specified directories.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/koajs/static}
+          \item \textbf{Used in:} RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{kurento-client}}: The Node.js implementation of the Kurento WebRTC library.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/Kurento/kurento-client-js}
+          \item \textbf{Used in:} RSVP Server
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{kurento-utils}}: The browser implementation of key utilities and components for the Kurento WebRTC library.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/Kurento/kurento-utils-js}
+          \item \textbf{Used in:} RSVP Client
+        \end{itemize}
+        
+      \item \textbf{adapter.js}: A browser shim to protect WebRTC applications from volatile web specifications.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/webrtc/adapter}
+          \item \textbf{Used in:} RSVP Client
+        \end{itemize}
+        
+      \item \textbf{Johnny-Five}: A Node.js robotics and IoT library for hardware abstraction in a JavaScript environment.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/rwaldron/johnny-five}
+          \item \textbf{Used in:} RCE
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{edison-io}}: An I/O plugin for Johnny-Five, knitting the JavaScript \mintinline{js}{mraa} bindings into the Johnny-Five abstraction.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/rwaldron/edison-io}
+          \item \textbf{Used in:} RCE
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{monitor-pid}}: A small module for monitoring the usage data of a particular operating system process.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/Inist-CNRS/node-monitor-pid}
+          \item \textbf{Used in:} RCE
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{penner}}: A set of penner easing equations in Node.js.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/bcherny/penner}
+          \item \textbf{Used in:} RCE
+        \end{itemize}
+        
+      \item \textbf{\mintinline{js}{ps-tree}}: A module which finds all child processes of a specified parent process.
+        \begin{itemize}
+          \item \textbf{Repository URL:} \url{https://github.com/indexzero/ps-tree}
+          \item \textbf{Used in:} RCE
+        \end{itemize}
+    \end{itemize}
