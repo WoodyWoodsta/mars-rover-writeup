@@ -6,7 +6,7 @@
     The mechanical design was initiated by planning the basic layout of mechanical subsystems and components and from that point developing each system further. In this section, the choice of scale (and hence dimensions) is followed by the overall plan of the mechanical layout. Subsystems that are peripheral to the body structure are then covered. These include the suspension, differential and mast subsystems. Finally, the design of the body structure is described as well as detail surrounding the model as a whole.
     
     \subsubsection{Scale and Dimensions}
-      Replication of \textit{Curiosity} on an aesthetic level was a project aim to increase the viewers' and users' sense of familiarity with the real \textit{Curiosity} rover, a way of promoting a more engaging experience. The replication process identified that proportion was an effective and achievable starting point and it was decided that as many of the parts as possible be based off the dimensions of the corresponding part on \textit{Curiosity}, brought down to scale by a predetermined factor. Scale was constrained primarily by the cost and manufacturing time of parts that were required to be 3D printed; the larger the model, the greater the amount of material required and the longer it would take to print it. The print bed size was also a constraint in this regard. More details pertaining to the use of 3D printing facilities can be found in Section~\ref{subsubsec:additive-manufacture}.
+      Replication of \textit{Curiosity} on an aesthetic level was a project aim to increase the viewers' and users' sense of familiarity with the real \textit{Curiosity} rover, a way of promoting a more engaging experience. The replication process identified that proportion was an effective and achievable starting point and it was decided that as many of the parts as possible be based off the dimensions of the corresponding part on \textit{Curiosity}, brought down to scale by a predetermined factor. Scale was constrained primarily by the cost and manufacturing time of parts that were required to be 3D printed; the larger the model, the greater the amount of material required and the longer it would take to print it. The print bed size was also a constraint in this regard. More details pertaining to the use of 3D printing facilities can be found in Section~\ref{subsubsec-vehicleBuild-3dPrinting}.
       
       \begin{figure}[h]
         \centering
@@ -135,9 +135,7 @@
         \label{fig:mechDesign-plugConcepts}
         \end{figure}
         
-        % TODO: Label the plugs
-        
-        The plug that was selected was hexagonal in shape but had edges which were filleted to match the inside surface of the aluminium tube. This was a hybridisation of the cylindrical plug, which introduced a very low window of tolerance in the manufacture of the joints, and the simple hexagonal plug. The filleted edges increased the contact surface area with the inside of the tube, improving the effectiveness of the fit, whilst allowing for greater manufacturing tolerances. In case the plugs proved to be lacking the required strength, a hole could have been drilled down the centre of the plug and a steel rod could be glued into place to strengthen the joint, specifically at the intersection of the middle body and the plug. A nut and bolt were added to the plug-tube assembly as in Figure~\ref{fig:mechDesign-plugTubeBearingDetail} to improve the fitting and prevent rotation of the tube around the axis of the plug.
+        The plug that was selected was hexagonal in shape but had edges which were filleted (coloured blue in Figure~\ref{fig:mechDesign-plugConcepts}) to match the inside surface of the aluminium tube. This was a hybridisation of the cylindrical plug, which introduced a very low window of tolerance in the manufacture of the joints, and the simple hexagonal plug. The filleted edges increased the contact surface area with the inside of the tube, improving the effectiveness of the fit, whilst allowing for greater manufacturing tolerances. In case the plugs proved to be lacking the required strength, a hole could have been drilled down the centre of the plug and a steel rod could be glued into place to strengthen the joint, specifically at the intersection of the middle body and the plug. A nut and bolt were added to the plug-tube assembly as in Figure~\ref{fig:mechDesign-plugTubeBearingDetail} to improve the fitting and prevent rotation of the tube around the axis of the plug.
         
         \begin{figure}[h!]
           \centering
@@ -291,16 +289,14 @@
       
       \begin{figure}[h!]
       \centering
-      \subfloat[Top view\label{fig:mechDesign-differentialMotion-a}.]{\includegraphics[clip, trim=2cm 26cm 2cm 4cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionTop.pdf}}
+      \subfloat[Top view\label{fig:mechDesign-differentialMotion-a}.]{\includegraphics[clip, trim=2cm 19cm 2cm 3cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionTop.pdf}}
       \qquad
       \subfloat[Side view.]{
-        \includegraphics[clip, trim=2cm 26cm 2cm 4cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionSide.pdf}
+        \includegraphics[clip, trim=1cm 19cm 1.5cm 3cm, width=0.9\linewidth]{figures/mechDesign-differentialMotionSide.pdf}
       }
       \caption[Diagram showing the motion of the differential and the resulting motion of the differential rod.]{Diagram showing the motion of the differential and the resulting motion of the differential rod.}
       \label{fig:mechDesign-differentialMotion}
       \end{figure}
-      
-      % TODO: Add axes to the above figure
       
       \subheading{Differential Bar}\\\\
         The design of the differential bar stemmed from the partially completed rover deck, specifically with respect to the width of the body and therefore the span of the rocker joints' differential connection points. The bar took on the tapered shape as on \textit{Curiosity} with the wider section in the centre and narrower ends. A hole was added for the addition of a bearing in the centre of the bar and holes for the hinges added to the ends. The bearing was to be mounted to a short shaft which was to be fixed into the deck of the rover. Figure~\ref{fig:mechDesign-differentialBarDetail} shows the detail of the differential bar.
