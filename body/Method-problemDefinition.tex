@@ -3,9 +3,9 @@
 \label{sec:probDef-devObjectives}
   \subsection{Problem Definition}
   The project aims to support science education and outreach, leveraging the modern technologies of today, through the development of a working, scaled down version of the \textit{Curiosity} rover. The project brief indicated that the typical use case as desired by the client was to have the rover simulate chosen, significant features of the rover on Mars to shed some light on the level of capability of space technologies that are currently in operation. The model will be set either in a simulated Martian environment or in a small display area and is required to be remotely controllable, providing video and telemetry to viewers and viewer's devices the same way the \textit{Curiosity} RSVP would to the flight team at JPL.
-  
+
   As an initiation of the project, the requirements were explored and collated below into a list of those pertaining to the vehicle itself in a sense of the hardware as well as the software that encompassed the operation of the vehicle. The requirements made as little reference to technologies available as possible as this detail was to be further developed after analysis of the requirements on a functional level.
-  
+
   \subsection{Project Requirements}
   \label{subsec:probDef-projectRequirements}
   \begin{enumerate}
@@ -28,33 +28,33 @@
       \item facilitate the reception and transmission of the above data wirelessly.
     \end{enumerate}
   \end{enumerate}
-  
+
   \subsection{Analysis of Constraints}
     As with any engineering design project, the rover development was faced with multiple constraints that affected the resulting design. Below is a brief list of the constraints as recognised at the beginning of the project.
-    
+
     \begin{itemize}
       \item Typical exhibition space limited to a dimension of 3m x 3m
       \item Availability and access to 3D printing facilities
       \item Budget limited to approximately R1,500.00
       \item Availability of hardware and electrical products and components
     \end{itemize}
-    
+
   \subsection{Functional Analysis}
     The client requirements as highlighted in the previous sub-section were analysed to develop a functional outline in lieu of developing a list of specifications. This analysis served as the starting point for the componentization of the project, allowing for the conceptual development to follow the breakdown. This is discussed further in the next section. Here, each of the requirements, and combinations of them, were used to result in a breakdown of functions and aspects. A significant effort was made from the start of the project to develop the rover in a modular fashion. This is not to be confused with the outcome being modular (although this was still a desirable feature) but is instead the way in which ideas were formed and developed. The functions outlined in this analysis were treated as modules, where possible, and developed so that each module had as little dependence in operation as possible on another. Following this mindset allowed for the simplification of the design process and the robustness of what was developed against constraints and unforeseen obstacles during development.
-    
+
     The current manner in which the requirements were formulated distinguished clearly the two aspects of the project which inevitably became the two major points of development. Both aspects, the mechanical vehicle and the software system, and their differing natural design approaches made it suitable to discuss them separately, where appropriate. The specifications indicated the possibility of a subset of \textit{Curiosity's} primary functions being included in the model. The requirement of a video feed as well as simulated terrain traversal implied there be at least the mast subsystem, which included the moving head components, and a functioning wheel and suspension system that could be controlled. The ability to drive the rover as well as point the camera via motion of the head component was deemed a combination of functions that would contribute well towards providing an engaging experience for the users. These two systems drove the inclusion of the accompanying systems and components, a breakdown of which can be seen in Figure~\ref{fig:specs-functionalBreakdown}.
-    
+
     \begin{figure}[h]
       \centering
       \includegraphics[width=0.6\textwidth]{figures/specs-functionalBreakdown}
       \caption[High-level breakdown of functional entities of the project.]{High-level breakdown of functional entities of the project.}
       \label{fig:specs-functionalBreakdown}
     \end{figure}
-        
+
   \subsection{Technical Specifications}
   \label{sec:probDef-technicalSpecs}
     The technical specifications were derived from the client requirements and the functional analysis, with knowledge of the systems and subsystems on \textit{Curiosity} (taken from review of literature as covered in Chapter~\ref{chap:lit-review}. The specifications further compartmentalised the vehicle and software systems as evident in the structure of them in the lists that follow. These technical specifications served as the baseline requirements for the final design.
-    
+
     \subsubsection{Vehicle Specifications}
     \label{subsec:probDef-vehicleSpecifications}
       \begin{itemize}
@@ -95,12 +95,12 @@
           \end{RM}
           \item Wheels and Hubs/Pivots:
           \begin{RM}
-            \item Match the shape and proportion of the wheels on \textit{Curiosity}
+            \item Match the shape and proportion of the wheels on \textit{Curiosity}.
             \item Provide traction required for an analogue Martian terrain.
             \item Have steering capabilities which would amount to arc pattern traversal as well as rotation of the rover around a central fixed point.
           \end{RM}
         \end{RM}
-        
+
         \item \textbf{Electrical}
         \begin{RE}
           \item Actuation:
@@ -120,7 +120,7 @@
           \begin{RE}
             \item Provide power for the central control hardware as well as actuation and sensor hardware components.
             \item Power supply unit must fit inside or on the body module.
-            \item Have the ability to be turned switched off or on.
+            \item Have the ability to be switched off or on.
             \item Allow convenient removal of source.
             \item Allow easy access to charging ports.
             \item Provide a means of indication of voltage for telemetry and low-battery warnings.
@@ -139,7 +139,7 @@
           \end{RE}
       \end{RE}
     \end{itemize}
-      
+
     \subsubsection{Software System Specifications}
       \begin{itemize}
         \item \textbf{Rover Embedded Software}
@@ -165,7 +165,7 @@
             \item Provide video resolution on or above VGA (640$\times$480) resolution.
           \end{RS}
         \end{RS}
-        
+
         \item \textbf{Server}
         \begin{RS}[resume]
           \item General Requirements:
@@ -184,12 +184,12 @@
           \item Data Relay:
           \begin{RS}
             \item Relay control input commands from a controlling web client to the rover.
-            \item Provide a means of simulating long-distance communication. 
+            \item Provide a means of simulating long-distance communication.
             \item Relay telemetry data from the rover system to the connected web clients.
             \item Relay state information of the rover system and server system to the connected web clients.
           \end{RS}
         \end{RS}
-          
+
         \item \textbf{Client}
         \begin{RS}[resume]
           \item Control:

@@ -6,7 +6,8 @@
     \begin{RM}
       \item General Specifications:
       \begin{RM}
-        \item \textbf{Partially Satisfied}\\
+        \item \textit{Be as dimensionally accurate as possible to the \textit{Curiosity} rover on Mars.}\\
+        \textbf{Partially Satisfied}\\
         All components of the vehicle were proportional to the 3D reference model \cite{nasa3Dprint} provided by NASA except in the mast and head assembly, whereby the servo and camera dimensions did not allow for smaller components, and in the beams of the suspension system.
         
         \textbf{Proposed improvements:}
@@ -14,50 +15,70 @@
           \item Sourcing of a smaller camera module would allow for a smaller camera head assembly together with better planning of the mounting of the camera inside of the head cavity.
           \item A smaller ultrasonic proximity sensor would alleviate the requirement for the extension of the head canopy for mounting purposes.
         \end{itemize}
-        \item \textbf{Fully Satisfied} and further discussed in Section~\ref{subsec:rec-aesthetics}.
+        \item \textit{Exhibit a satisfactory level of realism and external aesthetic accuracy.}\\
+        \textbf{Fully Satisfied} and further discussed in Section~\ref{subsec:rec-aesthetics}.
       \end{RM}
       \item Body:
       \begin{RM}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}\\
+        \item \textit{Box shaped.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow mounting of the mast and differential on the top surface.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow mounting of the suspension system on either side.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow mounting of additional sensors.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow mounting of additional detail such as side panels and other mockup objects.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow mounting of electrical internals.}\\
+        \textbf{Fully Satisfied}\\
         Mounting of the DC to DC Converter module and the pulse-to-analog converters was moved from the body to an additional acrylic piece fastened to the PWM extension module.
+        \textit{Provide protection/coverage of electrical internals from the external environment.}\\
         \item \textbf{Fully Satisfied}
       \end{RM}
       \item Mast:
       \begin{RM}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Partially Satisfied}\\
+        \item \textit{Provide mount point for the head module.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Facilitate full rotation about the $z$-axis (camera panning/yaw axis).}\\
+        \textbf{Partially Satisfied}\\
         The range of actuation in the servo components chosen for the panning axis rotation of the head was limited to $180^\circ$.
         
         \textbf{Proposed Improvements:}
         \begin{itemize}
           \item Make use of a servo component capable of offering full rotation. This type of servo was not available at the time of design and development of the project.
         \end{itemize}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Partially Satisfied}\\
+        \item \textit{Facilitate at least $120^\circ$ degrees rotation about the $y$-axis (camera pitching axis).}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Be structurally secure providing robustness against lateral forces on the mounted head module.}\\
+        \textbf{Partially Satisfied}\\
         Using the servo shaft for mounting reduced the structural stability of the assembly due to play in the plastic gears of the component. While the rigidity of the mast and head assembly was well within that which was required for operation, improved rigidity would have been possible with an alternative mounting configuration and/or use of metal gear servos. This is discussed further in Section~\ref{subsec:rec-servoSuitability}.
       \end{RM}
       \item Head:
       \begin{RM}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Be mounted onto the mast module.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Provide mount point for a sensor.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow mounting of a camera module.}\\
+        \textbf{Fully Satisfied}
       \end{RM}
       \item Suspension:
       \begin{RM}
-        \item \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
-        \item \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
+        \item \textit{Ensure body stability.}\\
+        \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
+        \item \textit{Maintain stability despite uneven terrain. This includes terrain which might require asymmetrical articulation of the system (a rock underneath one side of the rover and flat terrain underneath the other).}\\
+        \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
       \end{RM}
       \item Wheels and Hubs/Pivots:
       \begin{RM}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Match the shape and proportion of the wheels on \textit{Curiosity}.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Provide traction required for an analogue Martian terrain.}\\
+        \textbf{Fully Satisfied}
         While the traction capability of the designed wheels was not tested due to lack of a suitable test terrain, the wheels replicated the traction pattern on the tyres of \textit{Curiosity}.
-        \item \textbf{Fully Satisfied} as tested in \ref{test:collisionTest}.
+        \item \textit{Have steering capabilities which would amount to arc pattern traversal as well as rotation of the rover around a central fixed point.}\\
+        \textbf{Fully Satisfied} as tested in \ref{test:collisionTest}.
       \end{RM}
     \end{RM}
     
@@ -65,32 +86,46 @@
     \begin{RE}
       \item Actuation:
       \begin{RE}
-        \item \textbf{Fully Satisfied} as tested in \ref{test:stationaryTest} and \ref{test:obstacleTest}.
-        \item \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
-        \item \textbf{Fully Satisfied}
+        \item \textit{Provide continuous rotational actuation for driving. The actuation speed should be controllable and must be of high enough torque to satisfy traversal specifications.}\\
+        \textbf{Fully Satisfied} as tested in \ref{test:stationaryTest} and \ref{test:obstacleTest}.
+        \item \textit{Provide sufficient magnitude rotational actuation for turning of the wheels for steering. The rotational position should be controllable and must be of high enough torque to facilitate turning of the wheels in-place.}\\
+        \textbf{Fully Satisfied} as tested in \ref{test:obstacleTest}.
+        \item \textit{Provide required magnitude rotational actuation for panning and pitching of the head/mast module. Both axes must allow positional control.}\\
+        \textbf{Fully Satisfied}
       \end{RE}
       \item Central Control:
       \begin{RE}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied} as partially tested in \ref{test:collisionTest}.
-        \item \textbf{Fully Satisfied}
+        \item \textit{Host onboard software system for control of hardware.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Facilitate wireless communications with the server.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Interface with actuation and sensory input hardware.}\\
+        \textbf{Fully Satisfied} as partially tested in \ref{test:collisionTest}.
+        \item \textit{Have performance capabilities sufficient for processing and streaming of video data from the head module.}\\
+        \textbf{Fully Satisfied}
       \end{RE}
       
       Note that the choice of the Intel Edison was suitable for the designed rover, however, the severely limited control of the GPIO pins and other peripherals such as PWM could have been avoided if another device was chosen. This is further discussed in Section~\ref{subsec:rec-choiceOfRCEBoard}.
       
       \item Power:
       \begin{RE}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Provide power for the central control hardware as well as actuation and sensor hardware components.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Power supply unit must fit inside or on the body module.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Have the ability to be turned switched off or on.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow convenient removal of source.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Allow easy access to charging ports.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Provide a means of indication of voltage for telemetry and low-battery warnings.}\\
+        \textbf{Fully Satisfied}
       \end{RE}
       \item Sensors:
       \begin{RE}
-        \item \textbf{Partially Satisfied}\\
+        \item \textit{Provide immediate environment data required to implement elementary obstacle detection and avoidance.}\\
+        \textbf{Partially Satisfied}\\
         Due to the limitations in the Intel Edison's ability to measure input electrical pulses, the pulse-to-analog conversion solution introduced a significant increase in the response time of the distance measurements. This meant that while satisfactory data was acquired, it was not immediate and thus affected the speed of obstacle detection.
         
         \textbf{Proposed Improvements:}
@@ -98,15 +133,20 @@
           \item Source the I$^2$C backpack designed to allow the Intel Edison to correctly interface with the HC-SR04 Sensors.
           \item Source digital proximity sensors or range-finders.
         \end{itemize} 
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Not Satisfied} as discussed in the analysis of \ref{li:probDef-spec-sensors-immediateObstacleData}.
+        \item \textit{Be mounted in locations similar to those on \textit{Curiosity}.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Be compatible with the central control module in terms of data interface.}\\
+        \textbf{Not Satisfied} as discussed in the analysis of \ref{li:probDef-spec-sensors-immediateObstacleData}.
       \end{RE}
       \item Camera:
       \begin{RE}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Partially Satisfied}\\
+        \item \textit{Facilitate a monoscopic video feed.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Be mountable inside the head module.}\\
+        \textbf{Partially Satisfied}\\
         Post-manufacture modifications to the head canopy printed part had to be made to allow mounting of the camera. Due to the time-scale of the project, ordering of components and design of the components within the mechanical system had to occur simultaneously. The dimensions of the web camera module were unknown during the design of the mast assembly.
-        \item \textbf{Fully Satisfied}
+        \item \textit{Be compatible with the central control module in terms of data interface.}\\
+        \textbf{Fully Satisfied}
       \end{RE}
   \end{RE}
 \end{itemize}
@@ -117,23 +157,31 @@
     \begin{RS}
       \item General Specifications:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Allow connection of a remote client for telemetry and control as well as another for video streaming.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Be robust against hardware errors and intermittent communication so as to maintain operation in these circumstances.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Control:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Provide a programmatic means to peripheral hardware access.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Translate control input commands into hardware output signals for control of peripheral hardware components.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Declare/define and execute programmatic sequences facilitating procedures such as system booting, communication initialisations, hardware initializations, self diagnosis and emergency modes.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Telemetry:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Emit system telemetry to the connected client consisting of system, process and hardware state as well as sequence execution notifications.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Video Stream:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Provide a stream of the video data to the connected client.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Provide video resolution on or above VGA (640$\times$480) resolution.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
     \end{RS}
     
@@ -141,24 +189,35 @@
     \begin{RS}[resume]
       \item General Requirements:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Manage communication with the rover system.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Manage communication with the connected web clients.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Serve web application to the connected web clients.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Manage roles of the connected web clients with respect to their level of access and ability to control the rover.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Video Broadcast:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied} as tested in \ref{test:serverLoadTest}.
-        \item \textbf{Fully Satisfied}
+        \item \textit{Connect to and accept video data from the rover video stream.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Broadcast video stream to a scalable number of connected user clients.}\\
+        \textbf{Fully Satisfied} as tested in \ref{test:serverLoadTest}.
+        \item \textit{Be robust against communication intermittency in terms of connection with the rover system.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Data Relay:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Partially Satisfied}\\
+        \item \textit{Relay control input commands from a controlling web client to the rover.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Provide a means of simulating long-distance communication.}\\
+        \textbf{Partially Satisfied}\\
         The means by which long distance communication was simulated was rudimentary in that it consisted only of a time delay below 60 seconds. This was not an accurate depiction of the communication dynamic between Earth and \textit{Curiosity}, however, such a simulation would have detracted from the experience of the user.
-        \item \textbf{Fully Satisfied}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Relay telemetry data from the rover system to the connected web clients.}\\
+        \textbf{Fully Satisfied}
+        \item \textit{Relay state information of the rover system and server system to the connected web clients.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
     \end{RS}
       
@@ -166,15 +225,18 @@
     \begin{RS}[resume]
       \item Control:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Provide two means of control of the rover, if access is granted.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Telemetry:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Accept and display telemetry received from the rover via the server and from the server itself.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
       \item Video Feed:
       \begin{RS}
-        \item \textbf{Fully Satisfied}
+        \item \textit{Accept and display video feed received from the broadcast.}\\
+        \textbf{Fully Satisfied}
       \end{RS}
     \end{RS}
   \end{itemize}
